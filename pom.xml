@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.0</version>
+		<version>3.5.10</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.samply</groupId>
@@ -14,7 +14,7 @@
 	<name>SampleXChange</name>
 	<description>SampleXChange</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>25</java.version>
 		<hapi.version>6.8.8</hapi.version>
 		<testcontainers.version>1.18.3</testcontainers.version>
 	</properties>
