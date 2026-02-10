@@ -28,7 +28,7 @@ public class SampleXChangeApplication implements CommandLineRunner {
         SpringApplication.run(SampleXChangeApplication.class, args);
 
         long endTime = System.currentTimeMillis() - startTime;
-        log.info("Finished SampleXChang in " + endTime + " mil sec");
+        log.info("Finished SampleXChang in {} mil sec", endTime);
     }
 
     @Override
