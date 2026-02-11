@@ -1,0 +1,119 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< de.samply:SampleXChange >-----------------------
+[INFO] Building SampleXChange 0.0.2-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.8.1:tree (default-cli) @ SampleXChange ---
+[INFO] de.samply:SampleXChange:jar:0.0.2-SNAPSHOT
+[INFO] +- javax.annotation:javax.annotation-api:jar:1.3.2:compile
+[INFO] +- org.springframework.boot:spring-boot-starter:jar:3.5.10:compile
+[INFO] |  +- org.springframework.boot:spring-boot:jar:3.5.10:compile
+[INFO] |  |  \- org.springframework:spring-context:jar:6.2.15:compile
+[INFO] |  |     +- org.springframework:spring-aop:jar:6.2.15:compile
+[INFO] |  |     +- org.springframework:spring-beans:jar:6.2.15:compile
+[INFO] |  |     +- org.springframework:spring-expression:jar:6.2.15:compile
+[INFO] |  |     \- io.micrometer:micrometer-observation:jar:1.15.8:compile
+[INFO] |  |        \- io.micrometer:micrometer-commons:jar:1.15.8:compile
+[INFO] |  +- org.springframework.boot:spring-boot-autoconfigure:jar:3.5.10:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter-logging:jar:3.5.10:compile
+[INFO] |  |  +- ch.qos.logback:logback-classic:jar:1.5.25:compile
+[INFO] |  |  |  \- ch.qos.logback:logback-core:jar:1.5.25:compile
+[INFO] |  |  +- org.apache.logging.log4j:log4j-to-slf4j:jar:2.24.3:compile
+[INFO] |  |  |  \- org.apache.logging.log4j:log4j-api:jar:2.24.3:compile
+[INFO] |  |  \- org.slf4j:jul-to-slf4j:jar:2.0.17:compile
+[INFO] |  +- jakarta.annotation:jakarta.annotation-api:jar:2.1.1:compile
+[INFO] |  +- org.springframework:spring-core:jar:6.2.15:compile
+[INFO] |  |  \- org.springframework:spring-jcl:jar:6.2.15:compile
+[INFO] |  \- org.yaml:snakeyaml:jar:2.4:compile
+[INFO] +- org.springframework.boot:spring-boot-starter-test:jar:3.5.10:test
+[INFO] |  +- org.springframework.boot:spring-boot-test:jar:3.5.10:test
+[INFO] |  +- org.springframework.boot:spring-boot-test-autoconfigure:jar:3.5.10:test
+[INFO] |  +- com.jayway.jsonpath:json-path:jar:2.9.0:test
+[INFO] |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:4.0.4:compile
+[INFO] |  |  \- jakarta.activation:jakarta.activation-api:jar:2.1.4:compile
+[INFO] |  +- net.minidev:json-smart:jar:2.5.2:test
+[INFO] |  |  \- net.minidev:accessors-smart:jar:2.5.2:test
+[INFO] |  |     \- org.ow2.asm:asm:jar:9.7.1:test
+[INFO] |  +- org.assertj:assertj-core:jar:3.27.6:test
+[INFO] |  +- org.awaitility:awaitility:jar:4.2.2:test
+[INFO] |  +- org.hamcrest:hamcrest:jar:3.0:test
+[INFO] |  +- org.junit.jupiter:junit-jupiter:jar:5.12.2:test
+[INFO] |  |  +- org.junit.jupiter:junit-jupiter-api:jar:5.12.2:test
+[INFO] |  |  |  +- org.opentest4j:opentest4j:jar:1.3.0:test
+[INFO] |  |  |  +- org.junit.platform:junit-platform-commons:jar:1.12.2:test
+[INFO] |  |  |  \- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[INFO] |  |  +- org.junit.jupiter:junit-jupiter-params:jar:5.12.2:test
+[INFO] |  |  \- org.junit.jupiter:junit-jupiter-engine:jar:5.12.2:test
+[INFO] |  |     \- org.junit.platform:junit-platform-engine:jar:1.12.2:test
+[INFO] |  +- org.mockito:mockito-junit-jupiter:jar:5.17.0:test
+[INFO] |  +- org.skyscreamer:jsonassert:jar:1.5.3:test
+[INFO] |  |  \- com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1:test
+[INFO] |  +- org.springframework:spring-test:jar:6.2.15:test
+[INFO] |  \- org.xmlunit:xmlunit-core:jar:2.10.4:test
+[INFO] +- ca.uhn.hapi.fhir:hapi-fhir-client:jar:6.4.0:compile
+[INFO] |  +- ca.uhn.hapi.fhir:hapi-fhir-base:jar:6.4.0:compile
+[INFO] |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.19.4:compile
+[INFO] |  |  |  \- com.fasterxml.jackson.core:jackson-core:jar:2.19.4:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.19.4:compile
+[INFO] |  |  +- commons-codec:commons-codec:jar:1.18.0:compile
+[INFO] |  |  +- commons-io:commons-io:jar:2.21.0:compile
+[INFO] |  |  +- com.google.guava:guava:jar:31.0.1-jre:compile
+[INFO] |  |  |  +- com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO] |  |  |  +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO] |  |  |  +- org.checkerframework:checker-qual:jar:3.12.0:compile
+[INFO] |  |  |  +- com.google.errorprone:error_prone_annotations:jar:2.7.1:compile
+[INFO] |  |  |  \- com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO] |  |  \- org.slf4j:jcl-over-slf4j:jar:2.0.17:compile
+[INFO] |  +- org.apache.httpcomponents:httpclient:jar:4.5.13:compile
+[INFO] |  \- org.apache.httpcomponents:httpcore:jar:4.4.16:compile
+[INFO] +- ca.uhn.hapi.fhir:hapi-fhir-structures-r4:jar:6.4.0:compile
+[INFO] |  +- com.squareup.okhttp3:okhttp:jar:4.10.0:compile
+[INFO] |  |  +- com.squareup.okio:okio-jvm:jar:3.0.0:compile
+[INFO] |  |  |  +- org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.9.25:compile
+[INFO] |  |  |  |  \- org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.9.25:compile
+[INFO] |  |  |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.9.25:compile
+[INFO] |  |  \- org.jetbrains.kotlin:kotlin-stdlib:jar:1.9.25:compile
+[INFO] |  +- ca.uhn.hapi.fhir:org.hl7.fhir.utilities:jar:5.6.881:compile
+[INFO] |  |  \- com.ibm.icu:icu4j:jar:72.1:compile
+[INFO] |  +- ca.uhn.hapi.fhir:org.hl7.fhir.r4:jar:5.6.881:compile
+[INFO] |  +- ca.uhn.hapi.fhir:hapi-fhir-caching-api:jar:6.4.0:compile
+[INFO] |  \- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] +- org.mockito:mockito-core:jar:5.15.2:compile
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.17.8:compile
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.17.8:compile
+[INFO] |  \- org.objenesis:objenesis:jar:3.3:runtime
+[INFO] +- org.fhir:ucum:jar:1.0.9:compile
+[INFO] +- com.opencsv:opencsv:jar:5.9:compile
+[INFO] |  +- org.apache.commons:commons-lang3:jar:3.17.0:compile
+[INFO] |  +- org.apache.commons:commons-text:jar:1.11.0:compile
+[INFO] |  +- commons-beanutils:commons-beanutils:jar:1.11.0:compile
+[INFO] |  |  +- commons-logging:commons-logging:jar:1.3.5:compile
+[INFO] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |  \- org.apache.commons:commons-collections4:jar:4.4:compile
+[INFO] +- com.github.cliftonlabs:json-simple:jar:3.1.1:compile
+[INFO] +- junit:junit:jar:4.13.2:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:3.0:test
+[INFO] +- jakarta.jws:jakarta.jws-api:jar:3.0.0:compile
+[INFO] +- jakarta.xml.ws:jakarta.xml.ws-api:jar:4.0.0:compile
+[INFO] |  \- jakarta.xml.soap:jakarta.xml.soap-api:jar:3.0.2:compile
+[INFO] +- org.glassfish.hk2:osgi-resource-locator:jar:2.5.0-b42:compile
+[INFO] +- org.testcontainers:testcontainers:jar:1.20.4:test
+[INFO] |  +- org.slf4j:slf4j-api:jar:2.0.17:compile
+[INFO] |  +- org.apache.commons:commons-compress:jar:1.26.0:test
+[INFO] |  +- org.rnorth.duct-tape:duct-tape:jar:1.0.8:test
+[INFO] |  |  \- org.jetbrains:annotations:jar:17.0.0:compile
+[INFO] |  +- com.github.docker-java:docker-java-api:jar:3.4.0:test
+[INFO] |  |  \- com.fasterxml.jackson.core:jackson-annotations:jar:2.19.4:compile
+[INFO] |  \- com.github.docker-java:docker-java-transport-zerodep:jar:3.4.0:test
+[INFO] |     +- com.github.docker-java:docker-java-transport:jar:3.4.0:test
+[INFO] |     \- net.java.dev.jna:jna:jar:5.13.0:test
+[INFO] +- org.testcontainers:junit-jupiter:jar:1.20.4:test
+[INFO] \- org.projectlombok:lombok:jar:1.18.42:provided
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.340 s
+[INFO] Finished at: 2026-02-10T18:32:59+01:00
+[INFO] ------------------------------------------------------------------------
