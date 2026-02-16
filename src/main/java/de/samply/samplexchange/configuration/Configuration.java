@@ -47,6 +47,18 @@ public class Configuration {
     @Value("${target.password}")
     private String targetServerPassword;
 
+    @Value("${target.bearertoken:#{null}}")
+    private String targetServerBearerToken;
+
+    @Value("${target.keycloak.token-url:#{null}}")
+    private String targetKeycloakTokenUrl;
+
+    @Value("${target.keycloak.client-id:#{null}}")
+    private String targetKeycloakClientId;
+
+    @Value("${target.keycloak.client-secret:#{null}}")
+    private String targetKeycloakClientSecret;
+
     @Value("${fileexportpath}")
     private String fileExportPath;
 
