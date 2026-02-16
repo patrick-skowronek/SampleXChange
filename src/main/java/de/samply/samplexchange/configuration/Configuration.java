@@ -23,6 +23,18 @@ public class Configuration {
     @Value("${source.password}")
     private String sourceServerPassword;
 
+    @Value("${source.bearertoken:#{null}}")
+    private String sourceServerBearerToken;
+
+    @Value("${source.keycloak.token-url:#{null}}")
+    private String sourceKeycloakTokenUrl;
+
+    @Value("${source.keycloak.client-id:#{null}}")
+    private String sourceKeycloakClientId;
+
+    @Value("${source.keycloak.client-secret:#{null}}")
+    private String sourceKeycloakClientSecret;
+
     @Value("${profile}")
     private String profile;
 
