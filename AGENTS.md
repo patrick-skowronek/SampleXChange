@@ -120,7 +120,7 @@ de.samply.samplexchange/
 - Validate inputs at service boundaries
 
 ## Environment Setup
-- Java 17 required
+- Java 25 required
 - Maven 3.6+ for building
 - Docker for containerization
 - Environment variables for configuration (see application.yml)
