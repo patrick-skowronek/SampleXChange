@@ -4,7 +4,7 @@ This document provides guidelines for AI agents working on the SampleXChange cod
 
 ## Project Overview
 
-- **Technology Stack**: Java 17, Spring Boot 3.4.0, HAPI FHIR 6.8.8, Maven
+- **Technology Stack**: Java 25, Spring Boot 4.0.2, HAPI FHIR 8.6.5, Maven
 - **Purpose**: Convert FHIR resources between BBMRI Profiles and MII KDS Profiles for biobank data interchange
 - **Architecture**: Component-based Spring application with FHIR mapping layers
 
