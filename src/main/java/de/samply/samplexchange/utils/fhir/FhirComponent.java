@@ -80,7 +80,8 @@ public class FhirComponent {
             sourceKeycloakTokenManager = new KeycloakTokenManager(
                     configuration.getSourceKeycloakTokenUrl(),
                     configuration.getSourceKeycloakClientId(),
-                    configuration.getSourceKeycloakClientSecret()
+                    configuration.getSourceKeycloakClientSecret(),
+                    configuration.isFhirClientAcceptSsl()
             );
         }
         
@@ -176,7 +177,8 @@ public class FhirComponent {
                 targetKeycloakTokenManager = new KeycloakTokenManager(
                         configuration.getTargetKeycloakTokenUrl(),
                         configuration.getTargetKeycloakClientId(),
-                        configuration.getTargetKeycloakClientSecret()
+                        configuration.getTargetKeycloakClientSecret(),
+                        configuration.isFhirClientAcceptSsl()
                 );
             }
             
