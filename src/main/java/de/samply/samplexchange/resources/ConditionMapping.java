@@ -95,6 +95,12 @@ public class ConditionMapping
                     .setSystem(ICD_10_GM_CODE_SYSTEM)
                     .setVersion(this.diagnosisIcd10GmVersion)
                     .setCode(this.diagnosisIcd10Gm);
+        } else if (Objects.nonNull(this.diagnosisIcd10Who)) {
+            condition
+                    .getCode()
+                    .getCodingFirstRep()
+                    .setSystem("http://hl7.org/fhir/sid/icd-10")
+                    .setCode(this.diagnosisIcd10Who);
         }
 
         return condition;
