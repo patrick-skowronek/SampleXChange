@@ -41,7 +41,7 @@ public class Bbmri2Bbmri extends FhirInterface {
     /**
      * Transferring.
      */
-    @PostConstruct
+    @Override
     public void transfer()
             throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         log.info("Running TransFAIR in BBMRI2BBMRI mode");

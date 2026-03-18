@@ -48,7 +48,7 @@ public class Mii2Bbmri extends FhirInterface {
     /**
      * Transferring.
      */
-    @PostConstruct
+    @Override
     public void transfer() throws Exception {
         log.info("Running MII2BMMRI");
         this.setup();

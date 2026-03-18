@@ -52,7 +52,7 @@ public class Bbmri2Mii extends FhirInterface {
     /**
      * Transferring.
      */
-    @PostConstruct
+    @Override
     public void transfer() throws Exception {
 
         if (!this.setup()) {
