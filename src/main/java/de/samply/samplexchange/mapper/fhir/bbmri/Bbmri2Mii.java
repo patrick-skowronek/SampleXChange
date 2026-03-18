@@ -47,6 +47,8 @@ public class Bbmri2Mii extends FhirInterface {
     public Bbmri2Mii(Configuration configuration) throws Exception {
         super(configuration);
         fhirComponent = new FhirComponent(configuration);
+        // Initialize resources list with all supported resource types
+        this.resources = List.of("Patient", "Condition", "Specimen", "Observation");
     }
 
     /**
