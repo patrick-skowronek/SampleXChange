@@ -6,7 +6,6 @@ import de.samply.samplexchange.configuration.Configuration;
 import de.samply.samplexchange.mapper.fhir.FhirInterface;
 import de.samply.samplexchange.resources.*;
 import de.samply.samplexchange.utils.fhir.FhirComponent;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.Condition;

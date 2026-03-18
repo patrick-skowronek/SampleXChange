@@ -46,7 +46,6 @@ tmp/**/*
 *.bak
 *.swp
 local.properties
-.classpath
 .settings/
 
 ###MacOS###
