@@ -7,24 +7,28 @@ logging:
         samplexchange: DEBUG
 app:
   version: '@project.version@'
+  source:
+    url: "${SOURCE_URL}"
+    auth-type: "${SOURCE_AUTH_TYPE}"
+    username: "${SOURCE_USERNAME:}"
+    password: "${SOURCE_PASSWORD:}"
+    bearer-token: "${SOURCE_BEARERTOKEN:}"
+    enable-ssl: "${SOURCE_ENABLE_SSL:true}"
+    keycloak:
+      token-url: "${SOURCE_KEYCLOAK_TOKEN_URL:}"
+      client-id: "${SOURCE_KEYCLOAK_CLIENT_ID:}"
+      client-secret: "${SOURCE_KEYCLOAK_CLIENT_SECRET:}"
+  target:
+    url: "${TARGET_URL}"
+    auth-type: "${TARGET_AUTH_TYPE}"
+    username: "${TARGET_USERNAME:}"
+    password: "${TARGET_PASSWORD:}"
+    bearer-token: "${TARGET_BEARERTOKEN:}"
+    enable-ssl: "${TARGET_ENABLE_SSL:true}"
+    keycloak:
+      token-url: "${TARGET_KEYCLOAK_TOKEN_URL:}"
+      client-id: "${TARGET_KEYCLOAK_CLIENT_ID:}"
+      client-secret: "${TARGET_KEYCLOAK_CLIENT_SECRET:}"
 profile: "${PROFILE:none}"
-disablessl: "${DISABLE_SSL:true}"
-source:
-  url: "${SOURCE_URL}"
-  username: "${SOURCE_USERNAME:}"
-  password: "${SOURCE_PASSWORD:}"
-  bearertoken: "${SOURCE_BEARERTOKEN:}"
-  keycloak:
-    token-url: "${SOURCE_KEYCLOAK_TOKEN_URL:}"
-    client-id: "${SOURCE_KEYCLOAK_CLIENT_ID:}"
-    client-secret: "${SOURCE_KEYCLOAK_CLIENT_SECRET:}"
-target:
-  url: "${TARGET_URL}"
-  username: "${TARGET_USERNAME:}"
-  password: "${TARGET_PASSWORD:}"
-  bearertoken: "${TARGET_BEARERTOKEN:}"
-  keycloak:
-    token-url: "${TARGET_KEYCLOAK_TOKEN_URL:}"
-    client-id: "${TARGET_KEYCLOAK_CLIENT_ID:}"
-    client-secret: "${TARGET_KEYCLOAK_CLIENT_SECRET:}"
 fileexportpath: "${FILE_EXPORT_PATH:}"
+kind: Application
