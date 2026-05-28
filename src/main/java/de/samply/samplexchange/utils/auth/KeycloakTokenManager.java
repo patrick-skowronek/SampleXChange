@@ -118,7 +118,7 @@ public class KeycloakTokenManager {
      */
     public String getToken() throws Exception {
         if (isTokenValid()) {
-            log.debug("Using cached Keycloak token");
+            log.info("Using cached Keycloak token");
             return cachedToken;
         }
 
@@ -178,7 +178,7 @@ public class KeycloakTokenManager {
      * Clears the cached token, forcing a new fetch on next getToken() call.
      */
     public void invalidateToken() {
-        log.debug("Invalidating cached Keycloak token");
+        log.warn("Invalidating cached Keycloak token");
         this.cachedToken = null;
         this.tokenExpiryTime = null;
     }

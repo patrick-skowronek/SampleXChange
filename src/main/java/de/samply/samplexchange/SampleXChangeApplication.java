@@ -42,7 +42,7 @@ public class SampleXChangeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("EXECUTING : command line runner");
+        log.trace("EXECUTING : command line runner");
 
         for (int i = 0; i < args.length; ++i) {
             log.debug("args[{}]: {}", i, args[i]);
@@ -63,7 +63,7 @@ public class SampleXChangeApplication implements CommandLineRunner {
         log.info("SSL validation disabled: {}", configuration.isFhirClientAcceptSsl());
 
         if (mappers.isEmpty()) {
-            log.warn("No FHIR mapper found for profile: {}", configuration.getProfile());
+            log.error("No FHIR mapper found for profile: {}", configuration.getProfile());
             log.info("Available profiles: BBMRI2MII, MII2BBMRI, BBMRI2BBMRI");
             return;
         }

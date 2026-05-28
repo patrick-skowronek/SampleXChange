@@ -90,7 +90,7 @@ public class CauseOfDeathMapping extends ConvertClass<Observation, Condition> {
             codeableConcept.getCodingFirstRep().setCode(causeOfDeath);
             observation.setValue(codeableConcept);
         } else {
-            log.debug("CauseOfDeath Observation {} has no ICD-10 code", bbmriId);
+            log.warn("CauseOfDeath Observation {} has no ICD-10 code", bbmriId);
         }
 
         return observation;
@@ -139,7 +139,7 @@ public class CauseOfDeathMapping extends ConvertClass<Observation, Condition> {
             codeableConceptCause.getCodingFirstRep().setCode(causeOfDeath);
             condition.setCode(codeableConceptCause);
         } else {
-            log.debug("CauseOfDeath Condition {} has no ICD-10 code", miiId);
+            log.warn("CauseOfDeath Condition {} has no ICD-10 code", miiId);
         }
 
         return condition;
