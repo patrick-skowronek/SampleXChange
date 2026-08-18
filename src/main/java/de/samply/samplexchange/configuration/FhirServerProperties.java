@@ -13,7 +13,7 @@ public class FhirServerProperties {
     private String username;
     private String password;
     private String bearerToken;
-    private boolean enableSsl = true;
+    private boolean disableSsl = false;
     private KeycloakProperties keycloak = new KeycloakProperties();
 
     @Data

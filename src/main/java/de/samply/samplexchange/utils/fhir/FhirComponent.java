@@ -71,7 +71,7 @@ public class FhirComponent {
 
         sourceFhirServer =
                 new FhirClient(
-                        ctx, configuration.getSource().getUrl(), configuration.getSource().isEnableSsl());
+                        ctx, configuration.getSource().getUrl(), configuration.getSource().isDisableSsl());
 
         setAuthForSource(sourceFhirServer);
         log.info("Start collecting Resources from FHIR server {}", configuration.getSource().getUrl());
@@ -95,7 +95,7 @@ public class FhirComponent {
                             source.getKeycloak().getTokenUrl(),
                             source.getKeycloak().getClientId(),
                             source.getKeycloak().getClientSecret(),
-                            source.isEnableSsl()
+                            source.isDisableSsl()
                     );
                     String token = sourceKeycloakTokenManager.getToken();
                     log.info("Setting Keycloak Bearer Token Authentication for source FHIR server {}", client.getClient().getServerBase());
@@ -139,7 +139,7 @@ public class FhirComponent {
                             target.getKeycloak().getTokenUrl(),
                             target.getKeycloak().getClientId(),
                             target.getKeycloak().getClientSecret(),
-                            target.isEnableSsl()
+                            target.isDisableSsl()
                     );
                     String token = targetKeycloakTokenManager.getToken();
                     log.info("Setting Keycloak Bearer Token Authentication for target FHIR server {}", client.getClient().getServerBase());
@@ -194,7 +194,7 @@ public class FhirComponent {
         } else {
             FhirServerSaver fhirServerSaver =
                     new FhirServerSaver(
-                            ctx, configuration.getTarget().getUrl(), configuration.getTarget().isEnableSsl());
+                            ctx, configuration.getTarget().getUrl(), configuration.getTarget().isDisableSsl());
 
             setAuthForTarget(fhirServerSaver.getClient());
             log.info("Exporting resources to FHIR server " + configuration.getTarget().getUrl());

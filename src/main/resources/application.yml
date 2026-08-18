@@ -13,7 +13,7 @@ app:
     username: "${SOURCE_USERNAME:}"
     password: "${SOURCE_PASSWORD:}"
     bearer-token: "${SOURCE_BEARERTOKEN:}"
-    enable-ssl: "${SOURCE_ENABLE_SSL:true}"
+    disable-ssl: "${SOURCE_DISABLE_SSL:false}"
     keycloak:
       token-url: "${SOURCE_KEYCLOAK_TOKEN_URL:}"
       client-id: "${SOURCE_KEYCLOAK_CLIENT_ID:}"
@@ -24,7 +24,7 @@ app:
     username: "${TARGET_USERNAME:}"
     password: "${TARGET_PASSWORD:}"
     bearer-token: "${TARGET_BEARERTOKEN:}"
-    enable-ssl: "${TARGET_ENABLE_SSL:true}"
+    disable-ssl: "${TARGET_DISABLE_SSL:false}"
     keycloak:
       token-url: "${TARGET_KEYCLOAK_TOKEN_URL:}"
       client-id: "${TARGET_KEYCLOAK_CLIENT_ID:}"

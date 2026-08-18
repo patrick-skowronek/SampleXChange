@@ -60,7 +60,8 @@ public class SampleXChangeApplication implements CommandLineRunner {
         log.info("Active profile: {}", configuration.getProfile());
         log.info("Source server: {}", configuration.getSourceServer());
         log.info("Target server: {}", configuration.getTargetServer());
-        log.info("SSL validation disabled: {}", configuration.isFhirClientAcceptSsl());
+        log.info("SSL validation disabled - source: {}, target: {}",
+                configuration.getSource().isDisableSsl(), configuration.getTarget().isDisableSsl());
 
         if (mappers.isEmpty()) {
             log.error("No FHIR mapper found for profile: {}", configuration.getProfile());

@@ -6,5 +6,6 @@ services:
     environment:
       PROFILE: "MII2BBMRI"
       SOURCE_URL: http://blazea:8080/fhir
-      DISABLESSL: true
+      SOURCE_DISABLE_SSL: true
+      TARGET_DISABLE_SSL: true
       TARGET_URL: http://blazeb:8080/fhir;
