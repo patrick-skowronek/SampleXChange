@@ -146,7 +146,9 @@ public class SpecimenMapping
                 for (Extension extension : processingComponent.getExtension()) {
                     if (Objects.equals(extension.getUrl(),
                             "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Temperaturbedingungen")) {
-                        if (processingComponent.getTimePeriod().getStart().after(latestStorageDate)) {
+                        if (Objects.nonNull(processingComponent.getTimePeriod())
+                                && Objects.nonNull(processingComponent.getTimePeriod().getStart())
+                                && processingComponent.getTimePeriod().getStart().after(latestStorageDate)) {
                             latestStorageRange = (Range) processingComponent.getExtensionFirstRep().getValue();
 
                         }
@@ -156,10 +158,10 @@ public class SpecimenMapping
         }
 
         if(Objects.nonNull(latestStorageRange)) {
-            if (Objects.nonNull(latestStorageRange.getHigh().getValue())) {
+            if (Objects.nonNull(latestStorageRange.getHigh()) && Objects.nonNull(latestStorageRange.getHigh().getValue())) {
                 this.miiStoargeTemperatureHigh = latestStorageRange.getHigh().getValue().longValue();
             }
-            if (Objects.nonNull(latestStorageRange.getLow().getValue())) {
+            if (Objects.nonNull(latestStorageRange.getLow()) && Objects.nonNull(latestStorageRange.getLow().getValue())) {
                 this.miiStoargeTemperaturelow = latestStorageRange.getLow().getValue().longValue();
             }
         }
@@ -167,9 +169,8 @@ public class SpecimenMapping
 
     @Override
     public Specimen toBbmri() {
-
         if (this.hasParent) {
-            return null;
+            log.debug("Specimen {} has parent, exporting anyway", miiId);
         }
 
         Specimen specimen = new Specimen();

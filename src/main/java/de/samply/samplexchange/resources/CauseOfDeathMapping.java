@@ -76,17 +76,22 @@ public class CauseOfDeathMapping extends ConvertClass<Observation, Condition> {
             this.bbmriPatientId = miiPatientId;
         }
 
-        if (bbmriId.isBlank() && bbmriPatientId.isBlank() && causeOfDeath.isBlank()) {
-            return new Observation();
+        if (bbmriId.isBlank()) {
+            log.warn("Cannot create CauseOfDeath Observation without ID");
+            return null;
         }
 
         observation.setId(bbmriId);
         observation.setSubject(new Reference().setReference(bbmriPatientId));
-        CodeableConcept codeableConcept = new CodeableConcept();
-        codeableConcept.getCodingFirstRep().setSystem(ICD_SYSTEM);
-
-        codeableConcept.getCodingFirstRep().setCode(causeOfDeath);
-        observation.setValue(codeableConcept);
+        
+        if (!causeOfDeath.isBlank()) {
+            CodeableConcept codeableConcept = new CodeableConcept();
+            codeableConcept.getCodingFirstRep().setSystem(ICD_SYSTEM);
+            codeableConcept.getCodingFirstRep().setCode(causeOfDeath);
+            observation.setValue(codeableConcept);
+        } else {
+            log.warn("CauseOfDeath Observation {} has no ICD-10 code", bbmriId);
+        }
 
         return observation;
     }
@@ -96,8 +101,13 @@ public class CauseOfDeathMapping extends ConvertClass<Observation, Condition> {
      */
 
     public org.hl7.fhir.r4.model.Condition toMii() {
-        if (bbmriId.isBlank() && bbmriPatientId.isBlank() && causeOfDeath.isBlank()) {
-            return new Condition();
+        if (!bbmriId.isEmpty() && miiId.isEmpty()) {
+            this.miiId = this.bbmriId;
+        }
+        
+        if (miiId.isBlank()) {
+            log.warn("Cannot create CauseOfDeath Condition without ID");
+            return null;
         }
 
         org.hl7.fhir.r4.model.Condition condition = new org.hl7.fhir.r4.model.Condition();
@@ -108,10 +118,6 @@ public class CauseOfDeathMapping extends ConvertClass<Observation, Condition> {
         CodeableConcept codingLoinc = new CodeableConcept();
         codingLoinc.getCodingFirstRep().setSystem("http://loinc.org");
         codingLoinc.getCodingFirstRep().setCode("79378-6");
-
-        if (!bbmriId.isEmpty() && miiId.isEmpty()) {
-            this.miiId = this.bbmriId;
-        }
 
         condition.setId(miiId);
 
@@ -127,10 +133,14 @@ public class CauseOfDeathMapping extends ConvertClass<Observation, Condition> {
 
         condition.setCategory(List.of(codingLoinc, codingSnomedCt));
 
-        CodeableConcept codeableConceptCause = new CodeableConcept();
-        codeableConceptCause.getCodingFirstRep().setSystem(ICD_SYSTEM);
-        codeableConceptCause.getCodingFirstRep().setCode(causeOfDeath);
-        condition.setCode(codeableConceptCause);
+        if (!causeOfDeath.isBlank()) {
+            CodeableConcept codeableConceptCause = new CodeableConcept();
+            codeableConceptCause.getCodingFirstRep().setSystem(ICD_SYSTEM);
+            codeableConceptCause.getCodingFirstRep().setCode(causeOfDeath);
+            condition.setCode(codeableConceptCause);
+        } else {
+            log.warn("CauseOfDeath Condition {} has no ICD-10 code", miiId);
+        }
 
         return condition;
     }

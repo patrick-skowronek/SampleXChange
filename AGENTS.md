@@ -93,7 +93,7 @@ de.samply.samplexchange/
 - Validate resources before conversion
 
 ## Configuration Management
-- Environment variables: `PROFILE`, `DISABLESSL`, `SOURCE_URL`, `TARGET_URL`, etc.
+- Environment variables: `PROFILE`, `SOURCE_URL`, `SOURCE_AUTH_TYPE`, `SOURCE_DISABLE_SSL`, `TARGET_URL`, `TARGET_AUTH_TYPE`, `TARGET_DISABLE_SSL`, etc.
 - Configuration in `application.yml`
 - Support for both BBMRI2MII and MII2BBMRI profiles
 - Proper binding of environment-specific properties

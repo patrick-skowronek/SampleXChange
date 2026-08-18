@@ -6,10 +6,10 @@ import de.samply.samplexchange.configuration.Configuration;
 import de.samply.samplexchange.mapper.fhir.FhirInterface;
 import de.samply.samplexchange.resources.*;
 import de.samply.samplexchange.utils.fhir.FhirComponent;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.Condition;
+import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Specimen;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class Mii2Bbmri extends FhirInterface {
     /**
      * Transferring.
      */
-    @PostConstruct
+    @Override
     public void transfer() throws Exception {
         log.info("Running MII2BMMRI");
         this.setup();
@@ -100,7 +100,10 @@ public class Mii2Bbmri extends FhirInterface {
                     causeOfDeathMapping.fromMii(condition);
                     log.debug("Analysing Cause of Death {} with format mii", condition.getId());
 
-                    patientResources.add(causeOfDeathMapping.toBbmri());
+                    Observation causeOfDeath = causeOfDeathMapping.toBbmri();
+                    if (causeOfDeath != null && !causeOfDeath.getId().isBlank()) {
+                        patientResources.add(metaMapping.tagResource(causeOfDeath));
+                    }
                 } else if (checkMmiCondition(condition)) {
                     ConditionMapping conditionMapping = new ConditionMapping();
                     conditionMapping.fromMii(condition);

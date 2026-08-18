@@ -4,6 +4,7 @@ import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IClientInterceptor;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.rest.client.interceptor.BasicAuthInterceptor;
+import ca.uhn.fhir.rest.client.interceptor.BearerTokenAuthInterceptor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
@@ -66,6 +67,14 @@ public class FhirClient {
      */
     public void setBasicAuth(String username, String password) {
         IClientInterceptor authInterceptor = new BasicAuthInterceptor(username, password);
+        client.registerInterceptor(authInterceptor);
+    }
+
+    /**
+     * Sets bearer token auth for client.
+     */
+    public void setBearerAuth(String token) {
+        IClientInterceptor authInterceptor = new BearerTokenAuthInterceptor(token);
         client.registerInterceptor(authInterceptor);
     }
 

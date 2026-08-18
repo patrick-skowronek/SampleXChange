@@ -11,18 +11,28 @@ To configure the tool, the following environment variables must be set:
     - `MII2BBMRI`: Convert MII KDS Biosamples to BBMRI Biosamples.
 
 ### SSL Configuration
-- `DISABLESSL`: If set to `true`, SSL verification will be disabled, allowing the tool to accept self-signed certificates. **(Use with caution in production environments!)**
+SSL verification is configured per server. If set to `true`, SSL verification is disabled, allowing the tool to accept self-signed certificates. **(Use with caution in production environments!)**
+- `SOURCE_DISABLE_SSL`: Defaults to `false`.
+- `TARGET_DISABLE_SSL`: Defaults to `false`.
 
 ### FHIR Server Configuration
+Each server requires an authentication type. Valid values are `KEYCLOAK`, `BEARER` and `BASIC`; the variables required depend on the type chosen.
+
 #### Source FHIR Server
 - `SOURCE_URL`: The URL of the source FHIR server.
-- `SOURCE_USERNAME`: (Optional) Username for basic authentication.
-- `SOURCE_PASSWORD`: (Optional) Password for basic authentication.
+- `SOURCE_AUTH_TYPE`: Authentication type, one of `KEYCLOAK`, `BEARER`, `BASIC`.
+- `SOURCE_USERNAME` / `SOURCE_PASSWORD`: Credentials for `BASIC`.
+- `SOURCE_BEARERTOKEN`: Static token for `BEARER`.
+- `SOURCE_KEYCLOAK_TOKEN_URL`, `SOURCE_KEYCLOAK_CLIENT_ID`, `SOURCE_KEYCLOAK_CLIENT_SECRET`: Required for `KEYCLOAK`.
 
 #### Target FHIR Server
 - `TARGET_URL`: The URL of the target FHIR server.
-- `TARGET_USERNAME`: (Optional) Username for basic authentication.
-- `TARGET_PASSWORD`: (Optional) Password for basic authentication.
+- `TARGET_AUTH_TYPE`: Authentication type, one of `KEYCLOAK`, `BEARER`, `BASIC`.
+- `TARGET_USERNAME` / `TARGET_PASSWORD`: Credentials for `BASIC`.
+- `TARGET_BEARERTOKEN`: Static token for `BEARER`.
+- `TARGET_KEYCLOAK_TOKEN_URL`, `TARGET_KEYCLOAK_CLIENT_ID`, `TARGET_KEYCLOAK_CLIENT_SECRET`: Required for `KEYCLOAK`.
+
+See `.env.example` for a complete template.
 
 ## Usage
 Set up the required environment variables as per your use case. And run the program either locally or with docker. Please check if all resource are as diesired on the target server.

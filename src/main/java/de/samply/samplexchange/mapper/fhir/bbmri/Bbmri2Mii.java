@@ -6,7 +6,6 @@ import de.samply.samplexchange.enums.ProfileFormats;
 import de.samply.samplexchange.mapper.fhir.FhirInterface;
 import de.samply.samplexchange.resources.*;
 import de.samply.samplexchange.utils.fhir.FhirComponent;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.Condition;
@@ -47,12 +46,14 @@ public class Bbmri2Mii extends FhirInterface {
     public Bbmri2Mii(Configuration configuration) throws Exception {
         super(configuration);
         fhirComponent = new FhirComponent(configuration);
+        // Initialize resources list with all supported resource types
+        this.resources = List.of("Patient", "Condition", "Specimen", "Observation");
     }
 
     /**
      * Transferring.
      */
-    @PostConstruct
+    @Override
     public void transfer() throws Exception {
 
         if (!this.setup()) {
