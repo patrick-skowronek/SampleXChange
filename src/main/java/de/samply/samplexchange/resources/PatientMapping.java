@@ -3,14 +3,13 @@ package de.samply.samplexchange.resources;
 import org.hl7.fhir.r4.model.BooleanType;
 import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Enumerations.AdministrativeGenderEnumFactory;
-import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Meta;
 
 import java.util.Date;
 import java.util.Objects;
 
 /**
- * Patientmappings for converting between bbmri.de and MII KDS.
+ * Patientmappings for converting MII KDS to bbmri.de.
  */
 public class PatientMapping
         extends ConvertClass<org.hl7.fhir.r4.model.Patient, org.hl7.fhir.r4.model.Patient> {
@@ -21,47 +20,12 @@ public class PatientMapping
     // BBMRI data
     String bbmriId = "";
 
-    Identifier identifier;
-
     Date brithDate;
     boolean patientDeceased;
     DateTimeType patientDeceasedDateTime;
     String gender;
 
     public PatientMapping() {
-    }
-
-    public String getMiiId() {
-        return miiId;
-    }
-
-    public void setMiiId(String id) {
-        this.miiId = id;
-    }
-
-    public String getBbmriId() {
-        return bbmriId;
-    }
-
-    public void setBbmriId(String id) {
-        this.bbmriId = id;
-    }
-
-    @Override
-    public void fromBbmri(org.hl7.fhir.r4.model.Patient resource) {
-        this.bbmriId = resource.getId();
-        this.brithDate = resource.getBirthDate();
-
-        if (resource.hasGender()) {
-            this.gender = resource.getGender().toCode();
-        }
-
-        if (resource.hasDeceased()) {
-            this.patientDeceased = true;
-            this.patientDeceasedDateTime = resource.getDeceasedDateTimeType();
-        } else {
-            this.patientDeceased = false;
-        }
     }
 
     @Override
@@ -100,35 +64,6 @@ public class PatientMapping
         }
 
         patient.setId(bbmriId);
-
-        if (this.patientDeceased) {
-            patient.setDeceased(this.patientDeceasedDateTime);
-        }
-
-        return patient;
-    }
-
-    @Override
-    public org.hl7.fhir.r4.model.Patient toMii() throws Exception {
-        org.hl7.fhir.r4.model.Patient patient = new org.hl7.fhir.r4.model.Patient();
-        patient.setMeta(
-                new Meta()
-                        .addProfile(
-                                "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient"));
-
-        if (!bbmriId.isEmpty() && miiId.isEmpty()) {
-            this.miiId = this.bbmriId;
-        }
-
-        patient.setId(miiId);
-
-        if (Objects.nonNull(this.gender)) {
-            patient.setGender(new AdministrativeGenderEnumFactory().fromCode(this.gender));
-        }
-
-        if (Objects.nonNull(this.brithDate)) {
-            patient.setBirthDate(brithDate);
-        }
 
         if (this.patientDeceased) {
             patient.setDeceased(this.patientDeceasedDateTime);

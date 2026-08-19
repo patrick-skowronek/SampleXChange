@@ -65,7 +65,7 @@ public class SampleXChangeApplication implements CommandLineRunner {
 
         if (mappers.isEmpty()) {
             log.error("No FHIR mapper found for profile: {}", configuration.getProfile());
-            log.info("Available profiles: BBMRI2MII, MII2BBMRI, BBMRI2BBMRI");
+            log.info("Available profiles: MII2BBMRI");
             return;
         }
 

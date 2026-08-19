@@ -7,7 +7,6 @@ To configure the tool, the following environment variables must be set:
 
 ### Operation Mode
 - `PROFILE`: Defines the operation mode of the tool. Possible values:
-    - `BBMRI2MII`: Convert BBMRI Biosamples to MII KDS Biosamples.
     - `MII2BBMRI`: Convert MII KDS Biosamples to BBMRI Biosamples.
 
 ### SSL Configuration

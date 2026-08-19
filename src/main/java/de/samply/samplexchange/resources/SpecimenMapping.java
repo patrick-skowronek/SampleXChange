@@ -23,16 +23,10 @@ public class SpecimenMapping
     String fastingStatusSystem;
 
     // BBMRI data
-    String bbmriId = "";
-    String bbmriSubject = "";
-    // Decoded as https://simplifier.net/bbmri.de/samplematerialtype
-    String bbmrisampleType;
-
     String bbmriBodySite;
 
     String storageTemperature;
     String diagnosisIcd10Who;
-    String collectionRef;
     String miiId = "";
 
     // MII data
@@ -49,56 +43,6 @@ public class SpecimenMapping
     private String diagnosisIcd10Gm;
     @Setter
     private String miiConditionRef;
-
-    @Override
-    public void fromBbmri(Specimen resource) {
-        this.bbmriId = resource.getId();
-        this.bbmriSubject = resource.getSubject().getReference();
-        this.bbmrisampleType = resource.getType().getCodingFirstRep().getCode();
-
-        this.collectedDate = resource.getCollection().getCollectedDateTimeType();
-        this.bbmriBodySite = resource.getCollection().getBodySite().getCodingFirstRep().getCode();
-        this.fastingStatus =
-                resource.getCollection().getFastingStatusCodeableConcept().getCodingFirstRep().getCode();
-        this.fastingStatusSystem =
-                resource.getCollection().getFastingStatusCodeableConcept().getCodingFirstRep().getSystem();
-
-        try {
-            for (Extension e : resource.getExtension()) {
-                if (Objects.equals(
-                        e.getUrl(), "https://fhir.bbmri.de/StructureDefinition/StorageTemperature")) {
-                    Type t = e.getValue();
-                    CodeableConcept codeableConcept = (CodeableConcept) t;
-                    this.storageTemperature = codeableConcept.getCodingFirstRep().getCode();
-                } else if (Objects.equals(
-                        e.getUrl(), "https://fhir.bbmri.de/StructureDefinition/SampleDiagnosis")) {
-                    Type t = e.getValue();
-                    CodeableConcept codeableConcept = (CodeableConcept) t;
-                    for (Coding codeableConcept1 : codeableConcept.getCoding()) {
-                        switch (codeableConcept1.getSystem()) {
-                            case "http://hl7.org/fhir/sid/icd-10":
-                                this.diagnosisIcd10Who = codeableConcept.getCodingFirstRep().getCode();
-                                break;
-                            case "http://fhir.de/CodeSystem/dimdi/icd-10-gm":
-                                this.setDiagnosisIcd10Gm(codeableConcept.getCodingFirstRep().getCode());
-                                break;
-                            default:
-                        }
-                    }
-                } else if (Objects.equals(
-                        e.getUrl(), "https://fhir.bbmri.de/StructureDefinition/Custodian")) {
-                    Type t = e.getValue();
-                    Reference ref = (Reference) t;
-                    this.collectionRef = ref.getReference();
-                } else {
-                    log.info("Unsupported Extension");
-                }
-            }
-        } catch (Exception e) {
-            log.info("This fails :(");
-            log.error(e.getMessage());
-        }
-    }
 
     @Override
     public void fromMii(Specimen resource) {
@@ -237,43 +181,4 @@ public class SpecimenMapping
         return specimen;
     }
 
-    @Override
-    public Specimen toMii() {
-        Specimen specimen = new Specimen();
-        specimen.setMeta(
-                new Meta()
-                        .addProfile(
-                                "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Specimen"));
-
-        specimen.setId(miiId);
-
-        if (!bbmriSubject.isEmpty() && miiSubject.isEmpty()) {
-            this.miiSubject = bbmriSubject;
-        }
-
-        specimen.getSubject().setReference(miiSubject);
-
-        if (Objects.nonNull(miiSampleType)) {
-            this.miiSampleType = SnomedSamplyTypeConverter.fromBbmriToMii(bbmrisampleType);
-        } else {
-            log.warn("Sample {} has no sample type", bbmriId);
-        }
-
-        CodeableConcept coding = new CodeableConcept();
-        coding.getCodingFirstRep().setCode(miiSampleType).setSystem("http://snomed.info/sct");
-        specimen.setType(coding);
-
-        specimen.getCollection().setCollected(this.collectedDate);
-
-        specimen
-                .getCollection().getFastingStatusCodeableConcept().getCodingFirstRep()
-                .setSystem(this.fastingStatusSystem).setCode(this.fastingStatus);
-
-        if (!Objects.equals(this.storageTemperature, null)) {
-            specimen
-                    .getCollection()
-                    .setExtension(List.of(TemperatureConverter.fromBbrmiToMii(this.storageTemperature)));
-        }
-        return specimen;
-    }
 }

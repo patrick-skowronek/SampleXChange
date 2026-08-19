@@ -27,21 +27,6 @@ public class CauseOfDeathMapping extends ConvertClass<Observation, Condition> {
     String bbmriPatientId = "";
 
     /**
-     * This imports a Cause of Death to bbmri.de.
-     */
-    @Override
-    public void fromBbmri(Observation resource) {
-        if (resource.getMeta().getProfile().stream()
-                .anyMatch(canonicalType -> canonicalType.equals(BBMRI_PROFILE_CAUSE_OF_DEATH))) {
-            this.bbmriId = resource.getId();
-            if (resource.getValueCodeableConcept().getCodingFirstRep().getSystem().equals(ICD_SYSTEM)) {
-                this.causeOfDeath = resource.getValueCodeableConcept().getCodingFirstRep().getCode();
-            }
-            this.bbmriPatientId = resource.getSubject().getReference();
-        }
-    }
-
-    /**
      * This imports a Cause of Death to MII KDS.
      */
     @Override
@@ -96,52 +81,4 @@ public class CauseOfDeathMapping extends ConvertClass<Observation, Condition> {
         return observation;
     }
 
-    /**
-     * This exports a Cause of Death to MII KDS.
-     */
-
-    public org.hl7.fhir.r4.model.Condition toMii() {
-        if (!bbmriId.isEmpty() && miiId.isEmpty()) {
-            this.miiId = this.bbmriId;
-        }
-        
-        if (miiId.isBlank()) {
-            log.warn("Cannot create CauseOfDeath Condition without ID");
-            return null;
-        }
-
-        org.hl7.fhir.r4.model.Condition condition = new org.hl7.fhir.r4.model.Condition();
-        condition.setMeta(
-                new Meta()
-                        .addProfile(MII_PROFILE_CAUSE_OF_DEATH));
-
-        CodeableConcept codingLoinc = new CodeableConcept();
-        codingLoinc.getCodingFirstRep().setSystem("http://loinc.org");
-        codingLoinc.getCodingFirstRep().setCode("79378-6");
-
-        condition.setId(miiId);
-
-        if (miiPatientId.isEmpty() && !bbmriPatientId.isEmpty()) {
-            this.miiPatientId = bbmriPatientId;
-        }
-
-        condition.setSubject(new Reference(miiPatientId));
-
-        CodeableConcept codingSnomedCt = new CodeableConcept();
-        codingSnomedCt.getCodingFirstRep().setSystem("http://snomed.info/sct");
-        codingSnomedCt.getCodingFirstRep().setCode("16100001");
-
-        condition.setCategory(List.of(codingLoinc, codingSnomedCt));
-
-        if (!causeOfDeath.isBlank()) {
-            CodeableConcept codeableConceptCause = new CodeableConcept();
-            codeableConceptCause.getCodingFirstRep().setSystem(ICD_SYSTEM);
-            codeableConceptCause.getCodingFirstRep().setCode(causeOfDeath);
-            condition.setCode(codeableConceptCause);
-        } else {
-            log.warn("CauseOfDeath Condition {} has no ICD-10 code", miiId);
-        }
-
-        return condition;
-    }
 }
