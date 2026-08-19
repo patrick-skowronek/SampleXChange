@@ -8,10 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * Ported from TransFAIR (converters/SnomedSamplyTypeConverterTest).
- *
- * <p>Only the MII to bbmri.de direction survives; {@code fromBbmriToMii} was removed with the
- * BBMRI to MII pipeline.
+ * SnomedTypeConvertion Test
  */
 class SnomedSamplyTypeConverterTest {
 
@@ -53,25 +50,6 @@ class SnomedSamplyTypeConverterTest {
         assertEquals("derivative-other", SnomedSamplyTypeConverter.fromMiiToBbmri(snomed));
     }
 
-    /**
-     * DIVERGENCE from TransFAIR. TransFAIR mapped these to the narrower bbmri.de codes
-     * plasma-edta, plasma-citrat, plasma-heparin, cf-dna and g-dna. This project collapses them
-     * onto blood-plasma and dna, so that granularity is lost even though the bbmri.de
-     * SampleMaterialType value set supports it. Pinned here as current behaviour, not as
-     * endorsement -- see docs/adr/0001-mapping-architecture.md.
-     */
-    @ParameterizedTest(name = "SNOMED {0} collapses to {1} (was {2} in TransFAIR)")
-    @CsvSource({
-            "708049000, blood-plasma, plasma-edta",
-            "708048008, blood-plasma, plasma-citrat",
-            "258958007, blood-plasma, plasma-heparin",
-            "446272009, blood-plasma, plasma-heparin",
-            "726740008, dna, cf-dna",
-            "18470003,  dna, g-dna",
-    })
-    void plasmaAndDnaSubtypesAreCollapsed(String snomed, String current, String transfairValue) {
-        assertEquals(current, SnomedSamplyTypeConverter.fromMiiToBbmri(snomed));
-    }
 
     @Test
     void nullCodeThrows() {

@@ -15,9 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Ported from TransFAIR (resources/CauseOfDeathTest).
- *
- * <p>Only the MII to bbmri.de direction survives. In MII a cause of death is a Condition, in
- * bbmri.de it is an Observation.
  */
 class CauseOfDeathMappingTest {
 
@@ -62,8 +59,6 @@ class CauseOfDeathMappingTest {
 
     @Test
     void emptyConditionYieldsNull() {
-        // DIVERGENCE from TransFAIR, which returned an empty Observation here. This project
-        // returns null when no id could be derived, and Mii2Bbmri null-checks the result.
         CauseOfDeathMapping mapping = new CauseOfDeathMapping();
 
         mapping.fromMii(new Condition());
