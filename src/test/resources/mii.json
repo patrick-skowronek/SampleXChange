@@ -1,0 +1,517 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "Patient/ExampleMIIPatient",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "ExampleMIIPatient",
+        "meta": {
+          "profile": [
+            "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient"
+          ]
+        },
+        "identifier": [
+          {
+            "use": "usual",
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "MR"
+                }
+              ]
+            },
+            "system": "https://www.example.org/fhir/sid/patienten",
+            "value": "42285243",
+            "assigner": {
+              "display": "Charité – Universitätsmedizin Berlin",
+              "identifier": {
+                "system": "https://www.medizininformatik-initiative.de/fhir/core/CodeSystem/core-location-identifier",
+                "value": "Charité"
+              }
+            }
+          },
+          {
+            "use": "official",
+            "type": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+                  "code": "GKV"
+                }
+              ]
+            },
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "Z234567890",
+            "assigner": {
+              "identifier": {
+                "use": "official",
+                "value": "109519005",
+                "system": "http://fhir.de/sid/arge-ik/iknr"
+              }
+            }
+          },
+          {
+            "use": "secondary",
+            "type": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+                  "code": "PKV"
+                }
+              ]
+            },
+            "value": "123456",
+            "assigner": {
+              "display": "Signal Iduna"
+            }
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Van-der-Dussen",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Van-der-Dussen"
+                }
+              ]
+            },
+            "given": [
+              "Maja",
+              "Julia"
+            ],
+            "prefix": [
+              "Prof. Dr. med."
+            ],
+            "_prefix": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier",
+                    "valueCode": "AC"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "use": "maiden",
+            "family": "Haffer"
+          }
+        ],
+        "gender": "other",
+        "_gender": {
+          "extension": [
+            {
+              "url": "http://fhir.de/StructureDefinition/gender-amtlich-de",
+              "valueCoding": {
+                "system": "http://fhir.de/CodeSystem/gender-amtlich-de",
+                "code": "D",
+                "display": "divers"
+              }
+            }
+          ]
+        },
+        "birthDate": "1998-09-19",
+        "deceasedBoolean": false,
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Anna-Louisa-Karsch Str. 2"
+            ],
+            "city": "Berlin",
+            "_city": {
+              "extension": [
+                {
+                  "url": "http://fhir.de/StructureDefinition/destatis/ags",
+                  "valueCoding": {
+                    "system": "http://fhir.de/sid/destatis/ags",
+                    "code": "11000000"
+                  }
+                }
+              ]
+            },
+            "state": "DE-BE",
+            "postalCode": "10178",
+            "country": "DE"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient/ExampleMIIPatient"
+      }
+    },
+    {
+      "fullUrl": "Condition/ExampleConditionTodesursache",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "ExampleConditionTodesursache",
+        "meta": {
+          "profile": [
+            "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Todesursache"
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "16100001",
+                "display": "Death diagnosis (contextual qualifier) (qualifier value)"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "79378-6",
+                "display": "Cause of death"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "R96.1",
+              "system": "http://fhir.de/CodeSystem/bfarm/icd-10-gm",
+              "version": "2021"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/ExampleMIIPatient"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Condition/ExampleConditionTodesursache"
+      }
+    },
+    {
+      "fullUrl": "Observation/ExampleObservationVitalstatus",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ExampleObservationVitalstatus",
+        "meta": {
+          "profile": [
+            "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Vitalstatus"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "survey"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "67162-8"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/ExampleMIIPatient"
+        },
+        "effectiveDateTime": "2019-12-23T09:30:10+01:00",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "https://www.medizininformatik-initiative.de/fhir/core/modul-person/CodeSystem/Vitalstatus",
+              "code": "X"
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/ExampleObservationVitalstatus"
+      }
+    },
+    {
+      "fullUrl": "Substance/ExampleSubstance",
+      "resource": {
+        "resourceType": "Substance",
+        "id": "ExampleSubstance",
+        "meta": {
+          "profile": [
+            "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Substance"
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "372877000",
+              "system": "http://snomed.info/sct",
+              "display": "Heparin (substance)"
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Substance/ExampleSubstance"
+      }
+    },
+    {
+      "fullUrl": "Specimen/MusterprobeFluessig",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "MusterprobeFluessig",
+        "meta": {
+          "profile": [
+            "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Specimen"
+          ]
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "122555007",
+              "display": "Venous blood specimen (specimen)"
+            }
+          ]
+        },
+        "processing": [
+          {
+            "extension": [
+              {
+                "valueRange": {
+                  "low": {
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel",
+                    "unit": "°C",
+                    "value": 15
+                  },
+                  "high": {
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel",
+                    "unit": "°C",
+                    "value": 25
+                  }
+                },
+                "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Temperaturbedingungen"
+              }
+            ],
+            "procedure": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "1186936003",
+                  "display": "Storage of specimen (procedure)"
+                }
+              ]
+            },
+            "timePeriod": {
+              "start": "2018-06-07T15:54:00+01:00",
+              "end": "2018-06-07T16:27:00+01:00"
+            }
+          },
+          {
+            "extension": [
+              {
+                "valueRange": {
+                  "low": {
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel",
+                    "unit": "°C",
+                    "value": 15
+                  },
+                  "high": {
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel",
+                    "unit": "°C",
+                    "value": 25
+                  }
+                },
+                "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Temperaturbedingungen"
+              }
+            ],
+            "procedure": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "73373003",
+                  "display": "Specimen centrifugation (procedure)"
+                }
+              ]
+            },
+            "timePeriod": {
+              "start": "2018-06-07T16:27:00+01:00",
+              "end": "2018-06-07T16:37:00+01:00"
+            }
+          },
+          {
+            "extension": [
+              {
+                "valueRange": {
+                  "low": {
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel",
+                    "unit": "°C",
+                    "value": 15
+                  },
+                  "high": {
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel",
+                    "unit": "°C",
+                    "value": 25
+                  }
+                },
+                "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Temperaturbedingungen"
+              }
+            ],
+            "procedure": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "1186936003",
+                  "display": "Storage of specimen (procedure)"
+                }
+              ]
+            },
+            "timePeriod": {
+              "start": "2018-06-07T16:37:00+01:00",
+              "end": "2018-06-07T16:51:00+01:00"
+            }
+          },
+          {
+            "extension": [
+              {
+                "valueRange": {
+                  "low": {
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel",
+                    "unit": "°C",
+                    "value": -85
+                  },
+                  "high": {
+                    "system": "http://unitsofmeasure.org",
+                    "code": "Cel",
+                    "unit": "°C",
+                    "value": -60
+                  }
+                },
+                "url": "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Temperaturbedingungen"
+              }
+            ],
+            "procedure": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "1186936003",
+                  "display": "Storage of specimen (procedure)"
+                },
+                {
+                  "code": "27872000",
+                  "system": "http://snomed.info/sct",
+                  "display": "Specimen freezing (procedure)"
+                }
+              ]
+            },
+            "timePeriod": {
+              "start": "2018-06-07T16:51:00+01:00"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "https://biobank.uk-musterstadt.de/fhir/sid/proben",
+            "value": "12345"
+          }
+        ],
+        "status": "available",
+        "subject": {
+          "reference": "Patient/ExampleMIIPatient"
+        },
+        "collection": {
+          "collectedDateTime": "2018-06-07T15:54:00+01:00",
+          "fastingStatusCodeableConcept": {
+            "coding": [
+              {
+                "code": "NG",
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0916",
+                "display": "Not Given - Patient was not asked at the time of the procedure."
+              }
+            ]
+          }
+        },
+        "container": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "83059008",
+                  "system": "http://snomed.info/sct",
+                  "display": "Tube, device (physical object)"
+                }
+              ]
+            },
+            "capacity": {
+              "value": 10,
+              "code": "ml",
+              "system": "http://unitsofmeasure.org"
+            },
+            "specimenQuantity": {
+              "value": 10,
+              "code": "ml",
+              "system": "http://unitsofmeasure.org"
+            },
+            "additiveReference": {
+              "reference": "Substance/ExampleSubstance"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Specimen/MusterprobeFluessig"
+      }
+    },
+    {
+      "fullUrl": "Condition/MusterprobeCondition-1",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "MusterprobeCondition-1",
+        "meta": {
+          "profile": [
+            "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose"
+          ]
+        },
+        "identifier": [
+          {
+            "value": "MusterprobeCondition-1"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "195506001"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/ExampleMIIPatient"
+        },
+        "recordedDate": "2021-01-01T00:00:00+01:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Condition/MusterprobeCondition-1"
+      }
+    }
+  ]
+}
+          

@@ -21,7 +21,7 @@ mvn clean package -DskipTests
 mvn spring-boot:run
 
 # Run with specific profile
-mvn spring-boot:run -Dspring-boot.run.arguments="--profile=BBMRI2MII"
+mvn spring-boot:run -Dspring-boot.run.arguments="--profile=MII2BBMRI"
 
 # Run tests (when implemented)
 mvn test
@@ -43,21 +43,18 @@ docker-compose up
 ```
 de.samply.samplexchange/
 ├── configuration/     # Spring configuration classes
-├── converters/       # Data conversion utilities
-├── enums/          # Enumerations for fixed values
-├── exceptions/     # Custom exception classes
-├── mapper/fhir/   # FHIR mapping logic (bbmri/, mii/ subpackages)
-├── models/        # Data model classes
-├── readers/       # FHIR resource readers
-├── resources/     # Resource mapping classes
-├── repository/    # Repository layer
-├── utils/fhir/    # FHIR utility classes
-└── writers/fhir/  # FHIR writer classes
+├── converters/        # Terminology conversion utilities
+├── mapper/fhir/mii/   # MII KDS source mappers
+├── resources/         # Resource mapping classes
+├── repository/fhir/   # FHIR server export
+├── utils/auth/        # Keycloak token handling
+├── utils/fhir/        # FHIR client and transfer utilities
+└── writers/fhir/      # File export
 ```
 
 ### Naming Conventions
 - **Classes**: PascalCase (e.g., `SpecimenMapping`, `TemperatureConverter`)
-- **Methods**: camelCase with descriptive names (e.g., `fromBbrmiToMii`, `toMii`)
+- **Methods**: camelCase with descriptive names (e.g., `fromMiiToBbmri`, `toBbmri`)
 - **Variables**: camelCase (e.g., `bbmriId`, `miiSubject`)
 - **Constants**: UPPER_SNAKE_CASE (e.g., `URL`, `DEFAULT_TIMEOUT`)
 - **Packages**: lowercase with dots (e.g., `de.samply.samplexchange.converters`)
@@ -76,18 +73,15 @@ de.samply.samplexchange/
 ## Type Safety and Generics
 - Use generic types in template classes: `ConvertClass<T1, T2>`
 - Strong typing with FHIR model classes from HAPI FHIR
-- Enum usage for fixed value sets (`ProfileFormats`)
 - Avoid raw types where possible
 
 ## Error Handling
-- Custom exceptions extend `Exception` (not `RuntimeException`)
 - Use proper exception chaining with descriptive messages
-- Checked exceptions for expected error conditions
 - Log errors appropriately using `@Slf4j`
 
 ## FHIR-Specific Guidelines
 - Use HAPI FHIR R4 structures exclusively
-- Separate mappers for BBMRI↔MII conversions
+- Mappers convert MII KDS to bbmri.de (one direction)
 - Handle extensions properly for custom data fields
 - Follow FHIR resource structure conventions
 - Validate resources before conversion
@@ -95,7 +89,7 @@ de.samply.samplexchange/
 ## Configuration Management
 - Environment variables: `PROFILE`, `SOURCE_URL`, `SOURCE_AUTH_TYPE`, `SOURCE_DISABLE_SSL`, `TARGET_URL`, `TARGET_AUTH_TYPE`, `TARGET_DISABLE_SSL`, etc.
 - Configuration in `application.yml`
-- Support for both BBMRI2MII and MII2BBMRI profiles
+- Supported profile: MII2BBMRI (see docs/adr/0001-mapping-architecture.md)
 - Proper binding of environment-specific properties
 
 ## Testing Guidelines (When Implemented)
@@ -108,7 +102,7 @@ de.samply.samplexchange/
 ## Architecture Patterns
 - **Template Method**: Use `ConvertClass<T1, T2>` as base class
 - **Strategy Pattern**: Different mappers for profile conversions
-- **Factory Pattern**: Resource creation in readers/writers
+- **Factory Pattern**: Resource creation in writers
 - **Dependency Injection**: Spring component management
 
 ## Development Best Practices

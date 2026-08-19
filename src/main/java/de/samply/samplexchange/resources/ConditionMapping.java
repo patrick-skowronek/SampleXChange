@@ -20,33 +20,12 @@ public class ConditionMapping
     String bbmriSubject;
     DateTimeType onset;
     String diagnosisIcd10Who;
-    String diagnosisSnomed;
     String diagnosisIcd10Gm;
     String diagnosisIcd10GmVersion;
-    String diagnosisIcd9;
     String miiId = "";
     String miiSubject;
 
     public ConditionMapping() {
-    }
-
-    @Override
-    public void fromBbmri(org.hl7.fhir.r4.model.Condition resource) {
-        this.bbmriId = resource.getId();
-        this.bbmriSubject = resource.getSubject().getReference();
-        this.onset = resource.getOnsetDateTimeType();
-
-        for (Coding coding : resource.getCode().getCoding()) {
-            if (Objects.equals(coding.getSystem(), "http://hl7.org/fhir/sid/icd-10")) {
-                this.diagnosisIcd10Who = coding.getCode();
-            } else if (Objects.equals(coding.getSystem(), ICD_10_GM_CODE_SYSTEM)) {
-                this.diagnosisIcd10Gm = coding.getCode();
-            } else if (Objects.equals(coding.getSystem(), "http://hl7.org/fhir/sid/icd-9")) {
-                this.diagnosisIcd9 = coding.getCode();
-            } else {
-                log.info("Unsupported Coding");
-            }
-        }
     }
 
     @Override
@@ -106,43 +85,4 @@ public class ConditionMapping
         return condition;
     }
 
-    @Override
-    public org.hl7.fhir.r4.model.Condition toMii() {
-        org.hl7.fhir.r4.model.Condition condition = new org.hl7.fhir.r4.model.Condition();
-        condition.setMeta(
-                new Meta()
-                        .addProfile(
-                                "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose"));
-
-        this.miiId = bbmriId;
-        condition.setId(miiId);
-
-        this.miiSubject = this.bbmriSubject;
-
-        condition.setSubject(new Reference(miiSubject));
-
-        condition.setOnset(this.onset);
-
-        if (Objects.nonNull(this.diagnosisIcd10Gm)) {
-            condition
-                    .getCode()
-                    .getCodingFirstRep()
-                    .setSystem(ICD_10_GM_CODE_SYSTEM)
-                    .setVersion(this.diagnosisIcd10GmVersion)
-                    .setCode(this.diagnosisIcd10Gm);
-        }
-        if (Objects.isNull(this.diagnosisIcd10Gm) && Objects.nonNull(this.diagnosisIcd10Who)) {
-            condition
-                    .getCode()
-                    .getCodingFirstRep()
-                    .setSystem(ICD_10_GM_CODE_SYSTEM)
-                    .setVersion(this.diagnosisIcd10GmVersion)
-                    .setCode(this.diagnosisIcd10Who);
-        }
-        if (Objects.nonNull(this.diagnosisSnomed)) {
-            log.error("This is not supported");
-        }
-
-        return condition;
-    }
 }
