@@ -26,18 +26,19 @@ SSL verification is set per server. Setting a variable to `true` turns verificat
 - `TARGET_DISABLE_SSL`: defaults to `false`.
 
 ### FHIR server configuration
-Each server needs an authentication type: `KEYCLOAK`, `BEARER`, `BASIC` or `NONE`. Which other variables you need depends on that type. Use `NONE` for a server that is open or protected by the surrounding network.
+Each FHIR server URL must be an http or https URL ending in `/fhir`, such as `http://localhost:8080/fhir`.
 
+The authentication type is `KEYCLOAK`, `BEARER`, `BASIC` or `NONE`, and defaults to `NONE` when it is not set. 
 #### Source FHIR server
 - `SOURCE_URL`: URL of the source FHIR server.
-- `SOURCE_AUTH_TYPE`: one of `KEYCLOAK`, `BEARER`, `BASIC`, `NONE`.
+- `SOURCE_AUTH_TYPE`: one of `KEYCLOAK`, `BEARER`, `BASIC`, `NONE` (default).
 - `SOURCE_USERNAME` / `SOURCE_PASSWORD`: credentials for `BASIC`.
 - `SOURCE_BEARERTOKEN`: static token for `BEARER`.
 - `SOURCE_KEYCLOAK_TOKEN_URL`, `SOURCE_KEYCLOAK_CLIENT_ID`, `SOURCE_KEYCLOAK_CLIENT_SECRET`: required for `KEYCLOAK`.
 
 #### Target FHIR server
 - `TARGET_URL`: URL of the target FHIR server.
-- `TARGET_AUTH_TYPE`: one of `KEYCLOAK`, `BEARER`, `BASIC`, `NONE`.
+- `TARGET_AUTH_TYPE`: one of `KEYCLOAK`, `BEARER`, `BASIC`, `NONE` (default).
 - `TARGET_USERNAME` / `TARGET_PASSWORD`: credentials for `BASIC`.
 - `TARGET_BEARERTOKEN`: static token for `BEARER`.
 - `TARGET_KEYCLOAK_TOKEN_URL`, `TARGET_KEYCLOAK_CLIENT_ID`, `TARGET_KEYCLOAK_CLIENT_SECRET`: required for `KEYCLOAK`.

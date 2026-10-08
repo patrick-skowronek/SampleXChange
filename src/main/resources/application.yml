@@ -9,7 +9,7 @@ app:
   version: '@project.version@'
   source:
     url: "${SOURCE_URL}"
-    auth-type: "${SOURCE_AUTH_TYPE}"
+    auth-type: "${SOURCE_AUTH_TYPE:NONE}"
     username: "${SOURCE_USERNAME:}"
     password: "${SOURCE_PASSWORD:}"
     bearer-token: "${SOURCE_BEARERTOKEN:}"
@@ -20,7 +20,7 @@ app:
       client-secret: "${SOURCE_KEYCLOAK_CLIENT_SECRET:}"
   target:
     url: "${TARGET_URL}"
-    auth-type: "${TARGET_AUTH_TYPE}"
+    auth-type: "${TARGET_AUTH_TYPE:NONE}"
     username: "${TARGET_USERNAME:}"
     password: "${TARGET_PASSWORD:}"
     bearer-token: "${TARGET_BEARERTOKEN:}"

@@ -9,4 +9,4 @@ services:
       SOURCE_URL: http://blazea:8080/fhir
       SOURCE_DISABLE_SSL: true
       TARGET_DISABLE_SSL: true
-      TARGET_URL: http://blazeb:8080/fhir;
+      TARGET_URL: http://blazeb:8080/fhir

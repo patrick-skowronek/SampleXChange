@@ -3,6 +3,8 @@ package de.samply.samplexchange.utils.fhir;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.util.BundleUtil;
+import de.samply.samplexchange.SampleXChangeException;
+import de.samply.samplexchange.configuration.FhirServerUrl;
 import lombok.extern.slf4j.Slf4j;
 import org.hl7.fhir.instance.model.api.IBaseBundle;
 import org.hl7.fhir.instance.model.api.IBaseResource;
@@ -19,6 +21,23 @@ public class FhirTransfer {
         this.ctx = ctx;
     }
 
+    /**
+     * Follows the next-page link, but only to the configured server. A server that reports a
+     * different base URL than set in the environment fails the application.
+     */
+    Bundle nextPage(IGenericClient client, Bundle bundle) {
+        String next = bundle.getLink(IBaseBundle.LINK_NEXT).getUrl();
+        if (!FhirServerUrl.isOnServer(client.getServerBase(), next)) {
+            throw new SampleXChangeException(
+                    ("The FHIR server at %s returned a link to its next page at %s, which is a different "
+                            + "address. Make the server report the address SampleXChange is configured "
+                            + "with (for Blaze, set BASE_URL to the URL without /fhir), or configure "
+                            + "SampleXChange with the address the server reports.")
+                            .formatted(client.getServerBase(), next));
+        }
+        return client.loadPage().next(bundle).execute();
+    }
+
     private List<IBaseResource> fetchAllSpecimens(IGenericClient client) {
         List<IBaseResource> resourceList = new ArrayList<>();
 
@@ -27,7 +46,7 @@ public class FhirTransfer {
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = client.loadPage().next(bundle).execute();
+            bundle = nextPage(client, bundle);
             resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
             log.debug("Fetching next page of Specimen");
         }
@@ -48,7 +67,7 @@ public class FhirTransfer {
                 new ArrayList<>(BundleUtil.toListOfResourcesOfType(ctx, bundle, resourceType));
 
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = client.loadPage().next(bundle).execute();
+            bundle = nextPage(client, bundle);
             resourceList.addAll(BundleUtil.toListOfResourcesOfType(ctx, bundle, resourceType));
             log.debug("Fetching next page of " + resourceType.getName());
         }
@@ -84,7 +103,7 @@ public class FhirTransfer {
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = client.loadPage().next(bundle).execute();
+            bundle = nextPage(client, bundle);
             resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
         }
 
@@ -106,7 +125,7 @@ public class FhirTransfer {
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = client.loadPage().next(bundle).execute();
+            bundle = nextPage(client, bundle);
             resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
         }
         return resourceList;
@@ -125,7 +144,7 @@ public class FhirTransfer {
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = client.loadPage().next(bundle).execute();
+            bundle = nextPage(client, bundle);
             resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
         }
         return resourceList;
@@ -145,7 +164,7 @@ public class FhirTransfer {
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = client.loadPage().next(bundle).execute();
+            bundle = nextPage(client, bundle);
             resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
         }
 
@@ -164,7 +183,7 @@ public class FhirTransfer {
         List<IBaseResource> resourceList = new ArrayList<>(BundleUtil.toListOfResources(ctx, bundle));
 
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = client.loadPage().next(bundle).execute();
+            bundle = nextPage(client, bundle);
             resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
         }
 

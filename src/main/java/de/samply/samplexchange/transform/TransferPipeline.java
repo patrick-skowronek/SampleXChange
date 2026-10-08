@@ -1,13 +1,17 @@
 package de.samply.samplexchange.transform;
 
 import ca.uhn.fhir.rest.client.api.IGenericClient;
+import ca.uhn.fhir.rest.client.exceptions.FhirClientConnectionException;
+import de.samply.samplexchange.SampleXChangeException;
 import de.samply.samplexchange.configuration.Configuration;
 import de.samply.samplexchange.domain.BiobankDirectory;
 import de.samply.samplexchange.domain.DonorRecord;
+import de.samply.samplexchange.repository.fhir.FhirServerSaver;
 import de.samply.samplexchange.resources.MetaMapping;
 import de.samply.samplexchange.source.SourceSession;
 import de.samply.samplexchange.terminology.Terminology;
 import de.samply.samplexchange.utils.fhir.FhirComponent;
+import de.samply.samplexchange.utils.fhir.FhirServerCheck;
 import lombok.extern.slf4j.Slf4j;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.Resource;
@@ -33,6 +37,12 @@ public class TransferPipeline {
 
         FhirComponent fhir = new FhirComponent(configuration);
         IGenericClient sourceClient = fhir.getSourceFhirServer();
+        // Contact both servers before reading anything, so a wrong URL or login stops the run at
+        // once with a message that names the server.
+        FhirServerCheck.ensureReachable(sourceClient, "source", "SOURCE");
+        if (fhir.getFhirExportInterface() instanceof FhirServerSaver target) {
+            FhirServerCheck.ensureReachable(target.getClient().getClient(), "target", "TARGET");
+        }
         SourceSession session = new SourceSession(sourceClient, fhir.fhirTransfer);
 
         MetaMapping metaMapping =
@@ -62,6 +72,10 @@ public class TransferPipeline {
             DonorRecord record;
             try {
                 record = transformation.reader().read(session, donorId);
+            } catch (SampleXChangeException | FhirClientConnectionException e) {
+                // A setup problem or a lost server affects every donor, so stop instead of
+                // skipping them one by one.
+                throw e;
             } catch (Exception e) {
                 log.error("Skipped donor {}: {}", donorId, e.getMessage());
                 continue;

@@ -2,6 +2,7 @@ package de.samply.samplexchange.utils.fhir;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
+import de.samply.samplexchange.SampleXChangeException;
 import de.samply.samplexchange.configuration.Configuration;
 import de.samply.samplexchange.repository.fhir.FhirServerSaver;
 import de.samply.samplexchange.utils.auth.KeycloakTokenManager;
@@ -58,10 +59,6 @@ public class FhirComponent {
             var source = configuration.getSource();
             var authType = source.getAuthType();
 
-            if (authType == null) {
-                throw new IllegalArgumentException("Source authentication type (SOURCE_AUTH_TYPE) must be specified");
-            }
-
             switch (authType) {
                 case KEYCLOAK -> {
                     validateKeycloakConfig(source.getKeycloak(), "source");
@@ -94,8 +91,8 @@ public class FhirComponent {
                         client.getClient().getServerBase());
             }
         } catch (Exception e) {
-            log.error("Failed to set authentication for source server: {}", e.getMessage());
-            throw new RuntimeException("Authentication setup failed for source", e);
+            throw new SampleXChangeException(
+                    "Could not set up authentication for the source FHIR server: " + e.getMessage(), e);
         }
     }
 
@@ -103,10 +100,6 @@ public class FhirComponent {
         try {
             var target = configuration.getTarget();
             var authType = target.getAuthType();
-
-            if (authType == null) {
-                throw new IllegalArgumentException("Target authentication type (TARGET_AUTH_TYPE) must be specified");
-            }
 
             switch (authType) {
                 case KEYCLOAK -> {
@@ -140,8 +133,8 @@ public class FhirComponent {
                         client.getClient().getServerBase());
             }
         } catch (Exception e) {
-            log.error("Failed to set authentication for target server: {}", e.getMessage());
-            throw new RuntimeException("Authentication setup failed for target", e);
+            throw new SampleXChangeException(
+                    "Could not set up authentication for the target FHIR server: " + e.getMessage(), e);
         }
     }
 
