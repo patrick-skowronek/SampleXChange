@@ -1,0 +1,19 @@
+# Storage temperature interval in Celsius, mapped to each target's bucket code.
+# Rows are ordered and the first match wins: a range matches when high <= row high
+# and low >= row low. Liquid nitrogen must stay above gaseous nitrogen.
+# bbmri_de: https://fhir.bbmri.de/CodeSystem/StorageTemperature
+# miabis_v3: https://fhir.bbmri-eric.eu/CodeSystem/miabis-storage-temperature-cs
+# MIABIS has no gaseous nitrogen bucket, so temperatureGN falls back to Other.
+# closest_for lists the targets (by column name, separated by ;) for which a row is only the
+# nearest bucket rather than a real fit. Using such a row logs a warning once per range.
+low,high,bbmri_de,miabis_v3,closest_for
+2,10,temperature2to10,2to10,
+-35,-18,temperature-18to-35,-18to-35,
+-85,-60,temperature-60to-85,-60to-85,
+-209,-196,temperatureLN,LN,
+-195,-160,temperatureGN,Other,
+# -196 to -150 is what MII calls liquid nitrogen (the MII 2026 examples code it as MIABIS LN,
+# defined as -150 to -196). bbmri.de splits that span into LN (-209 to -196) and GN (-195 to
+# -160) and neither covers -150, so it goes to LN with a warning.
+-196,-150,temperatureLN,LN,bbmri_de
+11,30,temperatureRoom,RT,

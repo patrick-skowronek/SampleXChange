@@ -1,0 +1,21 @@
+# MIABIS collection design and sample collection setting, as MII 2026 records them on a
+# collection, mapped to each target's collection type. The key is list/code, because both MIABIS
+# lists have a code Other.
+# bbmri_de:  https://fhir.bbmri.de/CodeSystem/CollectionType
+# miabis_v3: the MIABIS code itself
+# A code with no row is left out. bbmri.de has no counterpart for most collection settings; only
+# routine health care has one, a hospital collection.
+miabis,bbmri_de,miabis_v3
+design/CaseControl,CASE_CONTROL,CaseControl
+design/CrossSectional,CROSS_SECTIONAL,CrossSectional
+design/LongitudinalCohort,LONGITUDINAL,LongitudinalCohort
+design/TwinStudy,TWIN_STUDY,TwinStudy
+design/QualityControl,QUALITY_CONTROL,QualityControl
+design/PopulationBasedCohort,POPULATION_BASED,PopulationBasedCohort
+design/DiseaseSpecificCohort,DISEASE_SPECIFIC,DiseaseSpecificCohort
+design/BirthCohort,BIRTH_COHORT,BirthCohort
+design/MicrobialCollection,NON_HUMAN,MicrobialCollection
+design/RareDiseaseCollection,RD,RareDiseaseCollection
+design/ReferenceCollection,OTHER,ReferenceCollection
+design/Other,OTHER,Other
+setting/RoutineHealthCare,HOSPITAL,RoutineHealthCare

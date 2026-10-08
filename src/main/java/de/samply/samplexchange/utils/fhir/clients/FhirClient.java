@@ -21,22 +21,11 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Fhir generic client with some additions.
- */
 @Getter
 @Slf4j
 public class FhirClient {
-
-    /**
-     * -- GETTER --
-     * Return the fhir server client.
-     */
     private final IGenericClient client;
 
-    /**
-     * Creates the fhir server client.
-     */
     public FhirClient(FhirContext ctx, String server, boolean ssl)
             throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         if (ssl) {
@@ -62,17 +51,11 @@ public class FhirClient {
         client = ctx.newRestfulGenericClient(server);
     }
 
-    /**
-     * Sets basic auth for client.
-     */
     public void setBasicAuth(String username, String password) {
         IClientInterceptor authInterceptor = new BasicAuthInterceptor(username, password);
         client.registerInterceptor(authInterceptor);
     }
 
-    /**
-     * Sets bearer token auth for client.
-     */
     public void setBearerAuth(String token) {
         IClientInterceptor authInterceptor = new BearerTokenAuthInterceptor(token);
         client.registerInterceptor(authInterceptor);

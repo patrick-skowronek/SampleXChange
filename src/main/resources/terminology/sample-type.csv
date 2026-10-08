@@ -1,0 +1,1869 @@
+# SNOMED CT sample type as MII records it, mapped per target.
+# Covers every descendant of 123038009 |Specimen|, the MII 2026 binding for Specimen.type
+# (ValueSet mii-vs-biobank-probenart-sct), from the SNOMED CT International Edition 2026-06-01.
+# bbmri_de:  https://fhir.bbmri.de/CodeSystem/SampleMaterialType
+# miabis_v3: https://fhir.bbmri-eric.eu/CodeSystem/miabis-detailed-samply-type-cs
+#
+# review: ok   = the material follows from the SNOMED hierarchy
+#         todo = a guess, mapped to the closest "other" code until someone with the samples decides
+# 483 rows are ok and 1361 are todo. Most todo rows are tissue whose code does not say
+# whether it is frozen or FFPE, which bbmri.de needs; those map to tissue-other.
+# note and display are for reviewers and are not read by the application. Commas in SNOMED
+# displays are written as semicolons.
+#
+# Plasma and DNA subtypes collapse onto the parent code.
+snomed,bbmri_de,miabis_v3,review,note,display
+431771004,ascites,AscitesFluid,ok,,Ascitic fluid cytologic material
+309201001,ascites,AscitesFluid,ok,,Ascitic fluid specimen
+2431000181102,blood-plasma,Plasma,ok,,Arterial plasma specimen
+446272009,blood-plasma,Plasma,todo,heparin tube may hold whole blood,Blood specimen submitted in heparinized collection tube
+2441000181109,blood-plasma,Plasma,ok,,Capillary plasma specimen
+898205005,blood-plasma,Plasma,ok,,Dried plasma spot specimen
+2451000181107,blood-plasma,Plasma,ok,,Mixed venous plasma specimen
+119361006,blood-plasma,Plasma,ok,,Plasma specimen
+708048008,blood-plasma,Plasma,ok,,Plasma specimen with citrate
+708049000,blood-plasma,Plasma,ok,,Plasma specimen with ethylenediamine tetraacetic acid
+119362004,blood-plasma,Plasma,ok,,Platelet poor plasma specimen
+122587005,blood-plasma,Plasma,ok,,Platelet poor plasma specimen from control
+122588000,blood-plasma,Plasma,ok,,Platelet poor plasma specimen from patient
+119363009,blood-plasma,Plasma,ok,,Platelet rich plasma specimen
+737356002,blood-plasma,Plasma,ok,,Pooled platelet poor plasma specimen
+703432000,blood-plasma,Plasma,ok,,Venous plasma specimen
+442166002,blood-serum,Serum,ok,,a.m. serum specimen
+258590006,blood-serum,Serum,ok,,Acidified serum specimen
+866034009,blood-serum,Serum,ok,,Acute phase serum specimen
+2421000181104,blood-serum,Serum,ok,,Capillary serum specimen
+866035005,blood-serum,Serum,ok,,Convalescent phase serum specimen
+442427000,blood-serum,Serum,ok,,p.m. serum specimen
+119364003,blood-serum,Serum,ok,,Serum specimen
+122589008,blood-serum,Serum,ok,,Serum specimen from blood donor
+122591000,blood-serum,Serum,ok,,Serum specimen from blood product
+737089009,blood-serum,Serum,ok,,Serum specimen from control
+122590004,blood-serum,Serum,ok,,Serum specimen from patient
+258583001,bone-marrow,BoneMarrowWhole,ok,,Bone marrow clot specimen
+110897001,bone-marrow,BoneMarrowWhole,ok,,Bone marrow cytological material
+258584007,bone-marrow,BoneMarrowWhole,ok,,Bone marrow fragment specimen
+167913002,bone-marrow,BoneMarrowWhole,ok,,Bone marrow source
+119359002,bone-marrow,BoneMarrowWhole,ok,,Bone marrow specimen
+258585008,bone-marrow,BoneMarrowWhole,ok,,Bone marrow trephine specimen
+271515009,bone-marrow,BoneMarrowWhole,ok,,Iliac crest bone marrow specimen
+271518006,bone-marrow,BoneMarrowWhole,ok,,Rib bone marrow specimen
+396997002,bone-marrow,BoneMarrowWhole,ok,,Specimen from bone marrow obtained by aspiration
+396998007,bone-marrow,BoneMarrowWhole,ok,,Specimen from bone marrow obtained by aspiration and biopsy
+396999004,bone-marrow,BoneMarrowWhole,ok,,Specimen from bone marrow obtained by biopsy
+271514008,bone-marrow,BoneMarrowWhole,ok,,Sternal bone marrow specimen
+271516005,bone-marrow,BoneMarrowWhole,ok,,Vertebral spinous process bone marrow specimen
+258587000,buffy-coat,BuffyCoat,ok,,Buffy coat
+16216331000119107,csf-liquor,CerebrospinalFluid,ok,,Cerebrospinal fluid smear specimen
+258450006,csf-liquor,CerebrospinalFluid,ok,,Cerebrospinal fluid specimen
+445372002,csf-liquor,CerebrospinalFluid,ok,,Cerebrospinal fluid specimen from ventricle of brain
+473405009,csf-liquor,CerebrospinalFluid,ok,,Cerebrospinal fluid specimen obtained from Rickham reservoir
+446861007,csf-liquor,CerebrospinalFluid,ok,,Cerebrospinal fluid specimen obtained via ventriculoperitoneal shunt
+703691002,csf-liquor,CerebrospinalFluid,ok,,Spun cerebrospinal fluid
+442524009,derivative-other,Other,todo,no rule,a.m. specimen
+110904004,derivative-other,Other,todo,no rule,Accessory sinus cytologic material
+258662004,derivative-other,Other,todo,no rule,Adhesive slide specimen
+309141004,derivative-other,Other,todo,no rule,Adrenal gland specimen
+446302006,derivative-other,Gas,todo,gas,Air specimen
+110967008,derivative-other,Other,todo,no rule,Amnion cytologic material
+258563002,derivative-other,Other,todo,no rule,Amniotic cell specimen
+116155002,derivative-other,Other,todo,no rule,Ampulla of Vater cytologic material
+110963007,derivative-other,Other,todo,no rule,Anal cytologic material
+16216371000119105,derivative-other,Other,todo,no rule,Anal smear specimen
+704243004,derivative-other,Other,todo,no rule,Animal head specimen
+16216611000119108,derivative-other,Other,todo,no rule,Aortic valve specimen obtained by lavage
+309222007,derivative-other,Other,todo,no rule,Appendix specimen
+258629007,derivative-other,Other,todo,no rule,Arterial cannula tip submitted as specimen
+119309006,derivative-other,Other,todo,no rule,Arterial line submitted as specimen
+472931009,derivative-other,Other,todo,no rule,Arterial line tip submitted as specimen
+258631003,derivative-other,Other,todo,no rule,Arteriovenous shunt tip submitted as specimen
+734338009,derivative-other,Other,todo,no rule,Arthropod material submitted as specimen
+16212331000119108,derivative-other,Other,todo,no rule,Autoclave ampule submitted as specimen
+16213171000119103,derivative-other,Other,todo,no rule,Balloon catheter tip submitted as specimen
+119357000,derivative-other,Other,todo,white cell fraction,Basophil specimen
+110928002,derivative-other,Other,todo,no rule,Bile duct cytologic material
+258490009,derivative-other,Other,todo,no rule,Biliary stone specimen
+446212001,derivative-other,Other,todo,no rule,Biological spore test strip submitted as specimen
+1345270001,derivative-other,Other,todo,no rule,Blood culture plate submitted as specimen
+303248007,derivative-other,Other,todo,blood smear,Blood smear specimen
+371784004,derivative-other,Other,todo,no rule,Body parts for identification
+432825001,derivative-other,Other,todo,no rule,Body secretion specimen
+309050000,derivative-other,Other,todo,no rule,Body substance specimen
+447148003,derivative-other,Other,todo,no rule,Body substance specimen from ear
+35311000087102,derivative-other,Other,todo,no rule,Bone plate submitted as specimen
+35261000087106,derivative-other,Other,todo,no rule,Bone screw submitted as specimen
+92071000087108,derivative-other,Other,todo,no rule,Bone wire submitted as specimen
+472930005,derivative-other,Other,todo,no rule,Bottle submitted as specimen
+309057002,derivative-other,Other,todo,no rule,Breast direct smear specimen
+309548003,derivative-other,Other,todo,no rule,Breast duct specimen
+110899003,derivative-other,Other,todo,no rule,Breast nipple cytologic material
+110912007,derivative-other,Other,todo,no rule,Bronchial cytologic material
+258564008,derivative-other,Other,todo,no rule,Buccal smear specimen
+309109005,derivative-other,Other,todo,no rule,Bursa specimen
+119350003,derivative-other,Other,todo,no rule,Calculus specimen
+119308003,derivative-other,Other,todo,no rule,Cannula submitted as specimen
+258627009,derivative-other,Other,todo,no rule,Cannula tip submitted as specimen
+33481000087100,derivative-other,Other,todo,no rule,Cardiac pacemaker component submitted as specimen
+473417006,derivative-other,Other,todo,no rule,Cardiac pacemaker lead submitted as specimen
+33491000087103,derivative-other,Other,todo,no rule,Cardiac pacemaker submitted as specimen
+258541006,derivative-other,Other,todo,no rule,Cardiovascular specimen
+309101008,derivative-other,Other,todo,no rule,Cartilage specimen
+119311002,derivative-other,Other,todo,no rule,Catheter submitted as specimen
+119312009,derivative-other,Other,todo,no rule,Catheter tip submitted as specimen
+473413005,derivative-other,Other,todo,no rule,Central venous catheter from internal jugular vein submitted as specimen
+473409003,derivative-other,Other,todo,no rule,Central venous catheter submitted as specimen
+472935000,derivative-other,Other,todo,no rule,Central venous catheter tip from subclavian vein submitted as specimen
+472929000,derivative-other,Other,todo,no rule,Central venous catheter tip submitted as specimen
+122580007,derivative-other,Other,todo,no rule,Cerumen specimen
+122577006,derivative-other,Other,todo,no rule,Cervical mucus specimen
+276446009,derivative-other,Other,todo,no rule,Cervical smear specimen
+110949001,derivative-other,Other,todo,no rule,Cervix cytologic material
+472926007,derivative-other,Other,todo,no rule,Chest tube tip submitted as specimen
+110961009,derivative-other,Other,todo,no rule,Chorion cytologic material
+110956007,derivative-other,Other,todo,no rule,Colonic cytologic material
+16216451000119107,derivative-other,Other,todo,no rule,Colonic specimen obtained by lavage
+119329007,derivative-other,FoodSpecimen,todo,not a human sample,Colostrum specimen
+430387006,derivative-other,Other,todo,no rule,Combined specimen of cytologic material from endocervix; ectocervix; and vaginal fornix
+16216531000119102,derivative-other,Other,todo,no rule,Common bile duct specimen obtained by lavage
+16216411000119106,derivative-other,Other,todo,no rule,Conjunctival smear specimen
+472927003,derivative-other,Other,todo,no rule,Contact lens case submitted as specimen
+440473005,derivative-other,Other,todo,no rule,Contact lens submitted as specimen
+473401000,derivative-other,Other,todo,no rule,Cotton wool ball submitted as specimen
+258655008,derivative-other,FoodSpecimen,todo,not a human sample,Cow's milk specimen
+258651004,derivative-other,FoodSpecimen,todo,not a human sample,Cream specimen
+1345231007,derivative-other,Other,todo,no rule,Culture plate submitted as specimen
+110893002,derivative-other,Other,todo,no rule,Cutaneous cytologic material
+48469005,derivative-other,Other,todo,no rule,Cytologic material
+110922001,derivative-other,Other,todo,no rule,Cytologic material from left main bronchus
+110924000,derivative-other,Other,todo,no rule,Cytologic material from right main bronchus
+430297000,derivative-other,Other,todo,no rule,Cytologic material obtained from unspecified body site
+110925004,derivative-other,Other,todo,no rule,Cytologic material of mouth
+258548000,derivative-other,Other,todo,no rule,Dermatological specimen
+472919007,derivative-other,Other,todo,no rule,Device submitted as specimen
+1345268005,derivative-other,Other,todo,no rule,Dip slide submitted as specimen
+472937008,derivative-other,Other,todo,no rule,Double J stent submitted as specimen
+1003707004,derivative-other,Other,todo,no rule,Drain device submitted as specimen
+1003705007,derivative-other,Other,todo,no rule,Drain tip submitted as specimen
+444656005,derivative-other,Other,todo,no rule,Drainage tube submitted as specimen
+119319000,derivative-other,Other,todo,no rule,Drug specimen
+110938007,derivative-other,Other,todo,no rule,Duodenal cytologic material
+258553005,derivative-other,Other,todo,no rule,Duodenal string
+430241003,derivative-other,Other,todo,no rule,Ear cytologic material
+309165001,derivative-other,Other,todo,no rule,Ear specimen
+1340203001,derivative-other,Other,todo,no rule,Ectoparasite specimen
+119346005,derivative-other,FoodSpecimen,todo,not a human sample,Egg yolk specimen
+119314005,derivative-other,Other,todo,no rule,Electrode submitted as specimen
+119378002,derivative-other,Other,todo,no rule,Endocardial specimen
+16216211000119105,derivative-other,Other,todo,no rule,Endocervical aspirate
+110951002,derivative-other,Other,todo,no rule,Endocervical cytologic material
+16215131000119100,derivative-other,Other,todo,no rule,Endocervical smear specimen
+309048008,derivative-other,Other,todo,no rule,Endocrine specimen
+110955006,derivative-other,Other,todo,no rule,Endometrium cytologic material
+16213211000119101,derivative-other,Other,todo,no rule,Endotracheal catheter tip submitted as specimen
+473412000,derivative-other,Other,todo,no rule,Endotracheal tube submitted as specimen
+119356009,derivative-other,Other,todo,white cell fraction,Eosinophil specimen
+110941003,derivative-other,Other,todo,no rule,Epididymis cytologic material
+309140003,derivative-other,Other,todo,no rule,Epididymis specimen
+28981000087104,derivative-other,Other,todo,no rule,Epidural catheter tip submitted as specimen
+110907006,derivative-other,Other,todo,no rule,Epiglottic cytologic material
+119351004,derivative-other,RedBloodCells,todo,red cell fraction,Erythrocyte specimen
+122581006,derivative-other,RedBloodCells,todo,red cell fraction,Erythrocyte specimen from blood donor
+122582004,derivative-other,RedBloodCells,todo,red cell fraction,Erythrocyte specimen from blood product
+122583009,derivative-other,RedBloodCells,todo,red cell fraction,Erythrocyte specimen from patient
+110962002,derivative-other,Other,todo,no rule,Esophageal cytologic material
+16216571000119104,derivative-other,Other,todo,no rule,Esophageal specimen obtained by lavage
+119336008,derivative-other,Gas,todo,gas,Exhaled air specimen
+16213091000119103,derivative-other,Other,todo,no rule,External shunt submitted as specimen
+473411007,derivative-other,Other,todo,no rule,External ventricular drain tip submitted as specimen
+370108001,derivative-other,Other,todo,no rule,Extrahepatic bile duct cytologic material
+430117006,derivative-other,Other,todo,no rule,Eye region cytologic material
+1343301001,derivative-other,Hair,todo,hair,Eyelash specimen
+110957003,derivative-other,Other,todo,no rule,Fallopian tube cytologic material
+309117002,derivative-other,Other,todo,no rule,Fascia specimen
+309053003,derivative-other,Other,todo,no rule,Female genital specimen
+119333000,derivative-other,Fibroblast,todo,cells,Fibroblast specimen
+119320006,derivative-other,FoodSpecimen,todo,not a human sample,Food specimen
+447103002,derivative-other,Other,todo,no rule,Foreign body submitted as specimen
+258653001,derivative-other,FoodSpecimen,todo,not a human sample,Formula milk specimen
+1003517007,derivative-other,Other,todo,was tissue-frozen; freeze dried is not frozen,Freeze dried specimen
+1345269002,derivative-other,Other,todo,no rule,Fungal culture plate submitted as specimen
+445421007,derivative-other,IsolatedMicrobe,todo,isolate,Fungal isolate specimen
+110926003,derivative-other,Other,todo,no rule,Gallbladder cytologic material
+258492001,derivative-other,Other,todo,no rule,Gallstone specimen
+119317003,derivative-other,Gas,todo,gas,Gaseous material specimen
+110936006,derivative-other,Other,todo,no rule,Gastric cytologic material
+309202008,derivative-other,Other,todo,no rule,Gastrointestinal direct smear
+116156001,derivative-other,Other,todo,no rule,Gastrointestinal tract cytologic material
+732964006,derivative-other,Other,todo,no rule,Gastrostomy tube submitted as specimen
+258562007,derivative-other,Other,todo,no rule,Genetic specimen
+16214171000119101,derivative-other,Other,todo,no rule,Genital fluid specimen
+122576002,derivative-other,Other,todo,no rule,Genital mucus specimen
+258570002,derivative-other,Other,todo,no rule,Genitourinary specimen
+258660007,derivative-other,FoodSpecimen,todo,not a human sample,Goat milk specimen
+258567001,derivative-other,Other,todo,no rule,Gonad specimen
+440493002,derivative-other,Other,todo,no rule,Graft specimen from patient
+258423001,derivative-other,Hair,todo,hair,Hair bulb specimen
+1259931002,derivative-other,Hair,todo,hair,Hair of face specimen
+119326000,derivative-other,Hair,todo,hair,Hair specimen
+116157005,derivative-other,Other,todo,no rule,Heart cytologic material
+258542004,derivative-other,Other,todo,no rule,Heart valve specimen
+258618008,derivative-other,Other,todo,no rule,Helminth specimen
+773611006,derivative-other,Other,todo,no rule,Hemodialysis catheter submitted as specimen
+564311000052107,derivative-other,Other,todo,no rule,Hemodialysis catheter tip submitted as specimen
+472943005,derivative-other,Other,todo,no rule,Heyer-Pudenz valve submitted as specimen
+371783005,derivative-other,Other,todo,no rule,Human tissue for identification
+258652006,derivative-other,FoodSpecimen,todo,not a human sample,Ice cream specimen
+110940002,derivative-other,Other,todo,no rule,Ileal cytologic material
+439961009,derivative-other,Other,todo,no rule,Implant submitted as specimen
+35321000087105,derivative-other,Other,todo,no rule,Implantable defibrillator component submitted as specimen
+119313004,derivative-other,Other,todo,no rule,Implantable venous catheter submitted as specimen
+38851000087103,derivative-other,Other,todo,no rule,In vitro fertilization medium submitted as specimen
+16213051000119108,derivative-other,Other,todo,no rule,Indwelling catheter tip submitted as specimen
+119337004,derivative-other,Gas,todo,gas,Inhaled gas specimen
+258614005,derivative-other,Other,todo,no rule,Insect specimen
+472922009,derivative-other,Other,todo,no rule,Intracranial catheter submitted as specimen
+473414004,derivative-other,Other,todo,no rule,Intracranial pressure catheter submitted as specimen
+472940008,derivative-other,Other,todo,no rule,Intracranial ventricular catheter submitted as specimen
+472941007,derivative-other,Other,todo,no rule,Intracranial ventricular catheter tip submitted as specimen
+258602002,derivative-other,Other,todo,no rule,Intraocular lens specimen
+473415003,derivative-other,Other,todo,no rule,Intrauterine contraceptive device submitted as specimen
+16213251000119100,derivative-other,Other,todo,no rule,Introducer catheter tip submitted as specimen
+110966004,derivative-other,Other,todo,no rule,Jejunal cytologic material
+309125000,derivative-other,Other,todo,no rule,Joint specimen
+110948009,derivative-other,Other,todo,no rule,Kidney cytologic material
+16216291000119101,derivative-other,Other,todo,no rule,Labia smear specimen
+116158000,derivative-other,Other,todo,no rule,Large intestine cytologic material
+258615006,derivative-other,Other,todo,no rule,Larva specimen
+110908001,derivative-other,Other,todo,no rule,Laryngeal cytologic material
+110923006,derivative-other,Other,todo,no rule,Left lower lobe bronchus cytologic material
+110917001,derivative-other,Other,todo,no rule,Left pleural cytologic material
+110918006,derivative-other,Other,todo,no rule,Left upper lobe bronchus cytologic material
+258601009,derivative-other,Other,todo,no rule,Lens specimen
+122585002,derivative-other,Other,todo,white cell fraction,Leukocyte specimen from control
+122584003,derivative-other,Other,todo,white cell fraction,Leukocyte specimen from patient
+2541000181108,derivative-other,Other,todo,white cell fraction,Leukopheresis product specimen
+309114009,derivative-other,Other,todo,no rule,Ligament specimen
+431058008,derivative-other,Other,todo,no rule,Lip cytologic material
+430346005,derivative-other,Other,todo,no rule,Liquid based cytologic material
+110927007,derivative-other,Other,todo,no rule,Liver cytologic material
+309204009,derivative-other,Other,todo,no rule,Liver direct smear specimen
+258613004,derivative-other,Other,todo,no rule,Living specimen
+110906002,derivative-other,Other,todo,no rule,Lower respiratory tract cytologic material
+258606004,derivative-other,Other,todo,no rule,Lower respiratory tract specimen
+110964001,derivative-other,Other,todo,no rule,Lower urinary tract cytologic material
+110910004,derivative-other,Other,todo,no rule,Lung cytologic material
+309177006,derivative-other,Other,todo,no rule,Lung direct smear specimen
+302795002,derivative-other,Other,todo,no rule,Lymph node aspirate
+110898006,derivative-other,Other,todo,no rule,Lymph node cytologic material
+258488008,derivative-other,Other,todo,no rule,Lymph node smear
+258589002,derivative-other,Other,todo,no rule,Lymph node specimen
+142261000146106,derivative-other,Other,todo,no rule,Lymphoblast specimen
+441518000,derivative-other,ImmortalizedCellLine,todo,cell line,Lymphoblastoid cell line specimen
+119353001,derivative-other,Other,todo,white cell fraction,Lymphocyte specimen
+119352006,derivative-other,Other,todo,white cell fraction,Macrophage specimen
+258616007,derivative-other,Other,todo,no rule,Maggot specimen
+309052008,derivative-other,Other,todo,no rule,Male genital specimen
+110894008,derivative-other,Other,todo,no rule,Mammary cytologic material
+119303007,derivative-other,IsolatedMicrobe,todo,isolate,Microbial isolate
+119321005,derivative-other,FoodSpecimen,todo,not a human sample,Milk specimen
+309549006,derivative-other,Other,todo,no rule,Minor salivary gland specimen
+290211000146104,derivative-other,Other,todo,white cell fraction,Monocyte specimen
+258483004,derivative-other,Other,todo,no rule,Mucus specimen
+705054005,derivative-other,Other,todo,no rule,Muscle specimen
+379481000087102,derivative-other,Other,todo,no rule,Musculoskeletal implant submitted as specimen
+309104000,derivative-other,Other,todo,no rule,Musculoskeletal specimen
+119302002,derivative-other,Other,todo,no rule,Mushroom specimen
+119377007,derivative-other,Other,todo,no rule,Myocardial specimen
+119327009,derivative-other,Nail,todo,nail,Nail specimen
+429931000124105,derivative-other,Other,todo,no rule,Nasal aspirate specimen
+110903005,derivative-other,Other,todo,no rule,Nasal cytologic material
+447339001,derivative-other,Other,todo,no rule,Nasal smear specimen
+302794003,derivative-other,Other,todo,no rule,Nasogastric aspirate
+110905003,derivative-other,Other,todo,no rule,Nasopharyngeal cytologic material
+16224171000119108,derivative-other,Other,todo,no rule,Nasotracheal aspirate
+258544003,derivative-other,Other,todo,no rule,Native heart valve specimen
+473416002,derivative-other,Other,todo,no rule,Nephrostomy tube submitted as specimen
+433799002,derivative-other,Other,todo,no rule,Nerve ganglion specimen
+448789008,derivative-other,Other,todo,no rule,Nucleic acid specimen
+33531000087103,derivative-other,Other,todo,no rule,Ommaya reservoir submitted as specimen
+309185002,derivative-other,Other,todo,no rule,Oral cavity specimen
+116213003,derivative-other,Other,todo,no rule,Ovary cytologic material
+442219007,derivative-other,Other,todo,no rule,p.m. specimen
+709024005,derivative-other,Other,todo,no rule,Paint chip specimen
+110929005,derivative-other,Other,todo,no rule,Pancreatic cytologic material
+258494000,derivative-other,Other,todo,no rule,Pancreatic stone specimen
+16224251000119106,derivative-other,Other,todo,no rule,Papanicolaou smear specimen
+258617003,derivative-other,Other,todo,no rule,Parasite specimen
+704663000,derivative-other,Other,todo,no rule,Parasitic worm specimen
+309149002,derivative-other,Other,todo,no rule,Parathyroid specimen
+110932008,derivative-other,Other,todo,no rule,Parotid gland cytologic material
+16214211000119104,derivative-other,Other,todo,no rule,Pediculus specimen
+110931001,derivative-other,Other,todo,no rule,Penis cytologic material
+473403002,derivative-other,Other,todo,no rule,Percutaneous nephrostomy tube tip submitted as specimen
+110919003,derivative-other,Other,todo,no rule,Pericardial cytologic material
+473410008,derivative-other,Other,todo,no rule,Peripheral vascular catheter submitted as specimen
+472923004,derivative-other,Other,todo,no rule,Peripheral vascular catheter tip submitted as specimen
+473407001,derivative-other,Other,todo,no rule,Peripherally inserted central catheter submitted as specimen
+16223251000119109,derivative-other,Other,todo,no rule,Peripherally inserted central venous catheter tip submitted as specimen
+472944004,derivative-other,Other,todo,no rule,Peritoneal catheter submitted as specimen
+110944006,derivative-other,Other,todo,no rule,Peritoneal cytologic material
+446137003,derivative-other,Other,todo,no rule,Pharmaceutical product submitted as specimen
+110934009,derivative-other,Other,todo,no rule,Pharyngeal cytologic material
+16219801000119102,derivative-other,Other,todo,no rule,Pinworm paddle submitted as specimen
+309154006,derivative-other,Other,todo,no rule,Pituitary specimen
+119301009,derivative-other,Other,todo,no rule,Plant specimen
+788707000,derivative-other,Other,todo,plasma or serum or blood,Plasma specimen or serum specimen or whole blood specimen
+119358005,derivative-other,Other,todo,platelets,Platelet specimen
+110913002,derivative-other,Other,todo,no rule,Pleural cytologic material
+258568006,derivative-other,Other,todo,no rule,Polar body specimen
+119355008,derivative-other,Other,todo,white cell fraction,Polymorphonuclear neutrophil specimen
+35271000087102,derivative-other,Other,todo,no rule,Porcine cardiac valve submitted as specimen
+110933003,derivative-other,Other,todo,no rule,Prostate cytologic material
+1003713008,derivative-other,Other,todo,no rule,Prosthetic heart valve submitted as specimen
+1003712003,derivative-other,Other,todo,no rule,Prosthetic joint submitted as specimen
+473433009,derivative-other,Other,todo,no rule,Protected specimen brush submitted as specimen
+472924005,derivative-other,Other,todo,no rule,Pulmonary artery flotation catheter tip submitted as specimen
+1359986002,derivative-other,SpecimenEnvironment,todo,not a human sample,Purified water
+110942005,derivative-other,Other,todo,no rule,Rectal cytologic material
+256912003,derivative-other,RedBloodCells,todo,was whole-blood; red cell fraction,Red blood cell fluid specimen
+110943000,derivative-other,Other,todo,no rule,Renal pelvis cytologic material
+258495004,derivative-other,Other,todo,no rule,Renal stone specimen
+725946000,derivative-other,RedBloodCells,todo,red cell fraction,Reticulocyte specimen
+473404008,derivative-other,Other,todo,no rule,Rickham reservoir submitted as specimen
+110916005,derivative-other,Other,todo,no rule,Right lower lobe bronchus cytologic material
+110921008,derivative-other,Other,todo,no rule,Right middle lobe bronchus cytologic material
+110915009,derivative-other,Other,todo,no rule,Right pleural cytologic material
+110914008,derivative-other,Other,todo,no rule,Right upper lobe bronchus cytologic material
+732293002,derivative-other,Other,todo,no rule,Salivary calculus specimen
+110930000,derivative-other,Other,todo,no rule,Salivary gland cytologic material
+258664003,derivative-other,Other,todo,no rule,Scotch tape slide specimen
+258663009,derivative-other,Other,todo,no rule,Sellotape slide specimen
+258657000,derivative-other,FoodSpecimen,todo,not a human sample,Semi-skimmed milk specimen
+110937002,derivative-other,Other,todo,no rule,Seminal vesicle cytologic material
+122592007,derivative-other,Other,todo,plasma or serum or blood,Serum or plasma specimen
+473432004,derivative-other,Other,todo,no rule,Settle culture plate submitted as specimen
+712559006,derivative-other,Other,todo,no rule,Seventy minutes specimen
+258659002,derivative-other,FoodSpecimen,todo,not a human sample,Sheep milk specimen
+473406005,derivative-other,Other,todo,no rule,Shunt submitted as specimen
+472933007,derivative-other,Other,todo,no rule,Shunt tip submitted as specimen
+110900008,derivative-other,Other,todo,no rule,Skeletal muscle cytologic material
+119331003,derivative-other,Other,todo,no rule,Skeletal muscle specimen
+258658005,derivative-other,FoodSpecimen,todo,not a human sample,Skim milk specimen
+258569003,derivative-other,Fibroblast,todo,cells,Skin fibroblast specimen
+1179252003,derivative-other,Other,todo,no rule,Slide submitted as specimen
+258489000,derivative-other,Other,todo,no rule,Slit skin smear
+110954005,derivative-other,Other,todo,no rule,Small intestine cytologic material
+1285640000,derivative-other,Other,todo,no rule,Smear from respiratory specimen
+258433009,derivative-other,Other,todo,no rule,Smear specimen
+258654007,derivative-other,FoodSpecimen,todo,not a human sample,Soy milk specimen
+123038009,derivative-other,Other,todo,no rule,Specimen
+440138003,derivative-other,Other,todo,no rule,Specimen containing crystals from synovial joint
+371780008,derivative-other,Other,todo,no rule,Specimen for identification
+443654002,derivative-other,Other,todo,no rule,Specimen from abdominal cavity
+127467004,derivative-other,Other,todo,no rule,Specimen from ampulla of Vater
+119392008,derivative-other,Other,todo,no rule,Specimen from anus
+1173097006,derivative-other,Other,todo,no rule,Specimen from anus and/or rectum
+734336008,derivative-other,Other,todo,no rule,Specimen from aorta
+1396156002,derivative-other,Other,todo,no rule,Specimen from artery
+447881000,derivative-other,Other,todo,no rule,Specimen from biliary system
+119304001,derivative-other,Other,todo,no rule,Specimen from blood bag
+122564002,derivative-other,Other,todo,no rule,Specimen from blood bag from blood product
+122563008,derivative-other,Other,todo,no rule,Specimen from blood bag from patient
+119300005,derivative-other,Other,todo,no rule,Specimen from blood product
+119398007,derivative-other,Other,todo,no rule,Specimen from brain
+127456000,derivative-other,Other,todo,no rule,Specimen from breast
+447357000,derivative-other,Other,todo,no rule,Specimen from breast obtained by aspiration
+119391001,derivative-other,Other,todo,no rule,Specimen from bronchus
+734442008,derivative-other,Other,todo,no rule,Specimen from calf of leg
+399436000,derivative-other,Other,todo,no rule,Specimen from central nervous system
+443498007,derivative-other,Other,todo,no rule,Specimen from cerebellum
+702701006,derivative-other,Other,todo,no rule,Specimen from cervix or vagina
+119382000,derivative-other,Other,todo,no rule,Specimen from colon
+119401005,derivative-other,Other,todo,no rule,Specimen from conjunctiva
+446235003,derivative-other,Other,todo,no rule,Specimen from conjunctiva obtained by lavage
+737087006,derivative-other,Other,todo,no rule,Specimen from control
+119400006,derivative-other,Other,todo,no rule,Specimen from cornea
+898201001,derivative-other,Other,todo,no rule,Specimen from device
+363311008,derivative-other,Other,todo,no rule,Specimen from digestive system
+446364005,derivative-other,Other,todo,no rule,Specimen from donor corneal storage medium
+1003708009,derivative-other,Other,todo,no rule,Specimen from drain device
+1003706008,derivative-other,Other,todo,no rule,Specimen from drain tip
+734422004,derivative-other,Other,todo,no rule,Specimen from duodenal mucosa
+734427005,derivative-other,Other,todo,no rule,Specimen from duodenum obtained by aspiration
+734425002,derivative-other,Other,todo,no rule,Specimen from ear obtained by aspiration
+608868000,derivative-other,Other,todo,no rule,Specimen from endocrine gland
+119396006,derivative-other,Other,todo,no rule,Specimen from endometrium
+440229008,derivative-other,SpecimenEnvironment,todo,not a human sample,Specimen from environment
+127463000,derivative-other,Other,todo,no rule,Specimen from esophagus
+447359002,derivative-other,Other,todo,no rule,Specimen from esophagus obtained by aspiration
+399460001,derivative-other,Other,todo,no rule,Specimen from extrahepatic bile duct
+119399004,derivative-other,Other,todo,no rule,Specimen from eye
+433324003,derivative-other,Other,todo,no rule,Specimen from eye region
+127476006,derivative-other,Other,todo,no rule,Specimen from fallopian tube
+608870009,derivative-other,Other,todo,no rule,Specimen from female genital tract
+449446003,derivative-other,Other,todo,no rule,Specimen from gallbladder
+127465007,derivative-other,Other,todo,no rule,Specimen from gastrointestinal tract
+119344008,derivative-other,Other,todo,no rule,Specimen from genital system
+29031000087105,derivative-other,Other,todo,no rule,Specimen from graft
+1335924000,derivative-other,Other,todo,no rule,Specimen from head
+127462005,derivative-other,Other,todo,no rule,Specimen from heart
+119388001,derivative-other,Other,todo,no rule,Specimen from internal nose
+438960000,derivative-other,Other,todo,no rule,Specimen from intervertebral disc
+734307008,derivative-other,Other,todo,no rule,Specimen from jejunostomy stoma
+734426001,derivative-other,Other,todo,no rule,Specimen from jejunum obtained by aspiration
+127473003,derivative-other,Other,todo,no rule,Specimen from kidney
+446675002,derivative-other,Other,todo,no rule,Specimen from knee joint obtained by aspiration
+119381007,derivative-other,Other,todo,no rule,Specimen from large intestine
+430144001,derivative-other,Other,todo,no rule,Specimen from larynx
+735198008,derivative-other,Other,todo,no rule,Specimen from left breast
+119385003,derivative-other,Other,todo,no rule,Specimen from left fallopian tube
+16215651000119101,derivative-other,Other,todo,no rule,Specimen from left lower lobe of lung obtained by bronchial aspiration procedure
+16215411000119104,derivative-other,Other,todo,no rule,Specimen from left lower lobe of lung obtained by bronchial washing procedure
+16215531000119108,derivative-other,Other,todo,no rule,Specimen from left upper lobe of lung obtained by bronchial aspiration procedure
+16215331000119103,derivative-other,Other,todo,no rule,Specimen from left upper lobe of lung obtained by bronchial washing procedure
+16223651000119107,derivative-other,Other,todo,no rule,Specimen from ligated fallopian tube
+430133009,derivative-other,Other,todo,no rule,Specimen from lip
+119383005,derivative-other,Other,todo,no rule,Specimen from liver
+16216171000119108,derivative-other,Other,todo,no rule,Specimen from liver obtained by aspiration
+608840004,derivative-other,Other,todo,no rule,Specimen from lower gastrointestinal tract
+430214008,derivative-other,Other,todo,no rule,Specimen from lower limb
+127458004,derivative-other,Other,todo,no rule,Specimen from lung
+16216251000119106,derivative-other,Other,todo,no rule,Specimen from lung obtained by aspiration
+122609004,derivative-other,Other,todo,no rule,Specimen from lung obtained by bronchial washing procedure
+16224091000119108,derivative-other,Other,todo,no rule,Specimen from lymph node obtained by endotracheal aspiration biopsy
+397438005,derivative-other,Other,todo,no rule,Specimen from lymph node obtained by staging laparotomy
+399526005,derivative-other,Other,todo,no rule,Specimen from major salivary gland
+16224131000119105,derivative-other,Other,todo,no rule,Specimen from mediastinal lymph node obtained by endotracheal aspiration biopsy
+433326001,derivative-other,Other,todo,no rule,Specimen from mediastinum
+1396172005,derivative-other,Other,todo,no rule,Specimen from medication delivery implant in peritoneum
+430157009,derivative-other,Other,todo,no rule,Specimen from meninges
+433322004,derivative-other,Other,todo,no rule,Specimen from mesentery
+447098004,derivative-other,Nail,todo,nail,Specimen from nail obtained by scraping
+430245007,derivative-other,Other,todo,no rule,Specimen from nasal fossae
+430238007,derivative-other,Other,todo,no rule,Specimen from nasal sinus
+430248009,derivative-other,Other,todo,no rule,Specimen from nasopharynx
+1335925004,derivative-other,Other,todo,no rule,Specimen from neck
+430236006,derivative-other,Other,todo,no rule,Specimen from nerve
+608852006,derivative-other,Other,todo,no rule,Specimen from nervous system
+553901000052100,derivative-other,Other,todo,no rule,Specimen from nipple
+447154002,derivative-other,Other,todo,no rule,Specimen from nose
+433309007,derivative-other,Other,todo,no rule,Specimen from omentum
+128155007,derivative-other,Other,todo,no rule,Specimen from ovary
+127469001,derivative-other,Other,todo,no rule,Specimen from pancreas
+119299002,derivative-other,Other,todo,no rule,Specimen from patient
+397135002,derivative-other,Other,todo,no rule,Specimen from pelvic lymph node
+119397002,derivative-other,Other,todo,no rule,Specimen from penis
+430244006,derivative-other,Other,todo,no rule,Specimen from pericardium
+430250001,derivative-other,Other,todo,no rule,Specimen from peritoneum
+608858005,derivative-other,Other,todo,no rule,Specimen from periureteral tissue
+608860007,derivative-other,Other,todo,no rule,Specimen from perivesical tissue
+447391001,derivative-other,Other,todo,no rule,Specimen from pharynx obtained by aspiration
+443241002,derivative-other,Other,todo,no rule,Specimen from pineal gland
+119305000,derivative-other,Other,todo,no rule,Specimen from plasma bag
+127459007,derivative-other,Other,todo,no rule,Specimen from pleura
+119386002,derivative-other,Other,todo,no rule,Specimen from prostate
+438660002,derivative-other,Other,todo,no rule,Specimen from prosthetic device
+1003714002,derivative-other,Other,todo,no rule,Specimen from prosthetic heart valve
+1003711005,derivative-other,Other,todo,no rule,Specimen from prosthetic joint
+447955000,derivative-other,Other,todo,no rule,Specimen from rectum
+397233003,derivative-other,Other,todo,no rule,Specimen from renal pelvis
+258603007,derivative-other,Other,todo,no rule,Specimen from respiratory system
+433323009,derivative-other,Other,todo,no rule,Specimen from retroperitoneum
+735197003,derivative-other,Other,todo,no rule,Specimen from right breast
+119384004,derivative-other,Other,todo,no rule,Specimen from right fallopian tube
+16215611000119102,derivative-other,Other,todo,no rule,Specimen from right lower lobe of lung obtained by bronchial aspiration procedure
+16215291000119109,derivative-other,Other,todo,no rule,Specimen from right lower lobe of lung obtained by bronchial washing procedure
+16215571000119106,derivative-other,Other,todo,no rule,Specimen from right middle lobe of lung obtained by bronchial aspiration procedure
+16215691000119106,derivative-other,Other,todo,no rule,Specimen from right upper lobe of lung obtained by bronchial aspiration procedure
+16215251000119104,derivative-other,Other,todo,no rule,Specimen from right upper lobe of lung obtained by bronchial washing procedure
+399747006,derivative-other,Other,todo,no rule,Specimen from salivary gland
+1386293001,derivative-other,Other,todo,no rule,Specimen from scleral graft storage medium
+430131006,derivative-other,Other,todo,no rule,Specimen from seminal vesicle
+441709004,derivative-other,Other,todo,no rule,Specimen from sentinel lymph node
+16235301000119101,derivative-other,Other,todo,no rule,Specimen from sentinel lymph node of breast
+608969007,derivative-other,Other,todo,no rule,Specimen from skin
+119380008,derivative-other,Other,todo,no rule,Specimen from small intestine
+58981000087103,derivative-other,Other,todo,no rule,Specimen from soft tissue of orbit
+430234009,derivative-other,Other,todo,no rule,Specimen from spermatic cord
+430221008,derivative-other,Other,todo,no rule,Specimen from spinal cord
+433308004,derivative-other,Other,todo,no rule,Specimen from spleen
+119379005,derivative-other,Other,todo,no rule,Specimen from stomach
+430132004,derivative-other,Other,todo,no rule,Specimen from sympathetic nerve ganglion
+128154006,derivative-other,Other,todo,no rule,Specimen from testis
+443418008,derivative-other,Other,todo,no rule,Specimen from thoracic cavity
+397457001,derivative-other,Other,todo,no rule,Specimen from thoracic mesothelium
+119389009,derivative-other,Other,todo,no rule,Specimen from throat
+396896007,derivative-other,Other,todo,no rule,Specimen from thymus gland
+399680007,derivative-other,Other,todo,no rule,Specimen from thyroid
+430249001,derivative-other,Other,todo,no rule,Specimen from tongue
+430222001,derivative-other,Other,todo,no rule,Specimen from tonsil
+119390000,derivative-other,Other,todo,no rule,Specimen from trachea
+445447003,derivative-other,Other,todo,no rule,Specimen from trachea obtained by aspiration
+399411006,derivative-other,Other,todo,no rule,Specimen from trophoblast
+430232008,derivative-other,Other,todo,no rule,Specimen from trunk
+1003710006,derivative-other,Other,todo,no rule,Specimen from tube
+430228002,derivative-other,Other,todo,no rule,Specimen from tunica of testis
+430304001,derivative-other,Other,todo,no rule,Specimen from unspecified body site
+608842007,derivative-other,Other,todo,no rule,Specimen from upper gastrointestinal tract
+430246008,derivative-other,Other,todo,no rule,Specimen from upper limb
+440675009,derivative-other,Other,todo,no rule,Specimen from upper urinary tract obtained by lavage
+399402006,derivative-other,Other,todo,no rule,Specimen from ureter
+119393003,derivative-other,Other,todo,no rule,Specimen from urethra
+450872001,derivative-other,Other,todo,no rule,Specimen from urinary bladder
+127471001,derivative-other,Other,todo,no rule,Specimen from urinary tract
+119395005,derivative-other,Other,todo,no rule,Specimen from uterine cervix
+127479004,derivative-other,Other,todo,no rule,Specimen from uterus
+119394009,derivative-other,Other,todo,no rule,Specimen from vagina
+447392008,derivative-other,Other,todo,no rule,Specimen from vagina obtained by aspiration
+438542005,derivative-other,Other,todo,no rule,Specimen from vagus nerve
+397129002,derivative-other,Other,todo,no rule,Specimen from vulva
+787152009,derivative-other,Other,todo,no rule,Specimen in non-fixative preservation fluid
+119295008,derivative-other,Other,todo,no rule,Specimen obtained by aspiration
+446305008,derivative-other,Other,todo,no rule,Specimen obtained by aspiration via tracheostomy
+441903006,derivative-other,Other,todo,no rule,Specimen obtained by bronchial aspiration
+446838005,derivative-other,Other,todo,no rule,Specimen obtained by bronchial trap
+16221811000119106,derivative-other,Other,todo,no rule,Specimen obtained by bronchoscopy
+2511000181107,derivative-other,Other,todo,no rule,Specimen obtained by exfoliation
+440674008,derivative-other,Other,todo,no rule,Specimen obtained by lavage
+440137008,derivative-other,Other,todo,no rule,Specimen obtained by peritoneal lavage
+57711000052109,derivative-other,Other,todo,no rule,Specimen obtained by puncture procedure
+446299006,derivative-other,Other,todo,no rule,Specimen obtained by transbronchial aspiration
+16216131000119105,derivative-other,Other,todo,no rule,Specimen obtained from pouch of Douglas by aspiration
+119324002,derivative-other,Other,todo,no rule,Specimen of unknown material
+430386002,derivative-other,Other,todo,no rule,Spermatozoa cytologic material
+119349003,derivative-other,Other,todo,no rule,Spermatozoa specimen
+258434003,derivative-other,Other,todo,no rule,Spun urinary sediment
+787150001,derivative-other,Other,todo,no rule,Stained slide of tissue section
+57731000052104,derivative-other,StemCells,todo,cells,Stem cell specimen
+472934001,derivative-other,Other,todo,no rule,Stent submitted as specimen
+110896005,derivative-other,Other,todo,no rule,Subcutaneous cytologic material
+110952009,derivative-other,Other,todo,no rule,Submandibular gland cytologic material
+35281000087100,derivative-other,Other,todo,no rule,Surgical stainless steel suture submitted as specimen
+35291000087103,derivative-other,Other,todo,no rule,Surgical staple submitted as specimen
+699868006,derivative-other,Other,todo,no rule,Suture material submitted as specimen
+309123007,derivative-other,Other,todo,no rule,Synovial specimen
+1345230008,derivative-other,Other,todo,no rule,Tablet submitted as specimen
+440468004,derivative-other,Other,todo,no rule,Tampon submitted as specimen
+1359985003,derivative-other,SpecimenEnvironment,todo,not a human sample,Tap water
+309481000,derivative-other,Other,todo,no rule,Temporal artery specimen
+472936004,derivative-other,Other,todo,no rule,Tenckhoff catheter tip submitted as specimen
+309107007,derivative-other,Other,todo,no rule,Tendon specimen
+110935005,derivative-other,Other,todo,no rule,Testis cytologic material
+1345235003,derivative-other,Other,todo,blood smear,Thick blood smear specimen
+1345234004,derivative-other,Other,todo,blood smear,Thin blood smear specimen
+116160003,derivative-other,Other,todo,no rule,Thyroid cytologic material
+116162006,derivative-other,Other,todo,no rule,Thyroid cytologic material; processed intraoperatively
+309148005,derivative-other,Other,todo,no rule,Thyroid direct smear specimen
+309144007,derivative-other,Other,todo,no rule,Thyroid lobe specimen
+710069003,derivative-other,Other,todo,no rule,Tick specimen
+110920009,derivative-other,Other,todo,no rule,Tracheal cytologic material
+472938003,derivative-other,Other,todo,no rule,Tracheal tube submitted as specimen
+472939006,derivative-other,Other,todo,no rule,Tracheostomy tube submitted as specimen
+708110000,derivative-other,SpecimenEnvironment,todo,not a human sample,Treated water specimen
+1003709001,derivative-other,Other,todo,no rule,Tube submitted as specimen
+16220041000119107,derivative-other,Other,todo,no rule,Tunneled catheter tip submitted as specimen
+712562009,derivative-other,Other,todo,no rule,Twenty four hours specimen
+712560001,derivative-other,Other,todo,no rule,Two hours specimen
+473408006,derivative-other,Other,todo,no rule,Umbilical artery catheter submitted as specimen
+472928008,derivative-other,Other,todo,no rule,Umbilical artery catheter tip submitted as specimen
+472920001,derivative-other,Other,todo,no rule,Umbilical catheter submitted as specimen
+472921002,derivative-other,Other,todo,no rule,Umbilical catheter tip submitted as specimen
+472925006,derivative-other,Other,todo,no rule,Umbilical vein catheter tip submitted as specimen
+787149001,derivative-other,Other,todo,no rule,Unstained slide of tissue section
+708111001,derivative-other,SpecimenEnvironment,todo,not a human sample,Untreated water specimen
+116159008,derivative-other,Other,todo,no rule,Upper aerodigestive tract cytologic material
+122879002,derivative-other,Other,todo,no rule,Upper gastrointestinal contents specimen
+258604001,derivative-other,Other,todo,no rule,Upper respiratory specimen
+110902000,derivative-other,Other,todo,no rule,Upper respiratory tract cytologic material
+110946008,derivative-other,Other,todo,no rule,Upper urinary tract cytologic material
+110960005,derivative-other,Other,todo,no rule,Ureter cytologic material
+258496003,derivative-other,Other,todo,no rule,Ureteric stone specimen
+110965000,derivative-other,Other,todo,no rule,Urethra cytologic material
+258493006,derivative-other,Other,todo,no rule,Urinary bladder calculus specimen
+110950001,derivative-other,Other,todo,no rule,Urinary bladder cytologic material
+16216491000119102,derivative-other,Other,todo,no rule,Urinary bladder specimen obtained by lavage
+773630006,derivative-other,Other,todo,no rule,Urinary catheter submitted as specimen
+439628000,derivative-other,Other,todo,no rule,Urinary collection bag submitted as specimen
+46121000146104,derivative-other,Other,todo,no rule,Urinary system calculus specimen
+110958008,derivative-other,Other,todo,no rule,Urinary tract cytologic material
+439580004,derivative-other,Other,todo,no rule,Urine collection pad submitted as specimen
+122567009,derivative-other,Other,todo,no rule,Urine sediment specimen
+898203003,derivative-other,Other,todo,no rule,Vacuum cleaner bag submitted as specimen
+110947004,derivative-other,Other,todo,no rule,Vagina cytologic material
+110953004,derivative-other,Other,todo,no rule,Vaginal and cervical cytologic material
+312494007,derivative-other,Other,todo,no rule,Vaginal vault smear specimen
+33931000087107,derivative-other,Other,todo,no rule,Vagus nerve electrical stimulation system lead submitted as specimen
+110939004,derivative-other,Other,todo,no rule,Vas deferens cytologic material
+309139000,derivative-other,Other,todo,no rule,Vas deferens specimen
+258628004,derivative-other,Other,todo,no rule,Vascular cannula tip submitted as specimen
+472932002,derivative-other,Other,todo,no rule,Vascular catheter submitted as specimen
+60661000087106,derivative-other,Other,todo,no rule,Vascular prosthesis submitted as specimen
+309480004,derivative-other,Other,todo,no rule,Vein specimen
+258630002,derivative-other,Other,todo,no rule,Venous cannula tip submitted as specimen
+472942000,derivative-other,Other,todo,no rule,Ventriculoperitoneal shunt submitted as specimen
+621000009105,derivative-other,IsolatedMicrobe,todo,isolate,Viral isolate specimen
+110909009,derivative-other,Other,todo,no rule,Vocal cord cytologic material
+110945007,derivative-other,Other,todo,no rule,Vulva cytologic material
+119318008,derivative-other,SpecimenEnvironment,todo,not a human sample,Water specimen
+258591005,derivative-other,Other,todo,white cell fraction,White blood cell specimen
+258656009,derivative-other,FoodSpecimen,todo,not a human sample,Whole milk specimen
+33551000087107,derivative-other,Other,todo,no rule,Wound packing material submitted as specimen
+258566005,dna,DNA,ok,,Deoxyribonucleic acid specimen
+119294007,dried-whole-blood,WholeBloodDried,ok,,Dried blood specimen
+440500007,dried-whole-blood,WholeBloodDried,ok,,Dried blood spot specimen
+410729004,liquid-other,AmnioticFluid,ok,,Amniocentesis fluid specimen
+430389009,liquid-other,AmnioticFluid,ok,,Amniotic fluid cytologic material
+119373006,liquid-other,AmnioticFluid,ok,,Amniotic fluid specimen
+167875003,liquid-other,SynovialFluid,ok,,Ankle joint synovial fluid
+258444001,liquid-other,Other,ok,,Aqueous humor specimen
+50841000087100,liquid-other,Other,ok,,Autologous serum eye drops specimen
+16215211000119100,liquid-other,Other,ok,,Bartholin's gland fluid specimen
+119341000,liquid-other,Bile,ok,,Bile specimen
+446129006,liquid-other,Bile,ok,,Bile specimen from common bile duct
+446817004,liquid-other,Bile,ok,,Bile specimen from gallbladder
+447158004,liquid-other,Bile,ok,,Bile specimen obtained by percutaneous transhepatic insertion of biliary drain
+447341000,liquid-other,Bile,ok,,Bile specimen obtained via biliary T-tube
+429832000,liquid-other,Other,ok,,Biliary fluid specimen obtained by drainage
+309051001,liquid-other,Other,ok,,Body fluid specimen
+1384202002,liquid-other,Other,ok,,Body fluid specimen from cardiac implantable electronic device pocket
+447375004,liquid-other,Other,ok,,Body fluid specimen obtained via chest tube
+446561003,liquid-other,Other,ok,,Body fluid specimen obtained via cholecystostomy tube
+16210211000119107,liquid-other,Other,ok,,Body fluid specimen obtained via cystostomy tube
+16210251000119108,liquid-other,Other,ok,,Body fluid specimen obtained via Jackson-Pratt drain
+446562005,liquid-other,Other,ok,,Body fluid specimen obtained via sump drain
+16209291000119109,liquid-other,Other,ok,,Brain cyst fluid specimen
+256889002,liquid-other,Other,ok,,Breast cyst fluid specimen
+309055005,liquid-other,Other,ok,,Breast fluid specimen
+430309006,liquid-other,Other,ok,,Breast nipple discharge cytologic material
+309503002,liquid-other,Other,ok,,Breast nipple discharge specimen
+258446004,liquid-other,Other,ok,,Bronchial fluid specimen
+447345009,liquid-other,Other,ok,,Bronchial fluid specimen obtained from bronchial trap
+258607008,liquid-other,BronchLavage,ok,,Bronchoalveolar lavage fluid specimen
+258448003,liquid-other,Other,ok,,Bursa fluid specimen
+258547005,liquid-other,Other,ok,,Cardiopulmonary bypass pump fluid specimen
+16209251000119104,liquid-other,Other,ok,,Central nervous system cyst fluid specimen
+110969006,liquid-other,Other,ok,,Cerebrospinal fluid cytologic material
+110970007,liquid-other,Other,ok,,Cerebroventricular fluid cytologic material
+258452003,liquid-other,Other,ok,,Chylous fluid specimen
+168136008,liquid-other,Other,ok,,Colostomy fluid specimen
+258599007,liquid-other,Other,ok,,Contact lens solution specimen
+119335007,liquid-other,Sputum,ok,,Coughed sputum specimen
+258453008,liquid-other,Other,ok,,Cyst fluid specimen
+432897002,liquid-other,Other,ok,,Cytologic material obtained from joint fluid
+430379005,liquid-other,PericardialFluid,ok,,Cytologic material obtained from pericardial fluid
+430408004,liquid-other,PleuralFluid,ok,,Cytologic material obtained from pleural fluid
+430312009,liquid-other,SynovialFluid,ok,,Cytologic material obtained from synovial fluid
+258454002,liquid-other,Other,ok,,Dialysate specimen
+447355008,liquid-other,Other,ok,,Dialysis fluid specimen obtained after continuous ambulatory peritoneal dialysis
+445516007,liquid-other,Other,ok,,Dialysis fluid specimen obtained after dialysis
+444946008,liquid-other,Other,ok,,Dialysis fluid specimen obtained before dialysis
+258439008,liquid-other,Other,ok,,Discharge specimen
+732295009,liquid-other,Other,ok,,Discharge specimen from penis
+33501000087106,liquid-other,Other,ok,,Donor-organ preservation solution specimen
+258455001,liquid-other,Other,ok,,Drainage fluid specimen
+446211008,liquid-other,Other,ok,,Drainage fluid specimen obtained after surgical placement of drain
+122574004,liquid-other,Other,ok,,Duodenal fluid specimen
+258468009,liquid-other,Other,ok,,Edema fluid specimen
+258440005,liquid-other,Other,ok,,Effusion specimen
+167869007,liquid-other,SynovialFluid,ok,,Elbow joint synovial fluid
+40511003,liquid-other,Other,ok,,Eluate
+258456000,liquid-other,Other,ok,,Empyema fluid specimen
+446676001,liquid-other,BreastMilk,ok,,Expressed breast milk specimen
+444832009,liquid-other,BreastMilk,ok,,Expressed breast milk specimen after breast cleansing
+444865001,liquid-other,BreastMilk,ok,,Expressed breast milk specimen before breast cleansing
+258441009,liquid-other,Other,ok,was ascites; SNOMED: exudate,Exudate specimen
+122568004,liquid-other,Other,ok,,Exudate specimen from wound
+16209331000119103,liquid-other,Other,ok,,Eye discharge specimen
+309128003,liquid-other,Other,ok,,Eye fluid specimen
+122578001,liquid-other,Other,ok,,Female genital fluid specimen
+167872000,liquid-other,SynovialFluid,ok,,Finger joint synovial fluid
+258458004,liquid-other,Other,ok,,Fistula fluid specimen
+258442002,liquid-other,Other,ok,,Fluid specimen
+33511000087108,liquid-other,Other,ok,,Fluid specimen from abdominopelvic cavity
+446128003,liquid-other,Other,ok,,Fluid specimen from Bartholin gland cyst
+732972008,liquid-other,Other,ok,,Fluid specimen from cyst of ovary
+733056005,liquid-other,Other,ok,,Fluid specimen from ear
+840395001,liquid-other,Other,ok,,Fluid specimen from ear region
+33891000087100,liquid-other,Other,ok,,Fluid specimen from empyema of subdural space
+732975005,liquid-other,Other,ok,,Fluid specimen from epididymis
+444965000,liquid-other,Other,ok,,Fluid specimen from epidural space
+732976006,liquid-other,Other,ok,,Fluid specimen from external auditory canal
+446908003,liquid-other,Other,ok,,Fluid specimen from mucocele of lacrimal sac
+733101007,liquid-other,Other,ok,,Fluid specimen from perirenal region
+708112008,liquid-other,Other,ok,,Fluid specimen from rectouterine pouch obtained by aspiration
+438595008,liquid-other,Other,ok,,Fluid specimen from sebaceous cyst
+445744006,liquid-other,Other,ok,,Fluid specimen from seroma
+438545007,liquid-other,Other,ok,,Fluid specimen from spermatocele
+444936006,liquid-other,Other,ok,,Fluid specimen from subdural space
+445745007,liquid-other,Other,ok,,Fluid specimen from subphrenic space
+1382292009,liquid-other,Other,ok,,Fluid specimen from uterine cavity
+122566000,liquid-other,Other,ok,,Fluid specimen from wound
+167876002,liquid-other,SynovialFluid,ok,,Foot joint synovial fluid
+168137004,liquid-other,GastricFluid,ok,,Gastric aspirate specimen
+122573005,liquid-other,Other,ok,,Gastric contents specimen
+258459007,liquid-other,GastricFluid,ok,,Gastric fluid specimen
+16210291000119103,liquid-other,GastricFluid,ok,,Gastric fluid specimen obtained by drainage
+16210331000119109,liquid-other,GastricFluid,ok,,Gastric fluid specimen obtained via gastrostomy tube
+168138009,liquid-other,Other,ok,,Gastric lavage aspirate specimen
+309199003,liquid-other,Other,ok,,Gastrointestinal fluid specimen
+122579009,liquid-other,Other,ok,,Genital lochia specimen
+258559009,liquid-other,Other,ok,,Gingivocrevicular fluid specimen
+167871007,liquid-other,SynovialFluid,ok,,Hand joint synovial fluid
+445384000,liquid-other,Other,ok,,Hemodialysate specimen from hemodialysis machine using reverse osmosis system
+445529007,liquid-other,Other,ok,,Hemodialysate specimen from hemodialysis machine using water distribution system
+167873005,liquid-other,SynovialFluid,ok,,Hip joint synovial fluid
+258461003,liquid-other,Other,ok,,Hydrocele fluid specimen
+258462005,liquid-other,Other,ok,,Ileostomy fluid specimen
+258479004,liquid-other,Other,ok,,Interstitial fluid specimen
+258649003,liquid-other,Other,ok,,Intravenous infusion fluid specimen
+258650003,liquid-other,Other,ok,,Intravenous lipid infusion fluid specimen
+258463000,liquid-other,Other,ok,,Jejunal fluid specimen
+446906004,liquid-other,Other,ok,,Jejunal fluid specimen from jejunostomy
+16210371000119107,liquid-other,Other,ok,,Jejunal fluid specimen obtained by drainage
+431361003,liquid-other,Other,ok,,Joint fluid specimen
+167874004,liquid-other,SynovialFluid,ok,,Knee joint synovial fluid
+258465007,liquid-other,Other,ok,,Lacrimal fluid specimen
+309171007,liquid-other,Other,ok,,Lower respiratory fluid specimen
+168145009,liquid-other,Other,ok,,Lymph specimen
+258571003,liquid-other,Other,ok,,Machine hemodialysate specimen
+444831002,liquid-other,Other,ok,,Machine hemodialysate specimen obtained after mixing
+444623009,liquid-other,Other,ok,,Machine hemodialysate specimen obtained before mixing
+119345009,liquid-other,MenstrualBlood,todo,menstrual blood,Menstrual blood specimen
+258466008,liquid-other,Other,ok,,Middle ear fluid specimen
+593961000052105,liquid-other,BronchLavage,ok,,Mini-bronchoalveolar lavage fluid specimen
+119328004,liquid-other,BreastMilk,ok,,Mother's milk specimen
+167867009,liquid-other,SynovialFluid,ok,,Multiple joint synovial fluid
+168141000,liquid-other,Other,ok,,Nasal fluid specimen
+16224371000119105,liquid-other,NasalWashing,ok,,Nasal lavage fluid specimen
+16223051000119101,liquid-other,Other,ok,,Nasal sinus contents specimen
+433871000124101,liquid-other,NasalWashing,ok,,Nasal washings
+258411007,liquid-other,Other,ok,,Nasopharyngeal aspirate
+258467004,liquid-other,Other,ok,,Nasopharyngeal washings
+119316007,liquid-other,Other,ok,,Non-biological fluid specimen
+441620008,liquid-other,Other,ok,,Oral fluid specimen
+409876003,liquid-other,Other,ok,,Oral mucosal transudate specimen
+258558001,liquid-other,Other,ok,,Oral secretion specimen
+258412000,liquid-other,Other,ok,,Oropharyngeal aspirate
+1149105007,liquid-other,Other,ok,,Oropharyngeal washings
+309292002,liquid-other,Other,ok,,Ovarian fluid specimen
+16220931000119104,liquid-other,Other,ok,,Pancreas cyst fluid specimen
+119343002,liquid-other,Other,ok,,Pancreatic fluid specimen
+122571007,liquid-other,PericardialFluid,ok,,Pericardial fluid specimen
+168140004,liquid-other,Other,ok,,Peritoneal dialysate specimen
+445069004,liquid-other,Other,ok,,Peritoneal dialysis fluid specimen obtained after dialysis
+444959000,liquid-other,Other,ok,,Peritoneal dialysis fluid specimen obtained before dialysis
+168139001,liquid-other,BodyCavityFluid,ok,,Peritoneal fluid specimen
+1389203009,liquid-other,Other,ok,,Pharyngeal secretion specimen
+258469001,liquid-other,Other,ok,,Pharyngeal washings
+418564007,liquid-other,PleuralFluid,ok,,Pleural fluid specimen
+258470000,liquid-other,Other,ok,,Prostatic fluid specimen
+446700001,liquid-other,Other,ok,,Prostatic fluid specimen obtained for Stamey test
+258471001,liquid-other,Other,ok,,Prostatic massage fluid specimen
+119323008,liquid-other,Other,ok,,Pus specimen
+57721000052101,liquid-other,Other,ok,,Rectal secretion specimen
+258472008,liquid-other,Other,ok,,Renal pelvis fluid specimen
+16224291000119101,liquid-other,Other,ok,,Renal washings
+410580001,liquid-other,Other,ok,,Respiratory fluid specimen
+415293009,liquid-other,Other,ok,,Respiratory secretion
+258432004,liquid-other,Other,ok,,Sebum specimen
+119347001,liquid-other,Semen,ok,,Seminal fluid specimen
+119348006,liquid-other,Semen,ok,,Seminal plasma specimen
+167868004,liquid-other,SynovialFluid,ok,,Shoulder joint synovial fluid
+258474009,liquid-other,Other,ok,,Sinus fluid specimen
+258475005,liquid-other,Other,ok,,Sinus washings
+119307008,liquid-other,Other,ok,,Specimen from endotracheal tube
+16209771000119101,liquid-other,BronchLavage,ok,,Specimen from left lower lobe of lung obtained by bronchoalveolar lavage procedure
+16209691000119106,liquid-other,BronchLavage,ok,,Specimen from left lung obtained by blind bronchioloalveolar lavage procedure
+16209811000119101,liquid-other,BronchLavage,ok,,Specimen from left upper lobe of lung obtained by bronchoalveolar lavage procedure
+429836002,liquid-other,Other,ok,,Specimen from maxillary sinus obtained by irrigation
+122619005,liquid-other,PleuralFluid,ok,,Specimen from pleura obtained by thoracentesis
+16209931000119102,liquid-other,BronchLavage,ok,,Specimen from right lower lobe of lung obtained by bronchoalveolar lavage procedure
+16209731000119104,liquid-other,BronchLavage,ok,,Specimen from right lung obtained by blind bronchioloalveolar lavage procedure
+16215451000119103,liquid-other,BronchLavage,ok,,Specimen from right middle lobe of lung obtained by bronchial washing procedure
+16209891000119105,liquid-other,BronchLavage,ok,,Specimen from right middle lobe of lung obtained by bronchoalveolar lavage procedure
+16209851000119100,liquid-other,BronchLavage,ok,,Specimen from right upper lobe of lung obtained by bronchoalveolar lavage procedure
+16220971000119101,liquid-other,Other,ok,,Specimen of fluid from cyst of kidney
+430310001,liquid-other,Sputum,ok,,Sputum cytologic material
+404643001,liquid-other,Sputum,ok,,Sputum smear specimen
+119334006,liquid-other,Sputum,ok,,Sputum specimen
+258608003,liquid-other,Sputum,ok,,Sputum specimen obtained by aspiration
+258609006,liquid-other,Sputum,ok,,Sputum specimen obtained by aspiration from trachea
+258610001,liquid-other,Sputum,ok,,Sputum specimen obtained by sputum induction
+258611002,liquid-other,Sputum,ok,,Sputum specimen obtained from sputum suction trap
+258476006,liquid-other,Other,ok,,Subretinal fluid specimen
+1382296007,liquid-other,Other,ok,,Substitution fluid specimen from online hemodiafiltration
+122569007,liquid-other,Sweat,ok,,Sweat specimen
+264380007,liquid-other,SynovialFluid,ok,,Synovial fluid cells
+119332005,liquid-other,SynovialFluid,ok,,Synovial fluid specimen
+16223971000119109,liquid-other,SynovialFluid,ok,,Synovial fluid specimen obtained by fine needle aspiration procedure
+122594008,liquid-other,Tears,ok,,Tears specimen
+309147000,liquid-other,Other,ok,,Thyroid cyst fluid specimen
+309145008,liquid-other,Other,ok,,Thyroid fluid specimen
+167877006,liquid-other,SynovialFluid,ok,,Toe joint synovial fluid
+57741000052105,liquid-other,Other,ok,,Tracheal secretion specimen
+258480001,liquid-other,Other,ok,,Transtracheal aspirate specimen
+258538002,liquid-other,Other,ok,,Transudate specimen
+258572005,liquid-other,Other,ok,,Ultrafiltrate specimen
+410581002,liquid-other,Other,ok,,Upper respiratory fluid specimen
+122877000,liquid-other,Other,ok,,Upper respiratory fluid specimen obtained by tracheal aspiration
+309268005,liquid-other,Other,ok,,Urological fluid specimen
+16221011000119101,liquid-other,Other,ok,,Vaginal discharge specimen
+258577004,liquid-other,Other,ok,,Vaginal secretion specimen
+258481002,liquid-other,Other,ok,,Vaginal washout fluid specimen
+258482009,liquid-other,Other,ok,,Vesicle fluid specimen
+258438000,liquid-other,VitreousFluid,ok,,Vitreous humor specimen
+16223931000119106,liquid-other,VitreousFluid,ok,,Vitreous humor specimen obtained by fine needle aspiration procedure
+122572000,liquid-other,Other,ok,,Vomitus specimen
+167870008,liquid-other,SynovialFluid,ok,,Wrist joint synovial fluid
+441673008,rna,RNA,ok,,Ribonucleic acid specimen
+258560004,saliva,Saliva,ok,,Oral saliva specimen
+258561000,saliva,Saliva,ok,,Parotid gland saliva specimen
+119342007,saliva,Saliva,ok,,Saliva specimen
+732227008,stool-faeces,Faeces,ok,,24 hour stool specimen
+732226004,stool-faeces,Faeces,ok,,48 hour stool specimen
+258554004,stool-faeces,Faeces,ok,,Fecal concretion specimen
+258457009,stool-faeces,Faeces,ok,,Fecal fluid specimen
+258487003,stool-faeces,Faeces,ok,,Fecal smear
+258555003,stool-faeces,Faeces,ok,,Hot stool specimen
+16223531000119100,stool-faeces,Faeces,ok,,Liquid stool specimen
+119340004,stool-faeces,Faeces,ok,,Meconium specimen
+16223571000119102,stool-faeces,Faeces,ok,,Purged stool specimen
+697988001,stool-faeces,Faeces,ok,,Soft stool specimen
+119339001,stool-faeces,Faeces,ok,,Stool specimen
+258497007,swab,Swab,ok,,Abscess swab
+258527002,swab,Swab,ok,,Anal swab
+697989009,swab,Swab,ok,,Anterior naris swab
+258504005,swab,Swab,ok,,Bacillus Calmette-Guerin vaccination site swab
+258524009,swab,Swab,ok,,Cervical swab
+433801000124107,swab,Swab,ok,,Combined nasopharyngeal and oropharyngeal swab
+33651000087106,swab,Swab,ok,,Combined specimen from swab of anterior naris and anus
+33641000087108,swab,Swab,ok,,Combined specimen from swab of anterior naris and anus and axillary fossa
+33671000087100,swab,Swab,ok,,Combined specimen from swab of anterior naris and anus and throat
+33661000087109,swab,Swab,ok,,Combined specimen from swab of anterior naris and anus and umbilicus
+42061000087105,swab,Swab,ok,,Combined specimen from swab of anterior naris and axillary fossa and groin
+277191000087105,swab,Swab,ok,,Combined specimen from swab of anterior naris and axillary fossa and throat
+59041000087103,swab,Swab,ok,,Combined specimen from swab of anterior naris and groin
+277201000087107,swab,Swab,ok,,Combined specimen from swab of anterior naris and groin and throat
+433881000124103,swab,Swab,ok,,Combined specimen from swab of anterior naris and throat
+278351000087102,swab,Swab,ok,,Combined specimen from swab of anterior naris and throat and vagina
+40371000087100,swab,Swab,ok,,Combined specimen from swab of axillary fossa and groin
+1371684001,swab,Swab,ok,,Combined specimen from swab of rectum and vaginal introitus
+1345107007,swab,Swab,ok,,Combined urethral and genital swab
+258498002,swab,Swab,ok,,Conjunctival swab
+258515000,swab,Swab,ok,,Coronal sulcus of penis swab
+258499005,swab,Swab,ok,,Cough swab
+309166000,swab,Swab,ok,,Ear swab specimen
+419695002,swab,Swab,ok,,Environmental swab
+1003522007,swab,Swab,ok,,Environmental swab from animal burrow
+258519006,swab,Swab,ok,,Female genital swab
+258535004,swab,Swab,ok,,Floor swab
+258516004,swab,Swab,ok,,Frenulum of penis swab
+258508008,swab,Swab,ok,,Genital swab
+258512002,swab,Swab,ok,,Glans penis swab
+258521001,swab,Swab,ok,,High vaginal swab
+258536003,swab,Swab,ok,,Incubator swab
+258522008,swab,Swab,ok,,Low vaginal swab
+258509000,swab,Swab,ok,,Male genital swab
+258500001,swab,Swab,ok,,Nasopharyngeal swab
+418932006,swab,Swab,ok,,Oral swab
+461911000124106,swab,Swab,ok,,Oropharyngeal swab
+258511009,swab,Swab,ok,,Penile urethral swab
+258510005,swab,Swab,ok,,Penis swab
+258526006,swab,Swab,ok,,Perianal swab
+258525005,swab,Swab,ok,,Perineal swab
+258513007,swab,Swab,ok,,Prepuce swab
+258502009,swab,Swab,ok,,Pus swab
+258528007,swab,Swab,ok,,Rectal swab
+258518003,swab,Swab,ok,,Scrotal swab
+258517008,swab,Swab,ok,,Shaft of penis swab
+258503004,swab,Swab,ok,,Skin swab
+258505006,swab,Swab,ok,,Skin ulcer swab
+258514001,swab,Swab,ok,,Subpreputial swab
+258537007,swab,Swab,ok,,Surface swab
+257261003,swab,Swab,ok,,Swab
+472904006,swab,Swab,ok,,Swab from abdomen
+472893008,swab,Swab,ok,,Swab from abscess of brain
+472890006,swab,Swab,ok,,Swab from appendix
+472876008,swab,Swab,ok,,Swab from Bartholin cyst
+472878009,swab,Swab,ok,,Swab from Bartholin gland
+28971000087101,swab,Swab,ok,,Swab from bite wound
+472896000,swab,Swab,ok,,Swab from blister
+733104004,swab,Swab,ok,,Swab from buccal mucosa
+472895001,swab,Swab,ok,,Swab from buttock
+472880003,swab,Swab,ok,,Swab from catheter
+472903000,swab,Swab,ok,,Swab from central venous catheter
+472902005,swab,Swab,ok,,Swab from chest tube insertion site
+472894002,swab,Swab,ok,,Swab from cornea
+472884007,swab,Swab,ok,,Swab from deep wound
+472892003,swab,Swab,ok,,Swab from digit of hand
+28991000087102,swab,Swab,ok,,Swab from epiglottis
+472877004,swab,Swab,ok,,Swab from esophagus
+30941000087105,swab,Swab,ok,,Swab from eyelid
+454911000124104,swab,Swab,ok,,Swab from face
+1343300000,swab,Swab,ok,,Swab from fistula
+472886009,swab,Swab,ok,,Swab from gastrostomy stoma
+52041000087106,swab,Swab,ok,,Swab from genital ulcer
+472900002,swab,Swab,ok,,Swab from gingiva
+472898004,swab,Swab,ok,,Swab from hand
+454951000124103,swab,Swab,ok,,Swab from head
+472897009,swab,Swab,ok,,Swab from hip region
+472887000,swab,Swab,ok,,Swab from labia
+472888005,swab,Swab,ok,,Swab from larynx
+16210971000119108,swab,Swab,ok,,Swab from lesion
+472862007,swab,Swab,ok,,Swab from lesion of skin
+472891005,swab,Swab,ok,,Swab from lip
+472863002,swab,Swab,ok,,Swab from lower leg
+472864008,swab,Swab,ok,,Swab from lower limb
+1293160008,swab,Swab,ok,,Swab from middle region of inferior nasal meatus
+472901003,swab,Swab,ok,,Swab from nasal sinus
+1163592005,swab,Swab,ok,,Swab from paraurethral gland
+472889002,swab,Swab,ok,,Swab from pelvis
+472869003,swab,Swab,ok,,Swab from pericardial sac structure
+472868006,swab,Swab,ok,,Swab from peritoneal cavity structure
+472881004,swab,Swab,ok,,Swab from pharynx
+472879001,swab,Swab,ok,,Swab from placenta
+472885008,swab,Swab,ok,,Swab from pressure injury
+1344978009,swab,Swab,ok,,Swab from pustule
+29001000087102,swab,Swab,ok,,Swab from stoma wound
+472882006,swab,Swab,ok,,Swab from superficial wound
+472883001,swab,Swab,ok,,Swab from surgical wound
+473399006,swab,Swab,ok,,Swab from Tenckhoff catheter exit site
+472861000,swab,Swab,ok,,Swab from testicle
+472865009,swab,Swab,ok,,Swab from toe
+472866005,swab,Swab,ok,,Swab from tongue
+472867001,swab,Swab,ok,,Swab from tonsil
+473400004,swab,Swab,ok,,Swab from tooth
+33901000087104,swab,Swab,ok,,Swab from tracheostomy stoma
+472870002,swab,Swab,ok,,Swab from tracheostomy wound
+472871003,swab,Swab,ok,,Swab from ulcer
+472872005,swab,Swab,ok,,Swab from ultrasonic nebulizer
+472873000,swab,Swab,ok,,Swab from urethral meatus
+472874006,swab,Swab,ok,,Swab from uterus
+472899007,swab,Swab,ok,,Swab from vaginal introitus
+1345219005,swab,Swab,ok,,Swab from vaginal part of cervix
+1382291002,swab,Swab,ok,,Swab from vaginal vault
+472875007,swab,Swab,ok,,Swab from vesicle
+446577002,swab,Swab,ok,,Swab obtained during autopsy
+445364004,swab,Swab,ok,,Swab of axilla
+431905001,swab,Swab,ok,,Swab of building drain
+258506007,swab,Swab,ok,,Swab of drain insertion site
+444787003,swab,Swab,ok,,Swab of endocervix
+445369009,swab,Swab,ok,,Swab of endometrium
+445160003,swab,Swab,ok,,Swab of eye
+445444005,swab,Swab,ok,,Swab of groin
+258532001,swab,Swab,ok,,Swab of inanimate object
+59601000087108,swab,Swab,ok,,Swab of insertion site
+445297001,swab,Swab,ok,,Swab of internal nose
+258507003,swab,Swab,ok,,Swab of line insertion site
+438343001,swab,Swab,ok,,Swab of pilonidal sinus
+431776009,swab,Swab,ok,,Swab of surgical drain
+445367006,swab,Swab,ok,,Swab of umbilicus
+735950000,swab,Swab,ok,,Swab of vascular catheter insertion site
+1389202004,swab,Swab,ok,,Swab specimen in phosphate-buffered saline
+258529004,swab,Swab,ok,,Throat swab
+309164002,swab,Swab,ok,,Upper respiratory swab specimen
+258530009,swab,Swab,ok,,Urethral swab
+258520000,swab,Swab,ok,,Vaginal swab
+258523003,swab,Swab,ok,,Vulval swab
+258531008,swab,Swab,ok,,Wound swab
+2501000181105,tissue-ffpe,TissueFixed,todo,fixative not necessarily paraffin,Biopsy specimen in tissue fixative
+441652008,tissue-ffpe,TissueFixed,ok,,Formalin-fixed paraffin-embedded tissue specimen
+725957005,tissue-ffpe,TissueFixed,ok,,Formalin-fixed placenta tissue specimen
+15650671000119107,tissue-ffpe,TissueFixed,ok,,Paraffin embedded slide
+3040001000004107,tissue-ffpe,TissueFixed,ok,,Paraffin embedded tissue block specimen
+16222251000119102,tissue-ffpe,TissueFixed,ok,,Specimen from skin obtained by Mohs surgery; permanent section
+787151002,tissue-ffpe,TissueFixed,todo,fixative not necessarily paraffin,Specimen in tissue fixative
+309059004,tissue-frozen,TissueFreshFrozen,ok,,Frozen section breast specimen
+309482007,tissue-frozen,TissueFreshFrozen,ok,,Frozen section lymph node specimen
+309276007,tissue-frozen,TissueFreshFrozen,ok,,Frozen section urinary bladder specimen
+16214131000119104,tissue-frozen,TissueFreshFrozen,ok,,Frozen tissue section specimen
+16222091000119100,tissue-frozen,TissueFreshFrozen,ok,,Skin specimen obtained by excision; frozen section
+16214371000119104,tissue-frozen,TissueFreshFrozen,ok,fresh frozen per maintainer,Specimen from lung obtained by needle biopsy
+258407001,tissue-other,Other,todo,tissue; preservation unknown,Abscess tissue
+258414004,tissue-other,Other,todo,tissue; preservation unknown,Adipose tissue specimen
+309142006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Adrenal biopsy specimen
+303247002,tissue-other,Other,todo,tissue; preservation unknown,Adrenal tissue specimen
+33631000087102,tissue-other,Other,todo,tissue; preservation unknown,Allogeneic bone graft material submitted as specimen
+309494003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Ampulla of Vater biopsy specimen
+309265008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Anal biopsy specimen
+309266009,tissue-other,Other,todo,tissue; preservation unknown,Anal polyp specimen
+309267000,tissue-other,Other,todo,tissue; preservation unknown,Anal resection specimen
+309489003,tissue-other,Other,todo,tissue; preservation unknown,Anterior resection of rectum specimen
+309126004,tissue-other,Other,todo,tissue; preservation unknown,Articular tissue specimen
+16213411000119100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Ascending colon biopsy specimen
+309493009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Bile duct biopsy specimen
+309491006,tissue-other,Other,todo,tissue; preservation unknown,Biliary tract tissue specimen
+258415003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Biopsy specimen
+258582006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Blood clot specimen
+258539005,tissue-other,Bone,todo,preservation unknown,Bone and joint specimen
+309105004,tissue-other,Bone,todo,preservation unknown,Bone biopsy specimen
+110901007,tissue-other,Bone,todo,preservation unknown,Bone cytologic material
+258417006,tissue-other,Bone,todo,preservation unknown,Bone tissue specimen
+16210891000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Brain neoplasm tissue specimen
+128157004,tissue-other,Other,todo,tissue; preservation unknown,Brain tissue specimen
+16210651000119106,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Branchial cleft cyst specimen
+16210691000119101,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Breast cyst specimen
+373103009,tissue-other,Other,todo,tissue; preservation unknown,Breast cytologic material obtained by incisional biopsy
+373101006,tissue-other,Other,todo,tissue; preservation unknown,Breast cytologic material obtained by percutaneous core biopsy
+309061008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Breast fine needle aspirate specimen
+309058007,tissue-other,Other,todo,tissue; preservation unknown,Breast tru-cut biopsy specimen
+309174004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Bronchial biopsy specimen
+309176002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Bronchial brushings specimen
+258418001,tissue-other,Other,todo,tissue; preservation unknown,Burn tissue
+309111001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Bursa biopsy specimen
+309110000,tissue-other,Other,todo,tissue; preservation unknown,Bursa tissue specimen
+309102001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Cartilage biopsy specimen
+16213491000119109,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Cecum biopsy specimen
+16210851000119107,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Cerebellar neoplasm specimen
+309283000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Cervical biopsy specimen
+309285007,tissue-other,Other,todo,tissue; preservation unknown,Cervical loop excision specimen
+309286008,tissue-other,Other,todo,tissue; preservation unknown,Cervical polyp specimen
+309205005,tissue-other,Other,todo,tissue; preservation unknown,Cholecystectomy specimen
+258565009,tissue-other,Placenta,todo,preservation unknown,Chorionic villi specimen
+309223002,tissue-other,Other,todo,tissue; preservation unknown,Colectomy specimen
+309224008,tissue-other,Other,todo,tissue; preservation unknown,Colon strip specimen
+309225009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Colonic biopsy specimen
+309226005,tissue-other,Other,todo,tissue; preservation unknown,Colonic polyp specimen
+15650531000119105,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Colorectal junction neoplasm tissue specimen
+16213691000119107,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Common bile duct brushings specimen
+430970004,tissue-other,Other,todo,tissue; preservation unknown,Core sample of tissue block
+258485006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Corneal scraping specimen
+258419009,tissue-other,Other,todo,tissue; preservation unknown,Curettings
+258420003,tissue-other,Other,todo,tissue; preservation unknown,Cyst tissue
+309275006,tissue-other,Other,todo,tissue; preservation unknown,Cystectomy specimen
+733105003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Cytologic material from lymph node of neck obtained by fine needle aspiration
+733475007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Cytologic material from mass of neck obtained by fine needle aspiration
+733476008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Cytologic material from neck obtained by fine needle aspiration
+16210571000119101,tissue-other,Teeth,todo,preservation unknown,Dental cyst specimen
+309187005,tissue-other,Teeth,todo,preservation unknown,Dental tissue specimen
+119338009,tissue-other,Teeth,todo,preservation unknown,Dentin specimen
+16213531000119109,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Descending colon biopsy specimen
+16210811000119106,tissue-other,Other,todo,tissue; preservation unknown,Desmoid tumor specimen
+309216003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Duodenal biopsy specimen
+16216091000119108,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Duodenal brushings specimen
+16213651000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Duodenal ulcer specimen
+258421004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Embryo biopsy specimen
+16215731000119104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Endocardium biopsy specimen
+718684005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Endocervical brush specimen
+16210931000119105,tissue-other,Other,todo,tissue; preservation unknown,Endocervical polyp specimen
+309288009,tissue-other,Other,todo,tissue; preservation unknown,Endometrial polyp specimen
+309289001,tissue-other,Other,todo,tissue; preservation unknown,Endometrial resection specimen
+16211131000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Epidural lesion specimen
+791000009104,tissue-other,Other,todo,tissue; preservation unknown,Epithelial tissue specimen from vesicle
+309209004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Esophageal biopsy specimen
+309210009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Esophageal brushings specimen
+309143001,tissue-other,Other,todo,tissue; preservation unknown,Excised adrenal gland specimen
+16211651000119103,tissue-other,Bone,todo,preservation unknown,Excised bone specimen
+16212051000119104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Excised breast ectopic tissue specimen
+309112008,tissue-other,Other,todo,tissue; preservation unknown,Excised bursa specimen
+309103006,tissue-other,Other,todo,tissue; preservation unknown,Excised cartilage specimen
+309119004,tissue-other,Other,todo,tissue; preservation unknown,Excised fascia specimen
+309116006,tissue-other,Other,todo,tissue; preservation unknown,Excised ligament specimen
+1177151008,tissue-other,Other,todo,tissue; preservation unknown,Excised mesorectum specimen
+309153000,tissue-other,Other,todo,tissue; preservation unknown,Excised parathyroid specimen
+309264007,tissue-other,Other,todo,tissue; preservation unknown,Excised rectum specimen
+309190004,tissue-other,Other,todo,tissue; preservation unknown,Excised salivary gland specimen
+309485009,tissue-other,Other,todo,tissue; preservation unknown,Excised sublingual gland specimen
+309486005,tissue-other,Other,todo,tissue; preservation unknown,Excised submandibular gland specimen
+309108002,tissue-other,Other,todo,tissue; preservation unknown,Excised tendon specimen
+16211251000119101,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Extradural lesion specimen
+309290005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Fallopian tube biopsy specimen
+309118007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Fascia biopsy specimen
+309278008,tissue-other,Other,todo,tissue; preservation unknown,Female genital tissue specimen
+110968003,tissue-other,FetalTissue,todo,preservation unknown,Fetal cytologic material
+309502007,tissue-other,FetalTissue,todo,preservation unknown,Fetus specimen
+116161004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Fine needle aspirate of thyroid; cytologic material
+309499008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Foreskin biopsy specimen
+441479001,tissue-other,Other,todo,tissue; preservation unknown,Fresh tissue specimen
+432657002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Ganglion cyst specimen
+309212001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Gastric antral biopsy specimen
+309211008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Gastric biopsy specimen
+309213006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Gastric brushings specimen
+309214000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Gastric fundus biopsy specimen
+309215004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Gastric ulcer specimen
+16212691000119100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Gingiva biopsy specimen
+258422006,tissue-other,Other,todo,tissue; preservation unknown,Gonad tissue
+309120005,tissue-other,Bone,todo,preservation unknown,Head of femur specimen
+258424007,tissue-other,Other,todo,tissue; preservation unknown,Heart valve tissue
+258588005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Hematoma specimen
+438336007,tissue-other,Other,todo,tissue; preservation unknown,Hemorrhoid tissue specimen
+16216011000119104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Hilum of lung specimen obtained by fine needle aspiration procedure
+371782000,tissue-other,Bone,todo,preservation unknown,Human bone for identification
+309135006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Hydrocele specimen
+16211091000119104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Hydrocele specimen obtained by fine needle aspiration
+309287004,tissue-other,Other,todo,tissue; preservation unknown,Hysterectomy and bilateral salpingo-oophorectomy specimen
+765469005,tissue-other,Other,todo,tissue; preservation unknown,Hysterectomy and left salpingo-oophorectomy specimen
+765470006,tissue-other,Other,todo,tissue; preservation unknown,Hysterectomy and right salpingo-oophorectomy specimen
+309501000,tissue-other,Other,todo,tissue; preservation unknown,Hysterectomy specimen
+309217007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Ileal biopsy specimen
+309218002,tissue-other,Other,todo,tissue; preservation unknown,Ileal resection specimen
+16213571000119107,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Ileocecal valve biopsy specimen
+309219005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Jejunal biopsy specimen
+309124001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Joint biopsy specimen
+737017003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Joint loose body specimen
+309269002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Kidney biopsy specimen
+16212371000119106,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Kidney brushings specimen
+16210531000119104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Labia ulcer specimen
+309183009,tissue-other,Other,todo,tissue; preservation unknown,Laryngectomy specimen
+309182004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Larynx biopsy specimen
+16213371000119101,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Left colic flexure biopsy specimen
+309049000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Lesion specimen
+309115005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Ligament biopsy specimen
+309483002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Lip biopsy specimen
+309073008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Lipoma biopsy specimen
+309203003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Liver biopsy specimen
+309170008,tissue-other,Other,todo,tissue; preservation unknown,Lower respiratory tissue specimen
+309546004,tissue-other,Other,todo,tissue; preservation unknown,Lumpectomy breast specimen
+309079007,tissue-other,Other,todo,tissue; preservation unknown,Lymph node biopsy specimen
+373192005,tissue-other,Other,todo,tissue; preservation unknown,Lymph node from axillary dissection
+396359006,tissue-other,Other,todo,tissue; preservation unknown,Lymph node from regional lymph node dissection
+373193000,tissue-other,Other,todo,tissue; preservation unknown,Lymph node from sentinel lymph node dissection
+384744003,tissue-other,Other,todo,tissue; preservation unknown,Lymph node from sentinel lymph node dissection and axillary dissection
+309078004,tissue-other,Other,todo,tissue; preservation unknown,Lymph node tissue specimen
+430861001,tissue-other,Other,todo,tissue; preservation unknown,Macroscopic tissue specimen
+309181006,tissue-other,Bone,todo,preservation unknown,Mastoid biopsy specimen
+309167009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Middle ear biopsy specimen
+309188000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Mouth biopsy specimen
+309507001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Muscle biopsy specimen
+309178001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Nasal biopsy specimen
+309179009,tissue-other,Other,todo,tissue; preservation unknown,Nasal polyp specimen
+309180007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Nasopharyngeal biopsy specimen
+258425008,tissue-other,Other,todo,tissue; preservation unknown,Natural lens tissue
+309476009,tissue-other,Other,todo,tissue; preservation unknown,Neck block dissection specimen
+309130001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Nerve biopsy specimen
+309129006,tissue-other,Other,todo,tissue; preservation unknown,Nerve tissue specimen
+309131002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Neuroma specimen
+309496001,tissue-other,Other,todo,tissue; preservation unknown,Omentectomy specimen
+309208007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Omentum biopsy specimen
+309495002,tissue-other,Other,todo,tissue; preservation unknown,Omentum tissue specimen
+309186001,tissue-other,Other,todo,tissue; preservation unknown,Oral tissue specimen
+309138008,tissue-other,Other,todo,tissue; preservation unknown,Orchidectomy specimen
+309291009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Ovarian cyst specimen
+309206006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Pancreas biopsy specimen
+309151003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Parathyroid biopsy specimen
+309150002,tissue-other,Other,todo,tissue; preservation unknown,Parathyroid tissue specimen
+309484008,tissue-other,Other,todo,tissue; preservation unknown,Parotidectomy specimen
+309488006,tissue-other,Other,todo,tissue; preservation unknown,Partial colectomy specimen
+309498000,tissue-other,Other,todo,tissue; preservation unknown,Partial nephrectomy specimen
+309071005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Penis skin biopsy specimen
+309207002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Peritoneal biopsy specimen
+309193002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Pharyngeal biopsy specimen
+309293007,tissue-other,Placenta,todo,preservation unknown,Placenta biopsy specimen
+110959000,tissue-other,Placenta,todo,preservation unknown,Placenta cytologic material
+258426009,tissue-other,Placenta,todo,preservation unknown,Placental membrane tissue specimen
+309172000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Pleura biopsy specimen
+122645001,tissue-other,Other,todo,tissue; preservation unknown,Polyp from large intestine obtained by polypectomy
+122633005,tissue-other,Other,todo,tissue; preservation unknown,Polyp from stomach obtained by polypectomy
+258484005,tissue-other,PostMortemTissue,todo,preservation unknown,Postmortem tissue specimen
+258428005,tissue-other,Other,todo,tissue; preservation unknown,Products of conception tissue specimen
+309132009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Prostate biopsy specimen
+309134005,tissue-other,Other,todo,tissue; preservation unknown,Prostate tru-cut biopsy specimen
+309262006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Rectal biopsy specimen
+309263001,tissue-other,Other,todo,tissue; preservation unknown,Rectal polyp specimen
+258429002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Rectal scrape specimen
+258430007,tissue-other,Other,todo,tissue; preservation unknown,Rectal snip specimen
+309200000,tissue-other,Other,todo,tissue; preservation unknown,Rectal tissue specimen
+16213331000119104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Rectosigmoid colon biopsy specimen
+309127008,tissue-other,Other,todo,tissue; preservation unknown,Resected articular tissue specimen
+309175003,tissue-other,Other,todo,tissue; preservation unknown,Resected lung specimen
+309133004,tissue-other,Other,todo,tissue; preservation unknown,Resected prostate specimen
+16213451000119104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Right colic flexure biopsy specimen
+435541000124108,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Scab specimen
+258431006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Scrapings
+309547008,tissue-other,Other,todo,tissue; preservation unknown,Segmentectomy breast specimen
+309260003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Sigmoid colon biopsy specimen
+309261004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Sigmoid colon brushings specimen
+309227001,tissue-other,Other,todo,tissue; preservation unknown,Sigmoid colonic polyp specimen
+309066003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Skin biopsy specimen
+309075001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Skin cyst specimen
+309506005,tissue-other,Other,todo,tissue; preservation unknown,Skin excision biopsy specimen
+309505009,tissue-other,Other,todo,tissue; preservation unknown,Skin incision biopsy specimen
+309068002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Skin lesion specimen
+309504008,tissue-other,Other,todo,tissue; preservation unknown,Skin punch biopsy specimen
+258549008,tissue-other,Other,todo,tissue; preservation unknown,Skin scale specimen
+309220004,tissue-other,Other,todo,tissue; preservation unknown,Small bowel resection specimen
+309074002,tissue-other,Other,todo,tissue; preservation unknown,Soft tissue biopsy specimen
+309508006,tissue-other,Other,todo,tissue; preservation unknown,Soft tissue lesion fine needle aspirate specimen
+309072003,tissue-other,Other,todo,tissue; preservation unknown,Soft tissue specimen
+440502004,tissue-other,Other,todo,tissue; preservation unknown,Soft tissue specimen obtained by excision
+441750007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from abdominal cavity structure obtained by fine needle aspiration biopsy
+119371008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from abscess
+446972001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from abscess obtained by aspiration
+16215171000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from abscess of Bartholin's gland
+446774006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from abscess of brain
+446674003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from abscess of liver
+29011000087100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from abscess of lung
+29021000087108,tissue-other,Teeth,todo,preservation unknown,Specimen from abscess of tooth
+33331000087108,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from abscess of vulva
+442649003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from adipose tissue obtained by fine needle aspiration biopsy
+441792002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from adrenal gland obtained by fine needle aspiration biopsy
+396525008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from adrenal gland obtained by needle biopsy
+396526009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from adrenal gland obtained by partial adrenalectomy
+396527000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from adrenal gland obtained by total adrenalectomy
+122658000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ampulla of Vater obtained by ampullectomy
+122657005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ampulla of Vater obtained by incisional biopsy
+122659008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ampulla of Vater obtained by pancreaticoduodenectomy
+122660003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ampulla of Vater obtained by pylorus-sparing pancreaticoduodenectomy
+16214091000119101,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from anterior wall of urinary bladder obtained by biopsy
+399752001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from anus obtained by abdominoperineal resection
+399731009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from anus obtained by excision of anal polyp
+385338007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from anus obtained by transanal disk excision
+385340002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from anus obtained by transanal disk excision; fragmented
+385339004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from anus obtained by transanal disk excision; intact
+423696009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from appendix and colon obtained by appendectomy and right colectomy
+422991009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from appendix and right colon obtained by appendectomy and right hemicolectomy
+421615004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from appendix obtained by appendectomy
+432097003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from artery obtained by biopsy
+16211291000119106,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from axilla structure obtained by fine needle aspiration biopsy
+441694006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from axillary lymph node obtained by fine needle aspiration biopsy
+432098008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from bile duct obtained by fine needle aspiration biopsy
+430268003,tissue-other,Bone,todo,preservation unknown,Specimen from bone
+16213011000119107,tissue-other,Bone,todo,preservation unknown,Specimen from bone obtained by core needle biopsy
+16210451000119109,tissue-other,Bone,todo,preservation unknown,Specimen from bone obtained by curettage
+431404007,tissue-other,Bone,todo,preservation unknown,Specimen from bone obtained by fine needle aspiration biopsy
+432139004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from brain obtained by biopsy
+16215851000119100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from brain obtained by fine needle aspiration
+16216051000119103,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from branchial cleft cyst obtained by fine needle aspiration
+16215491000119108,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from breast duct obtained by excision
+122601001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from breast obtained by biopsy
+122596005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by complete excision of lesion; less than total mastectomy
+122597001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by complete excision; less than total mastectomy; with axillary contents
+122598006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by complete excision; less than total mastectomy; without axillary contents
+122737001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by core needle biopsy
+397199005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by excision
+373102004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by image guided core biopsy
+122739003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by incisional biopsy of breast mass
+16211771000119103,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by mastectomy with axillary contents
+122600000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by modified radical mastectomy
+122599003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by radical mastectomy
+16211571000119108,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from breast obtained by resection of anterior margin
+16211531000119105,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from breast obtained by resection of inferior margin
+16211491000119105,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from breast obtained by resection of lateral margin
+16211611000119104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from breast obtained by resection of medial margin
+16211411000119101,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from breast obtained by resection of posterior margin
+16211451000119100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from breast obtained by resection of superior margin
+122595009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast obtained by total mastectomy
+16211731000119101,tissue-other,Other,todo,tissue; preservation unknown,Specimen from breast with lymph node obtained by modified radical mastectomy
+16215091000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from bronchus obtained by endobronchial biopsy
+432140002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from bronchus obtained by fine needle aspiration biopsy
+119367005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from burn injury
+16212971000119107,tissue-other,Other,todo,tissue; preservation unknown,Specimen from cartilage obtained by shave excision
+399551006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from central nervous system obtained by open biopsy
+399732002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from central nervous system obtained by partial excision of tumor
+399728008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from central nervous system obtained by stereotactically guided core needle biopsy
+399614009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from central nervous system obtained by total resection of tumor
+122650007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from colon obtained by left hemicolectomy
+122652004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from colon obtained by rectal/rectosigmoid (low anterior) resection
+122648004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from colon obtained by right hemicolectomy
+122651006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from colon obtained by sigmoidectomy
+122649007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from colon obtained by transverse colectomy
+447337004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from conjunctiva obtained by scraping
+16212851000119106,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from corneal ulcer
+440136004,tissue-other,Bone,todo,preservation unknown,Specimen from cranium
+16212931000119109,tissue-other,Bone,todo,preservation unknown,Specimen from cranium bone obtained by craniotomy
+1332490003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from crust on skin
+119368000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from cyst
+16215931000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from cyst obtained by fine needle aspiration
+16211011000119108,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from deep surgical wound
+16211051000119109,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from deep wound
+16223771000119107,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from diaphragm obtained by brushing
+122642003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from distal ileum obtained by right hemicolectomy
+122637006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from distal stomach obtained by partial gastrectomy
+16213931000119103,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from dome of urinary bladder obtained by biopsy
+122639009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from duodenum obtained by Whipple resection
+432910000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from ear obtained by biopsy
+434249007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from ear obtained by fine needle aspiration biopsy
+16210491000119104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from endocervix obtained by curettage
+447358005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from endometrium obtained by aspiration
+122704003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from endometrium obtained by biopsy
+122703009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from endometrium obtained by curettage
+122705002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from endometrium obtained by hysterectomy
+122707005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from endometrium obtained by pelvic exenteration
+122706001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from endometrium obtained by radical hysterectomy
+734333000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from epidermoid cyst
+431205006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from epididymis obtained by biopsy
+432980007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from epididymis obtained by fine needle aspiration biopsy
+33541000087109,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from epidural abscess
+122630008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from esophagus obtained by esophageal resection
+122631007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from esophagus obtained by esophagogastrectomy
+122629003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from esophagus obtained by excisional biopsy of lesion
+122628006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from esophagus obtained by incisional biopsy
+16212731000119107,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from ethmoid sinus obtained by biopsy
+396481000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from explanted liver
+397482001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from extrahepatic bile duct obtained by pancreaticoduodenectomy
+397483006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from extrahepatic bile duct obtained by segmental resection of bile ducts
+399443006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from eye obtained by complete exenteration
+396928004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from eye obtained by enucleation
+432981006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from eye obtained by fine needle aspiration biopsy
+399735000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from eye obtained by limited exenteration
+431232001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from eye region obtained by biopsy
+16212771000119105,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from eyelid obtained by biopsy
+122720008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from fallopian tube obtained by excision of tubal fragments
+431233006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from fallopian tube obtained by fine needle aspiration biopsy
+122719002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from fallopian tube obtained by hysterectomy with salpingo-oophorectomy
+122721007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from fallopian tube obtained by pelvic exenteration
+431234000,tissue-other,FetalTissue,todo,preservation unknown,Specimen from fetus obtained by biopsy
+119370009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from fistula
+431884001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from gallbladder obtained by fine needle aspiration biopsy
+122627001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from gastrointestinal tract obtained by incisional biopsy
+446951004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from granulation tissue
+16215811000119101,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from groin obtained by fine needle aspiration
+1335921008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from head obtained by biopsy
+1335919003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from head obtained by fine needle aspiration biopsy
+122623002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from heart obtained by biopsy
+122624008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from heart obtained by excisional biopsy of lesion
+122626005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from heart obtained by fine needle aspiration procedure
+122625009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from heart obtained by incisional biopsy
+1237234002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from hemorrhagic ovarian cyst obtained by aspiration
+432436003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from hydrocele of spermatic cord
+432441006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from hydrocele of tunica vaginalis
+122641005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ileum obtained by segmental resection
+16215771000119101,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from inguinal lymph node obtained by fine needle aspiration biopsy
+397136001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from inguinofemoral lymphadenectomy
+105811000087105,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from intestine obtained by biopsy
+16211211000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from intra-abdominal abscess
+122640006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from jejunum obtained by segmental resection
+16211371000119102,tissue-other,Other,todo,tissue; preservation unknown,Specimen from joint cartilage obtained by shave excision
+432419006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from joint obtained by fine needle aspiration biopsy
+122670001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from kidney obtained by (core) needle biopsy
+309270001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from kidney obtained by excision
+122671002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from kidney obtained by fine needle aspiration procedure
+122672009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from kidney obtained by incisional biopsy
+399741007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from kidney obtained by radical nephrectomy
+122673004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from kidney obtained by wedge biopsy
+16215051000119107,tissue-other,Other,todo,tissue; preservation unknown,Specimen from labia obtained by biopsy
+122646000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from large intestine obtained by abdominoperineal resection
+432864003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from large intestine obtained by fine needle aspiration biopsy
+122644002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from large intestine obtained by incisional biopsy
+122647009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from large intestine obtained by total abdominal colectomy
+432865002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from larynx obtained by fine needle aspiration biopsy
+399388008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left fallopian tube obtained by hysterectomy with salpingo-oophorectomy
+397334006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left fallopian tube obtained by salpingectomy
+122723005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left fallopian tube obtained by salpingo-oophorectomy
+122681003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left kidney obtained by adrenal sparing radical nephrectomy
+122682005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left kidney obtained by partial nephrectomy
+122680002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left kidney obtained by radical nephrectomy
+122690005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left kidney obtained by radical nephrectomy and adrenalectomy
+122683000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left kidney; inferior pole obtained by partial nephrectomy
+122684006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left kidney; middle pole obtained by partial nephrectomy
+122685007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left kidney; superior pole obtained by partial nephrectomy
+122734008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left lobe of thyroid obtained by lobe resection
+16212451000119108,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from left lower lobe of lung obtained by bronchial brushings procedure
+16214571000119105,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from left lower lobe of lung obtained by endobronchial biopsy
+16214451000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from left lung obtained by fine needle aspiration procedure
+122716009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left ovary obtained by oophorectomy
+122718005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from left ovary obtained by salpingo-oophorectomy
+16212491000119103,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from left upper lobe of lung obtained by bronchial brushings procedure
+16214411000119103,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from left upper lobe of lung obtained by endobronchial biopsy
+733484007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lesion of penis obtained by scraping
+733485008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lesion of perianal region obtained by scraping
+122699006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from lesion of uterine cervix obtained by cone biopsy
+16214651000119100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lingula obtained by endobronchial biopsy
+16214331000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lingula obtained by transbronchial biopsy
+433115004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lip obtained by fine needle aspiration biopsy
+16210411000119108,tissue-other,Other,todo,tissue; preservation unknown,Specimen from lip obtained by wedge resection
+396477000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from liver obtained by extended right lobectomy
+433116003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from liver obtained by fine needle aspiration biopsy
+396479002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from liver obtained by left lateral segmentectomy
+396478005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from liver obtained by medial segmentectomy
+16213731000119100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from liver obtained by needle aspiration biopsy
+16212091000119109,tissue-other,Other,todo,tissue; preservation unknown,Specimen from liver obtained by partial lobectomy
+16212131000119106,tissue-other,Other,todo,tissue; preservation unknown,Specimen from liver obtained by partial resection
+396476009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from liver obtained by right lobectomy
+396480004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from liver obtained by total left lobectomy
+438659007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from liver obtained by wedge biopsy
+433117007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lower limb obtained by biopsy
+122610009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lung obtained by biopsy
+122611008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lung obtained by fiberoptic bronchoscopic biopsy
+122614000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lung obtained by fine needle aspiration procedure
+122606006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from lung obtained by lobectomy
+122608007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from lung obtained by major airway resection
+122613006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lung obtained by mediastinoscopic biopsy
+384747005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lung obtained by needle biopsy using computed tomography guidance
+122607002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from lung obtained by pneumonectomy
+122605005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from lung obtained by segmentectomy
+384746001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from lung obtained by wedge biopsy
+122604009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from lung obtained by wedge resection
+34141000087102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lymph node obtained by endobronchial ultrasound guided transbronchial fine needle aspiration
+432382007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from lymph node obtained by fine needle aspiration biopsy
+420548004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass
+34151000087104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass obtained by endobronchial ultrasound guided transbronchial fine needle aspiration
+734342007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of anterior mediastinum
+734419001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of axillary lymph node
+734343002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of breast
+734420007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of inguinal lymph node
+734421006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of mediastinal lymph node
+734337004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of nasopharynx
+734341000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of posterior mediastinum
+734375004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of retroperitoneum
+734377007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of subcutaneous tissue
+734417004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mass of thoracic cavity
+434014007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mediastinum obtained by biopsy
+432144006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mediastinum obtained by fine needle aspiration biopsy
+432145007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from meninges obtained by biopsy
+432146008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mesentery obtained by biopsy
+434140003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mesentery obtained by fine needle aspiration biopsy
+432607005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from mouth obtained by fine needle aspiration biopsy
+432608000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from nasal fossae obtained by biopsy
+433859006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from nasal fossae obtained by fine needle aspiration biopsy
+433860001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from nasal sinus obtained by biopsy
+433861002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from nasal sinus obtained by fine needle aspiration biopsy
+1335922001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from neck obtained by biopsy
+1335920009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from neck obtained by fine needle aspiration biopsy
+447407009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from necrotic tissue
+32641000087102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from ovarian abscess
+122708000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from ovary obtained by biopsy
+431405008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from ovary obtained by fine needle aspiration biopsy
+397246008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ovary obtained by hysterectomy with left salpingo-oophorectomy
+397245007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ovary obtained by hysterectomy with right salpingo-oophorectomy
+122712006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ovary obtained by hysterectomy with salpingo-oophorectomy
+122709008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ovary obtained by incisional biopsy
+122711004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ovary obtained by removal of tumor in fragments
+122710003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ovary obtained by resection
+122717000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ovary obtained by subtotal left oophorectomy
+122713001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ovary obtained by subtotal right oophorectomy
+57481000052108,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by distal pancreatectomy
+309490007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by excision
+415563002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by excisional biopsy
+431406009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pancreas obtained by fine needle aspiration biopsy
+122667000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by incisional biopsy
+122665008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by pancreaticoduodenectomy (Whipple resection)
+396806000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by pancreaticoduodenectomy; partial pancreatectomy
+396807009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by pancreaticoduodenectomy; total pancreatectomy
+122661004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by partial pancreatectomy
+122666009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by pylorus sparing pancreaticoduodenectomy
+396804002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by pylorus sparing pancreaticoduodenectomy; partial pancreatectomy
+396805001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by pylorus sparing pancreaticoduodenectomy; total pancreatectomy
+122664007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreas obtained by total pancreatectomy
+122662006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreatic body obtained by partial resection
+122663001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pancreatic tail obtained by partial resection
+432141003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from parathyroid obtained by fine needle aspiration biopsy
+16222971000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from parotid gland obtained by biopsy
+441695007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from parotid gland obtained by fine needle aspiration biopsy
+29041000087104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pelvic abscess
+399661005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pelvic lymphadenectomy
+441906003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pelvic structure obtained by fine needle aspiration biopsy
+432142005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from penis obtained by biopsy
+432143000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from penis obtained by fine needle aspiration biopsy
+16223731000119109,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from perianal region obtained by biopsy
+434250007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pericardium obtained by biopsy
+397462000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pericardium obtained by pericardial resection
+734379005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from periodontal tissue
+608856009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from perirenal tissue
+1396171003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from peritoneal carcinomatosis
+1396851005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from peritoneal neoplasm
+432982004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from peritoneum obtained by fine needle aspiration biopsy
+432983009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pituitary gland obtained by fine needle aspiration biopsy
+119403008,tissue-other,Placenta,todo,preservation unknown,Specimen from placenta
+122618002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pleura obtained by fine needle aspiration procedure
+122622007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pleura obtained by lymph node biopsy
+122616003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pleura obtained by open thoracotomy and biopsy
+122617007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pleura obtained by percutaneous needle biopsy
+127461003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from pleura obtained by pleurectomy
+122621000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pleura obtained by thoracoscopic biopsy
+122620004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from pleura obtained by thoracoscopic procedure
+16213891000119106,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from posterior wall of urinary bladder obtained by biopsy
+122724004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from prostate obtained by enucleation
+441884004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from prostate obtained by fine needle aspiration biopsy
+384819001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from prostate obtained by needle biopsy
+122725003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from prostate obtained by radical prostatectomy
+122726002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from prostate obtained by retropubic resection
+16222611000119100,tissue-other,Other,todo,tissue; preservation unknown,Specimen from prostate obtained by subtotal prostatectomy
+122727006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from prostate obtained by suprapubic resection
+384820007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from prostate obtained by transurethral resection
+122636002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from proximal stomach obtained by partial gastrectomy
+122653009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from rectum obtained by transanal disk excision
+122655002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from rectum obtained by transanal disk excision; fragmented
+122654003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from rectum obtained by transanal disk excision; intact
+399649002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from regional lymph node obtained by lymphadenectomy
+397221008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from renal pelvis obtained by biopsy
+397235005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from renal pelvis obtained by complete nephroureterectomy
+397232008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from renal pelvis obtained by nephroureterectomy
+397234009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from renal pelvis obtained by partial nephroureterectomy
+399603006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from retina obtained by complete exenteration of eye
+399512001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from retina obtained by enucleation of eye
+399640003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from retina obtained by limited exenteration of eye
+434244002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from retroperitoneum obtained by biopsy
+433118002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from retroperitoneum obtained by fine needle aspiration biopsy
+553911000052103,tissue-other,Bone,todo,preservation unknown,Specimen from rib
+397326000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right fallopian tube obtained by hysterectomy with salpingo-oophorectomy
+397333000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right fallopian tube obtained by salpingectomy
+122722000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right fallopian tube obtained by salpingo-oophorectomy
+122675006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right kidney obtained by adrenal sparing radical nephrectomy
+122676007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right kidney obtained by partial nephrectomy
+122674005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right kidney obtained by radical nephrectomy
+122689001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right kidney obtained by radical nephrectomy and adrenalectomy
+122677003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right kidney; inferior pole obtained by partial nephrectomy
+122678008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right kidney; middle pole obtained by partial nephrectomy
+122679000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right kidney; superior pole obtained by partial nephrectomy
+122733002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right lobe of thyroid obtained by lobe resection
+16212531000119103,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from right lower lobe of lung obtained by bronchial brushings procedure
+16214611000119101,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from right lower lobe of lung obtained by endobronchial biopsy
+16214491000119107,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from right lung obtained by fine needle aspiration procedure
+16212571000119100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from right middle lobe of lung obtained by bronchial brushings procedure
+16214531000119107,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from right middle lobe of lung obtained by endobronchial biopsy
+122714007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right ovary obtained by oophorectomy
+122715008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from right ovary obtained by salpingo-oophorectomy
+16212411000119107,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from right upper lobe of lung obtained by bronchial brushings procedure
+16214291000119108,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from right upper lobe of lung obtained by endobronchial biopsy
+2521000181103,tissue-other,Teeth,todo,preservation unknown,Specimen from root canal
+433119005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from salivary gland obtained by biopsy
+434406008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from salivary gland obtained by fine needle aspiration biopsy
+734335007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from scar
+734334006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from sebaceous cyst
+433854001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from seminal vesicle obtained by biopsy
+432057001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from seminal vesicle obtained by fine needle aspiration biopsy
+432058006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from skeletal muscle obtained by biopsy
+309067007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from skin obtained by curettage
+396353007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from skin obtained by elliptical excision
+396357008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from skin obtained by elliptical re-excision
+396355000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from skin obtained by excision
+432134009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from skin obtained by fine needle aspiration biopsy
+396356004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from skin obtained by re-excision
+446952006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from skin obtained by scraping
+396483002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from skin obtained by shave excision
+396354001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from skin obtained by wide excision
+396358003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from skin obtained by wide re-excision
+432135005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from small intestine obtained by fine needle aspiration biopsy
+397053005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from small intestine obtained by polypectomy
+397055003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from small intestine obtained by segmental resection
+397056002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from small intestine obtained by Whipple resection
+16221891000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from soft tissue mass lesion obtained by fine needle aspiration
+441810001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from soft tissue obtained by fine needle aspiration biopsy
+433873002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from spermatic cord obtained by biopsy
+431696005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from spermatic cord obtained by fine needle aspiration biopsy
+431697001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from spinal cord obtained by biopsy
+433760005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from spleen obtained by biopsy
+432383002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from spleen obtained by fine needle aspiration biopsy
+432384008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from stomach obtained by fine needle aspiration biopsy
+399629006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from stomach obtained by gastrectomy
+16212251000119107,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from stomach obtained by hemigastrectomy
+122632000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from stomach obtained by incisional biopsy
+122635003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from stomach obtained by partial gastrectomy
+122634004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from stomach obtained by total gastrectomy
+33521000087100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from subgaleal abscess
+441876003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from sublingual gland obtained by fine needle aspiration biopsy
+441749007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from submandibular gland obtained by fine needle aspiration biopsy
+734381007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from superficial wound
+734380008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from surgical wound
+432385009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from sympathetic nerve ganglion obtained by biopsy
+441710009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from testis obtained by fine needle aspiration biopsy
+122728001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from testis obtained by inguinal exposure with testicular isolation and biopsy
+122729009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from testis obtained by transscrotal needle biopsy
+122730004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from testis obtained by transscrotal open biopsy
+397458006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thoracic mesothelium obtained by open thoracotomy
+397455009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thoracic mesothelium obtained by percutaneous needle biopsy
+397456005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thoracic mesothelium obtained by thoracoscopic biopsy
+399633004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thymus gland obtained by biopsy
+396899000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thymus gland obtained by fine needle aspiration biopsy
+396904001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thymus gland obtained by limited thoracotomy
+396900005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thymus gland obtained by needle biopsy using computed tomography guidance
+396898008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thymus gland obtained by thoracotomy
+396897003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thymus gland obtained by transcervical thymectomy
+396902002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thymus gland obtained by transthoracic needle biopsy
+396906004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thymus gland obtained by video assisted thoracoscopy
+432984003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from thyroid obtained by biopsy
+122735009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from thyroid obtained by isthmectomy
+122732007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from thyroid obtained by lobectomy
+399689008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from thyroid obtained by thyroidectomy
+399622002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from thyroid obtained by total thyroidectomy
+432985002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from tongue obtained by fine needle aspiration biopsy
+564301000052105,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from tongue obtained by scraping
+430319000,tissue-other,Teeth,todo,preservation unknown,Specimen from tooth
+432986001,tissue-other,Teeth,todo,preservation unknown,Specimen from tooth obtained by biopsy
+438352005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from trachea obtained by excision
+431235004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from trachea obtained by fine needle aspiration biopsy
+438661003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from transplanted kidney obtained by biopsy
+438543000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from transplanted liver obtained by biopsy
+438454007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from transplanted lung obtained by biopsy
+440472000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from transplanted lung obtained by excision
+16214011000119105,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from trigone of urinary bladder obtained by biopsy
+431412004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from trunk obtained by biopsy
+431413009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from tunica of testis obtained by biopsy
+119369008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from ulcer
+431889006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from upper limb obtained by biopsy
+440135000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from ureter obtained by brush biopsy
+432420000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from ureter obtained by fine needle aspiration biopsy
+399440009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ureter obtained by nephroureterectomy
+399407000,tissue-other,Other,todo,tissue; preservation unknown,Specimen from ureter obtained by ureterectomy
+433120004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from urethra obtained by fine needle aspiration biopsy
+122669002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from urinary bladder obtained by anterior exenteration
+432099000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from urinary bladder obtained by fine needle aspiration biopsy
+122686008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from urinary bladder obtained by partial cystectomy
+396685001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from urinary bladder obtained by radical cystectomy
+122688009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from urinary bladder obtained by radical cystoprostatectomy
+122687004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from urinary bladder obtained by total cystectomy
+16212171000119109,tissue-other,Other,todo,tissue; preservation unknown,Specimen from urinary bladder obtained by transurethral cystectomy
+122668005,tissue-other,Other,todo,tissue; preservation unknown,Specimen from urinary tract obtained by transurethral excision
+399713008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uterine cervix obtained by cone biopsy
+396273004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uterine cervix obtained by excision of cervix
+122700007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uterine cervix obtained by hysterectomy
+122698003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uterine cervix obtained by incisional biopsy
+122702004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uterine cervix obtained by pelvic exenteration
+122701006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uterine cervix obtained by radical hysterectomy
+432059003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from uterus obtained by biopsy
+399751008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uterus obtained by dilation and curettage
+432060008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from uterus obtained by fine needle aspiration biopsy
+122697008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uterus obtained by pelvic exenteration
+122696004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uterus obtained by radical hysterectomy
+399499009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uvea obtained by complete exenteration of eye
+399559008,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uvea obtained by enucleation of eye
+399467003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from uvea obtained by limited exenteration of eye
+122692002,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vagina obtained by excisional biopsy of lesion
+122691009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vagina obtained by incisional biopsy
+397111007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vagina obtained by partial vaginectomy
+122694001,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vagina obtained by radical vaginectomy
+122693007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vagina obtained by vaginectomy
+432061007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from vein obtained by biopsy
+432136006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from vulva obtained by fine needle aspiration biopsy
+397130007,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vulva obtained by local excision
+397132004,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vulva obtained by partial vulvectomy
+397134003,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vulva obtained by radical vulvectomy
+397133009,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vulva obtained by total vulvectomy
+397131006,tissue-other,Other,todo,tissue; preservation unknown,Specimen from vulva obtained by wide excision
+119365002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from wound
+119366001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen from wound abscess
+408654003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen obtained by amputation
+427558003,tissue-other,Other,todo,tissue; preservation unknown,Specimen obtained by core needle biopsy
+16211331000119100,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen obtained by cystoprostatectomy
+397078009,tissue-other,Other,todo,tissue; preservation unknown,Specimen obtained by excisional biopsy
+122550002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen obtained by fine needle aspiration procedure
+397077004,tissue-other,Other,todo,tissue; preservation unknown,Specimen obtained by incisional biopsy
+426924005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen obtained by intralesional resection
+397436009,tissue-other,Other,todo,tissue; preservation unknown,Specimen obtained by lymphadenectomy
+426815000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen obtained by marginal resection
+405902005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen obtained by radical excision
+445405002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen obtained by surgical procedure
+32651000087104,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen obtained by transthoracic needle biopsy
+425804000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen obtained by wide resection
+122738006,tissue-other,Other,todo,tissue; preservation unknown,Specimen obtained from breast by stereotactically guided core needle biopsy
+16214971000119103,tissue-other,Other,todo,tissue; preservation unknown,Specimen obtained from breast by stereotactically guided needle biopsy
+16214691000119105,tissue-other,Other,todo,tissue; preservation unknown,Specimen obtained from breast by ultrasound guided needle biopsy
+16223091000119106,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen of mucosa of nasal sinus obtained by biopsy
+440515008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Specimen of targeted lesion obtained by biopsy
+309077009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Spleen resection specimen
+399484009,tissue-other,Other,todo,tissue; preservation unknown,Superficial parotidectomy specimen
+373826004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Surgical excision specimen
+309121009,tissue-other,Other,todo,tissue; preservation unknown,Synovial tissue specimen
+309122002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Synovium biopsy specimen
+309113003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Tendon biopsy specimen
+309221000,tissue-other,Other,todo,tissue; preservation unknown,Terminal ileum resection specimen
+309137003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Testes biopsy specimen
+309478005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Thrombus specimen
+309146009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Thyroid fine needle aspirate specimen
+15650601000119102,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Thyroid neoplasm tissue specimen
+1201985008,tissue-other,Other,todo,tissue; preservation unknown,Tissue block specimen
+1380394001,tissue-other,Other,todo,tissue; preservation unknown,Tissue impression specimen
+430856003,tissue-other,Other,todo,tissue; preservation unknown,Tissue section
+1380393007,tissue-other,Other,todo,tissue; preservation unknown,Tissue smear specimen
+119376003,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen
+446837000,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from amniotic membrane
+127468009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from ampulla of Vater
+737016007,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from aneurysm obtained by surgical excision
+128156008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from anus
+725372003,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from aorta
+1396157006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from artery
+406101006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from axilla
+122602008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from biopsy of upper aerodigestive tract
+127457009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from breast
+128158009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from bronchus
+1382295006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from cardiac implantable electronic device pocket
+399542003,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from central nervous system
+446842008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from cervical lymph node
+128159001,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from colon
+128160006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from conjunctiva
+128161005,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from cornea
+363328006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from digestive system
+16212811000119105,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from donor cornea
+447403008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from donor corneal rim
+128162003,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from ear
+440469007,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from ectopic pregnancy
+128163008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from endometrium
+127464006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from esophagus
+399541005,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from extrahepatic bile duct
+1172660005,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from extrahepatic bile duct obtained by excision
+128164002,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from eye
+127483004,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from fallopian tube
+122656001,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from gallbladder
+127466008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from gastrointestinal tract
+128165001,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from genital system
+446304007,tissue-other,Bone,todo,preservation unknown,Tissue specimen from harvested bone
+128166000,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from heart
+128167009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from internal nose
+33911000087102,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from iris
+127474009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from kidney
+122643008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from large intestine
+16213851000119101,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from larynx obtained by total resection
+1331990008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from left breast
+128168004,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from liver
+439034006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from liver obtained by excision
+399492000,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from lung
+399645008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from major salivary gland
+433781000124108,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from mass
+703475006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from nodule
+439895009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from nose obtained by excision
+127482009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from ovary
+127470000,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from pancreas
+128169007,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from penis
+1338034005,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from penis obtained by excision
+699874006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from pericardium
+122736005,tissue-other,Placenta,todo,preservation unknown,Tissue specimen from placenta
+127460002,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from pleura
+1173996004,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from polyp obtained by excision
+128170008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from prostate
+399532000,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from renal pelvis
+363329003,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from respiratory system
+399451009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from retina
+438803004,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from retroperitoneum
+1331991007,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from right breast
+733103005,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from scar
+33921000087105,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from sclera
+1386292006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from scleral graft
+119325001,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from skin
+122638001,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from small intestine
+128171007,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from stomach
+127475005,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from testis
+399672000,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from thoracic mesothelium
+128172000,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from throat
+399572009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from thymus gland
+127478007,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from thyroid gland
+128173005,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from trachea
+438804005,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from transplanted kidney
+399657004,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from trophoblast
+399624001,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from ureter
+128174004,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from urethra
+127472008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from urinary tract
+127481002,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from uterine cervix
+127480001,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from uterus
+447155001,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from uterus obtained by curettage
+399619004,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from uvea
+128175003,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from vagina
+399486006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen from vulva
+438351003,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained by esophagogastrectomy
+439479000,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained by excision
+788524009,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained by segmental excision
+16223491000119100,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained by transtracheal biopsy
+369613006,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained for Hodgkin's disease by biopsy
+369614000,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained from extrahepatic bile ducts by biopsy
+369615004,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained from extrahepatic bile ducts by choledochal cyst resection
+369616003,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained from gallbladder by biopsy
+369617007,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained from gallbladder by cholecystectomy with partial hepatectomy
+369611008,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained from small intestine by biopsy
+122593002,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained from ulcer
+369618002,tissue-other,Other,todo,tissue; preservation unknown,Tissue specimen obtained from vulva by biopsy
+309189008,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Tongue biopsy specimen
+309191000,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Tonsil biopsy specimen
+309192007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Tonsillectomy specimen
+309487001,tissue-other,Other,todo,tissue; preservation unknown,Total colectomy specimen
+309497005,tissue-other,Other,todo,tissue; preservation unknown,Total nephrectomy specimen
+399693002,tissue-other,Other,todo,tissue; preservation unknown,Total parotidectomy specimen
+309169007,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Tracheal biopsy specimen
+309173005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Transbronchial lung biopsy specimen
+399658009,tissue-other,Other,todo,tissue; preservation unknown,Trophoblastic tissue obtained by hysterectomy
+399502008,tissue-other,Other,todo,tissue; preservation unknown,Trophoblastic tissue obtained by pelvic exenteration
+399447007,tissue-other,Other,todo,tissue; preservation unknown,Trophoblastic tissue obtained by radical hysterectomy
+399396003,tissue-other,Other,todo,tissue; preservation unknown,Trophoblastic tissue obtained from uterus by dilation and curettage
+258435002,tissue-other,Other,todo,tissue; preservation unknown,Tumor tissue specimen
+258436001,tissue-other,UmbilicalCord,todo,preservation unknown,Umbilical cord tissue specimen
+309168004,tissue-other,Other,todo,tissue; preservation unknown,Upper respiratory tissue specimen
+309271002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Ureter biopsy specimen
+309277003,tissue-other,Other,todo,tissue; preservation unknown,Urethra biopsy specimen
+1389066009,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Urethral brushing specimen
+309273004,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Urinary bladder biopsy specimen
+309274005,tissue-other,Other,todo,tissue; preservation unknown,Urinary bladder curettings specimen
+309272009,tissue-other,Other,todo,tissue; preservation unknown,Urinary bladder tissue specimen
+16210611000119105,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Uterine cervix cyst specimen
+16222771000119104,tissue-other,Other,todo,tissue; preservation unknown,Uvula tissue specimen obtained by simple excision
+309280002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Vaginal biopsy specimen
+309281003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Vaginal vault biopsy specimen
+258437005,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Vegetation from heart valve
+258546001,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Vegetation from native heart valve
+258545002,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Vegetation from prosthetic heart valve
+309184003,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Vocal cord biopsy specimen
+309070006,tissue-other,Other,todo,biopsy/lesion/surgical; preservation unknown,Vulval skin biopsy specimen
+444824001,tissue-other,Other,todo,tissue; preservation unknown,Wall of abscess
+438805006,tissue-other,Teeth,todo,preservation unknown,Whole tooth specimen
+732211001,urine,Urine,ok,,12 hour urine specimen
+442043001,urine,Urine,ok,,2 hour urine specimen
+276833005,urine,Urine,ok,,24 hour urine specimen
+732220005,urine,Urine,ok,,48 hour urine specimen
+732222002,urine,Urine,ok,,72 hour urine specimen
+732217002,urine,Urine,ok,,8 hour urine specimen
+57931000052101,urine,Urine,ok,,Combined cervical mucus and urine specimen
+699284001,urine,Urine,ok,,Early morning mid-stream urine specimen obtained by clean catch procedure
+258575007,urine,Urine,ok,,Early morning urine specimen
+698276005,urine,Urine,ok,,First stream urine specimen
+258574006,urine,Urine,ok,,Mid-stream urine specimen
+445742005,urine,Urine,ok,,Postcoital urine specimen
+445743000,urine,Urine,ok,,Postejaculation urine specimen
+733482006,urine,Urine,ok,,Second void urine specimen
+278020009,urine,Urine,ok,,Spot urine specimen
+258576008,urine,Urine,ok,,Suprapubic aspirate specimen
+447488002,urine,Urine,ok,,Suprapubic urine specimen
+409821005,urine,Urine,ok,,Timed urine specimen
+122565001,urine,Urine,ok,,Urinary catheter specimen
+430318008,urine,Urine,ok,,Urine cytologic material
+122575003,urine,Urine,ok,,Urine specimen
+30961000087106,urine,Urine,ok,,Urine specimen from ileal conduit
+442173007,urine,Urine,ok,,Urine specimen from nephrostomy tube
+444937002,urine,Urine,ok,,Urine specimen from ureter
+734443003,urine,Urine,ok,,Urine specimen from ureter obtained by cystoscopy
+57221000087106,urine,Urine,ok,,Urine specimen from ureter obtained by ureteroscopy
+33351000087104,urine,Urine,ok,,Urine specimen from ureterostomy
+446300003,urine,Urine,ok,,Urine specimen from urethra
+446130001,urine,Urine,ok,,Urine specimen from urinary bladder
+447104008,urine,Urine,ok,,Urine specimen from urinary conduit
+2531000181101,urine,Urine,ok,,Urine specimen obtained after prostatic massage
+122880004,urine,Urine,ok,,Urine specimen obtained by clean catch procedure
+447589008,urine,Urine,ok,,Urine specimen obtained by single catheterization of urinary bladder
+445383006,urine,Urine,ok,,Urine specimen obtained for Stamey test
+230451000087106,urine,Urine,ok,,Urine specimen obtained from incontinence sheath
+446907008,urine,Urine,ok,,Urine specimen obtained from kidney
+699286004,urine,Urine,ok,,Urine specimen obtained from kidney via aspiration
+446277003,urine,Urine,ok,,Urine specimen obtained from nephrostomy tube after percutaneous insertion
+16221371000119107,urine,Urine,ok,,Urine specimen obtained from pediatric urine collection bag
+699285000,urine,Urine,ok,,Urine specimen obtained from urinary bladder by cystoscopy
+446306009,urine,Urine,ok,,Urine specimen obtained from urinary collection bag
+446846006,urine,Urine,ok,,Urine specimen obtained via indwelling urinary catheter
+16221251000119108,urine,Urine,ok,,Urine specimen obtained via straight catheter
+699287008,urine,Urine,ok,,Urine specimen obtained via suprapubic indwelling urinary catheter
+16221491000119104,urine,Urine,ok,,Voided urine specimen
+122552005,whole-blood,WholeBlood,ok,,Arterial blood specimen
+703430008,whole-blood,CordBlood,ok,,Arterial cord blood specimen
+119297000,whole-blood,WholeBlood,ok,,Blood specimen
+122560006,whole-blood,WholeBlood,ok,,Blood specimen from blood donor
+122558009,whole-blood,WholeBlood,ok,,Blood specimen from blood product
+122559001,whole-blood,WholeBlood,ok,,Blood specimen from control
+122562003,whole-blood,WholeBlood,ok,,Blood specimen from newborn
+122561005,whole-blood,WholeBlood,ok,,Blood specimen from patient
+866033003,whole-blood,WholeBlood,todo,blood culture,Blood specimen in aerobic blood culture bottle
+866032008,whole-blood,WholeBlood,todo,blood culture,Blood specimen in anaerobic blood culture bottle
+878861003,whole-blood,WholeBlood,todo,blood culture,Blood specimen in blood culture bottle
+446131002,whole-blood,WholeBlood,todo,blood culture,Blood specimen obtained for blood culture
+122553000,whole-blood,WholeBlood,ok,,Blood specimen obtained from umbilicus
+441510007,whole-blood,WholeBlood,ok,,Blood specimen with anticoagulant
+445295009,whole-blood,WholeBlood,ok,,Blood specimen with EDTA
+122554006,whole-blood,WholeBlood,ok,,Capillary blood specimen
+258581004,whole-blood,WholeBlood,todo,clotted,Clotted blood specimen
+122556008,whole-blood,CordBlood,ok,,Cord blood specimen
+122557004,whole-blood,CordBlood,ok,,Cord blood specimen from fetus
+737357006,whole-blood,WholeBlood,ok,,Fetal blood specimen
+119298005,whole-blood,WholeBlood,ok,,Mixed venous blood specimen
+122551003,whole-blood,WholeBlood,ok,was PBMC; SNOMED: peripheral blood,Peripheral blood specimen
+122555007,whole-blood,WholeBlood,ok,,Venous blood specimen
+703431007,whole-blood,CordBlood,ok,,Venous cord blood specimen
+258580003,whole-blood,WholeBlood,ok,,Whole blood specimen
+1351816006,whole-blood,WholeBlood,ok,,Whole blood specimen with citrate
+57921000052103,whole-blood,WholeBlood,ok,,Whole blood specimen with edetic acid
+1351813003,whole-blood,WholeBlood,ok,,Whole blood specimen with hirudin
+1351815005,whole-blood,WholeBlood,ok,,Whole blood specimen with lithium heparin
+# Kept from the old converter so existing MII 2025 data maps as before. None of these is a
+# descendant of 123038009, so MII 2026 data should never use them.
+117171008,buffy-coat,BuffyCoat,todo,not a specimen: buffy coat smear interpretation,
+738796001,dried-whole-blood,WholeBloodDried,todo,not a specimen: dried blood spot collection,
+404798000,peripheral-blood-cells-vital,PBMC,todo,not a specimen: PBMC cell,
+258958007,blood-plasma,Plasma,todo,not a specimen: unit heparin per mL plasma,
+442039000,ascites,AscitesFluid,todo,not a specimen: serum ascites albumin gradient,
+726740008,dna,DNA,todo,not a specimen: cell free DNA substance,
+18470003,dna,DNA,todo,not a specimen: genome,
+33463005,liquid-other,Other,todo,not a specimen: liquid substance,

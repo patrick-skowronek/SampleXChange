@@ -5,19 +5,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-/**
- * Environment configuration parameters.
- */
 @Data
 @Component
 @ConfigurationProperties(prefix = "app")
 public class Configuration {
-
     @Value("${app.version}")
     private String appVersion;
 
-    @Value("${profile}")
-    private String profile;
+    @Value("${sourceformat:}")
+    private String sourceFormat;
+
+    @Value("${targetformat:}")
+    private String targetFormat;
 
     @Value("${fileexportpath}")
     private String fileExportPath;

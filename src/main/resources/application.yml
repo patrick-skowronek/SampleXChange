@@ -29,6 +29,7 @@ app:
       token-url: "${TARGET_KEYCLOAK_TOKEN_URL:}"
       client-id: "${TARGET_KEYCLOAK_CLIENT_ID:}"
       client-secret: "${TARGET_KEYCLOAK_CLIENT_SECRET:}"
-profile: "${PROFILE:none}"
+sourceformat: "${SOURCE_FORMAT:}"
+targetformat: "${TARGET_FORMAT:}"
 fileexportpath: "${FILE_EXPORT_PATH:}"
 kind: Application

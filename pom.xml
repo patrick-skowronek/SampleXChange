@@ -10,10 +10,11 @@
 	</parent>
 	<groupId>de.samply</groupId>
 	<artifactId>SampleXChange</artifactId>
-	<version>0.2.0</version>
+	<version>0.3.0</version>
 	<name>SampleXChange</name>
 	<description>SampleXChange</description>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>25</java.version>
 		<hapi.version>8.6.5</hapi.version>
 		<testcontainers.version>1.21.4</testcontainers.version>
@@ -73,12 +74,6 @@
 			<version>1.1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-			<version>4.13.2</version>
-		</dependency>
-		<dependency>
 			<groupId>jakarta.jws</groupId>
 			<artifactId>jakarta.jws-api</artifactId>
 			<version>3.0.0</version>
@@ -116,6 +111,27 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.5.0</version>
+				<executions>
+					<execution>
+						<id>require-java-25</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireJavaVersion>
+									<version>[25,)</version>
+									<message>SampleXChange needs JDK 25 or newer. An older JDK fails later as an unreadable class version error from a forked test JVM.</message>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

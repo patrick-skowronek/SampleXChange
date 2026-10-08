@@ -33,7 +33,9 @@ build/
 .vscode/
 
 ###Eclipse###
-*target*
+# Only the Maven build directory. A bare *target* pattern also swallows the
+# target/ source package and TargetFormat.java.
+/target/
 *.jar
 *.war
 *.ear

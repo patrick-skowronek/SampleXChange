@@ -1,13 +1,9 @@
 package de.samply.samplexchange.configuration;
 
-/**
- * Supported authentication types for FHIR servers.
- */
+//The auth types which are aviable
 public enum AuthType {
-    /** Keycloak OAuth2 authentication */
     KEYCLOAK,
-    /** Static bearer token authentication */
     BEARER,
-    /** HTTP Basic authentication */
-    BASIC
+    BASIC,
+    NONE
 }

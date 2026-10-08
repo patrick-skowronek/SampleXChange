@@ -14,57 +14,31 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
-/**
- * Main Class for working with fhir mappings.
- */
 @Slf4j
 public class FhirComponent {
-
     private final FhirContext ctx;
-    /**
-     * Configuration.
-     */
 
     public Configuration configuration;
 
-    /**
-     * transferController.
-     */
-    public FhirTransfer transferController;
+    public FhirTransfer fhirTransfer;
 
-    /**
-     * Source fhir client.
-     */
     private FhirClient sourceFhirServer;
 
-    /**
-     * Fhir export interface.
-     */
     private FhirExportInterface fhirExportInterface;
 
-    /**
-     * Keycloak token managers.
-     */
     private KeycloakTokenManager sourceKeycloakTokenManager;
     private KeycloakTokenManager targetKeycloakTokenManager;
 
-    /**
-     * Constructor.
-     */
     public FhirComponent(Configuration configuration) throws Exception {
         this.configuration = configuration;
         ctx = FhirContext.forR4();
         ctx.getRestfulClientFactory().setSocketTimeout(300 * 1000);
 
-        this.transferController = new FhirTransfer(ctx);
+        this.fhirTransfer = new FhirTransfer(ctx);
     }
 
-    /**
-     * Returns source fhir client.
-     */
     public IGenericClient getSourceFhirServer()
             throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-
         if (Objects.nonNull(sourceFhirServer)) {
             return this.sourceFhirServer.getClient();
         }
@@ -116,6 +90,8 @@ public class FhirComponent {
                     log.info("Setting Basic Authentication for source FHIR server {}", client.getClient().getServerBase());
                     client.setBasicAuth(source.getUsername(), source.getPassword());
                 }
+                case NONE -> log.info("No authentication configured for source FHIR server {}",
+                        client.getClient().getServerBase());
             }
         } catch (Exception e) {
             log.error("Failed to set authentication for source server: {}", e.getMessage());
@@ -160,6 +136,8 @@ public class FhirComponent {
                     log.info("Setting Basic Authentication for target FHIR server {}", client.getClient().getServerBase());
                     client.setBasicAuth(target.getUsername(), target.getPassword());
                 }
+                case NONE -> log.info("No authentication configured for target FHIR server {}",
+                        client.getClient().getServerBase());
             }
         } catch (Exception e) {
             log.error("Failed to set authentication for target server: {}", e.getMessage());
@@ -179,9 +157,6 @@ public class FhirComponent {
         }
     }
 
-    /**
-     * Returns fhir export interface.
-     */
     public FhirExportInterface getFhirExportInterface()
             throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         if (Objects.nonNull(fhirExportInterface)) {
