@@ -21,7 +21,7 @@ mvn clean package -DskipTests
 mvn spring-boot:run
 
 # Run with specific profile
-mvn spring-boot:run -Dspring-boot.run.arguments="--profile=MII2BBMRI"
+SOURCE_FORMAT=MII_2025 TARGET_FORMAT=BBMRI_DE mvn spring-boot:run
 
 # Run tests (when implemented)
 mvn test
@@ -71,7 +71,6 @@ de.samply.samplexchange/
 - **Access Modifiers**: Public for API, private for internal utilities
 
 ## Type Safety and Generics
-- Use generic types in template classes: `ConvertClass<T1, T2>`
 - Strong typing with FHIR model classes from HAPI FHIR
 - Avoid raw types where possible
 
@@ -81,15 +80,16 @@ de.samply.samplexchange/
 
 ## FHIR-Specific Guidelines
 - Use HAPI FHIR R4 structures exclusively
-- Mappers convert MII KDS to bbmri.de (one direction)
+- One reader per source format, one writer per target format, both one direction
 - Handle extensions properly for custom data fields
 - Follow FHIR resource structure conventions
 - Validate resources before conversion
 
 ## Configuration Management
-- Environment variables: `PROFILE`, `SOURCE_URL`, `SOURCE_AUTH_TYPE`, `SOURCE_DISABLE_SSL`, `TARGET_URL`, `TARGET_AUTH_TYPE`, `TARGET_DISABLE_SSL`, etc.
+- Environment variables: `SOURCE_FORMAT`, `TARGET_FORMAT`, `SOURCE_URL`, `SOURCE_AUTH_TYPE`, `SOURCE_DISABLE_SSL`, `TARGET_URL`, `TARGET_AUTH_TYPE`, `TARGET_DISABLE_SSL`, etc.
 - Configuration in `application.yml`
-- Supported profile: MII2BBMRI (see docs/adr/0001-mapping-architecture.md)
+- Supported conversions: MII 2025 and MII 2026, each to bbmri.de and to MIABIS V3
+  (see docs/adr/0001-mapping-architecture.md)
 - Proper binding of environment-specific properties
 
 ## Testing Guidelines (When Implemented)

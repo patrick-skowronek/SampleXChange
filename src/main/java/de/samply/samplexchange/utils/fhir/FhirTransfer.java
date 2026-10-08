@@ -11,31 +11,21 @@ import org.hl7.fhir.r4.model.Bundle.HTTPVerb;
 
 import java.util.*;
 
-/**
- * This class has most of the transformation and converting logic.
- */
 @Slf4j
 public class FhirTransfer {
-
     FhirContext ctx;
 
-    /**
-     * Constructor.
-     */
     public FhirTransfer(FhirContext ctx) {
         this.ctx = ctx;
     }
 
-    private List<IBaseResource> fetchSpecimenResources(IGenericClient client) {
-
+    private List<IBaseResource> fetchAllSpecimens(IGenericClient client) {
         List<IBaseResource> resourceList = new ArrayList<>();
 
-        // Search
         Bundle bundle =
                 client.search().forResource(Specimen.class).returnBundle(Bundle.class).count(500).execute();
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
-        // Load the subsequent pages
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
             bundle = client.loadPage().next(bundle).execute();
             resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
@@ -46,22 +36,17 @@ public class FhirTransfer {
         return resourceList;
     }
 
-    /**
-     * Fetches all patient ids.
-     */
-    public Set<String> fetchPatientIds(IGenericClient client) {
-        return this.getSpecimenPatients(client);
+    public Set<String> fetchDonorReferencesFromSpecimens(IGenericClient client) {
+        return this.readDonorReferencesOfAllSpecimens(client);
     }
 
     private <T extends IBaseResource> List<T> fetchResources(
             Class<T> resourceType, IGenericClient client) {
-        // Search
         Bundle bundle =
                 client.search().forResource(resourceType).returnBundle(Bundle.class).count(500).execute();
         List<T> resourceList =
                 new ArrayList<>(BundleUtil.toListOfResourcesOfType(ctx, bundle, resourceType));
 
-        // Load the subsequent pages
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
             bundle = client.loadPage().next(bundle).execute();
             resourceList.addAll(BundleUtil.toListOfResourcesOfType(ctx, bundle, resourceType));
@@ -73,9 +58,6 @@ public class FhirTransfer {
         return resourceList;
     }
 
-    /**
-     * Fetches a resource from the fhir server.
-     */
     public <T extends IBaseResource> T fetchResource(
             IGenericClient client, Class<T> resourceType, String id) {
         log.debug(
@@ -88,10 +70,7 @@ public class FhirTransfer {
         return client.read().resource(resourceType).withId(id).execute();
     }
 
-    /**
-     * Fetches all patient specimen resources.
-     */
-    public List<Specimen> fetchPatientSpecimens(IGenericClient client, String patientId) {
+    public List<Specimen> fetchSpecimensOfDonor(IGenericClient client, String patientId) {
         List<IBaseResource> resourceList = new ArrayList<>();
 
         Bundle bundle =
@@ -118,9 +97,6 @@ public class FhirTransfer {
         return specimens;
     }
 
-    /**
-     * Fetches all organizations resources.
-     */
     public List<IBaseResource> fetchOrganizations(IGenericClient client) {
         List<IBaseResource> resourceList = new ArrayList<>();
 
@@ -136,9 +112,6 @@ public class FhirTransfer {
         return resourceList;
     }
 
-    /**
-     * Fetches all organizations affiliation resources.
-     */
     public List<IBaseResource> fetchOrganizationAffiliation(IGenericClient client) {
         List<IBaseResource> resourceList = new ArrayList<>();
 
@@ -158,10 +131,7 @@ public class FhirTransfer {
         return resourceList;
     }
 
-    /**
-     * Fetches all observation resources.
-     */
-    public List<IBaseResource> fetchPatientObservation(IGenericClient client, String patientId) {
+    public List<IBaseResource> fetchObservationsOfDonor(IGenericClient client, String patientId) {
         List<IBaseResource> resourceList = new ArrayList<>();
 
         Bundle bundle =
@@ -182,11 +152,7 @@ public class FhirTransfer {
         return resourceList;
     }
 
-    /**
-     * Fetches all condition resources of a patient.
-     */
-    public List<IBaseResource> fetchPatientCondition(IGenericClient client, String patientId) {
-
+    public List<IBaseResource> fetchConditionsOfDonor(IGenericClient client, String patientId) {
         Bundle bundle =
                 client
                         .search()
@@ -205,11 +171,8 @@ public class FhirTransfer {
         return resourceList;
     }
 
-    /**
-     * Fetches all patient ids which have a specimen.
-     */
-    public Set<String> getSpecimenPatients(IGenericClient sourceClient) {
-        List<IBaseResource> specimens = fetchSpecimenResources(sourceClient);
+    public Set<String> readDonorReferencesOfAllSpecimens(IGenericClient sourceClient) {
+        List<IBaseResource> specimens = fetchAllSpecimens(sourceClient);
         HashSet<String> patientRefs = new HashSet<>();
         for (IBaseResource specimen : specimens) {
             Specimen s = (Specimen) specimen;
@@ -218,11 +181,8 @@ public class FhirTransfer {
         return patientRefs;
     }
 
-    /**
-     * Fetches all specimen ids which have an associated patient.
-     */
     public Set<String> getSpecimenIds(IGenericClient sourceClient) {
-        List<IBaseResource> specimens = fetchSpecimenResources(sourceClient);
+        List<IBaseResource> specimens = fetchAllSpecimens(sourceClient);
         HashSet<String> specimenRefs = new HashSet<>();
         for (IBaseResource specimen : specimens) {
             Specimen s = (Specimen) specimen;
@@ -241,9 +201,6 @@ public class FhirTransfer {
         return patientRefs;
     }
 
-    /**
-     * Builds a bundle out of resource.
-     */
     public Bundle buildResources(List<IBaseResource> resources) {
         Bundle bundleOut = new Bundle();
         bundleOut.setId(String.valueOf(UUID.randomUUID()));

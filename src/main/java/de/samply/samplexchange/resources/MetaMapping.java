@@ -5,12 +5,7 @@ import org.hl7.fhir.r4.model.BaseResource;
 
 import java.time.LocalDate;
 
-/**
- * Adds meta tag to fhir resource.
- * This mapping adds a tag that TransFAIR - version - date - mapping type
- */
 public class MetaMapping {
-
     private final String version;
 
     private final String mapping;
@@ -20,9 +15,6 @@ public class MetaMapping {
         this.mapping = mapping;
     }
 
-    /**
-     * Adds tag.
-     */
     public IBaseResource tagResource(BaseResource base) {
         base.getMeta().addTag()
                 .setCode("SampleXChange " + version + " - " + LocalDate.now() + " - " + mapping);

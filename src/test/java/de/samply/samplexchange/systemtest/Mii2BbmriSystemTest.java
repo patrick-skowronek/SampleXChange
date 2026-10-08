@@ -5,7 +5,15 @@ import ca.uhn.fhir.rest.client.api.IGenericClient;
 import de.samply.samplexchange.FileUtils;
 import de.samply.samplexchange.configuration.AuthType;
 import de.samply.samplexchange.configuration.Configuration;
-import de.samply.samplexchange.mapper.fhir.mii.Mii2Bbmri;
+import de.samply.samplexchange.configuration.SourceFormat;
+import de.samply.samplexchange.configuration.TargetFormat;
+import de.samply.samplexchange.source.mii.Mii2025Reader;
+import de.samply.samplexchange.source.mii.MiiSpecimenHierarchyResolver;
+import de.samply.samplexchange.source.mii.SpecimenToSampleMapper;
+import de.samply.samplexchange.target.bbmri.BbmriDeWriter;
+import de.samply.samplexchange.terminology.Terminology;
+import de.samply.samplexchange.transform.TransferPipeline;
+import de.samply.samplexchange.transform.Transformation;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Condition;
 import org.hl7.fhir.r4.model.Observation;
@@ -82,21 +90,26 @@ class Mii2BbmriSystemTest {
                 .transaction().withBundle(fixture).execute();
 
         configuration = new Configuration();
-        configuration.setProfile("MII2BBMRI");
+        configuration.setSourceFormat(SourceFormat.MII_2025.name());
+        configuration.setTargetFormat(TargetFormat.BBMRI_DE.name());
         configuration.setAppVersion("systemtest");
         configuration.setFileExportPath("");
 
-        // AuthType has no "none" option, so an unauthenticated server has to be described as
-        // BASIC with throwaway credentials. Blaze ignores the header. See the ADR open items.
+        // Blaze runs without authentication in these tests.
         configuration.getSource().setUrl(fhirBaseUrl(sourceBlaze));
-        configuration.getSource().setAuthType(AuthType.BASIC);
-        configuration.getSource().setUsername("test");
-        configuration.getSource().setPassword("test");
+        configuration.getSource().setAuthType(AuthType.NONE);
 
         configuration.getTarget().setUrl(fhirBaseUrl(targetBlaze));
-        configuration.getTarget().setAuthType(AuthType.BASIC);
-        configuration.getTarget().setUsername("test");
-        configuration.getTarget().setPassword("test");
+        configuration.getTarget().setAuthType(AuthType.NONE);
+    }
+
+    /** Wires the transformation by hand: every part is an ordinary object. */
+    private void runTransfer() throws Exception {
+        Terminology terminology = new Terminology();
+        Transformation transformation = new Transformation(
+                new Mii2025Reader(new MiiSpecimenHierarchyResolver(), new SpecimenToSampleMapper()),
+                new BbmriDeWriter(terminology));
+        new TransferPipeline(configuration, terminology).run(transformation);
     }
 
     private <T extends Resource> List<T> readAll(IGenericClient client, Class<T> type) {
@@ -115,7 +128,7 @@ class Mii2BbmriSystemTest {
 
     @Test
     void transfersPatientSpecimenAndConditionsToBbmriProfiles() throws Exception {
-        new Mii2Bbmri(configuration).transfer();
+        runTransfer();
 
         IGenericClient target = CTX.newRestfulGenericClient(fhirBaseUrl(targetBlaze));
 
@@ -137,7 +150,7 @@ class Mii2BbmriSystemTest {
 
     @Test
     void resourcesAreTaggedWithMappingProvenance() throws Exception {
-        new Mii2Bbmri(configuration).transfer();
+        runTransfer();
 
         IGenericClient target = CTX.newRestfulGenericClient(fhirBaseUrl(targetBlaze));
         Specimen specimen = readAll(target, Specimen.class).get(0);
@@ -148,41 +161,61 @@ class Mii2BbmriSystemTest {
     }
 
     @Test
-    void unknownSampleTypeFallsBackToDerivativeOther() throws Exception {
-        // The fixture specimen is SNOMED 122555007, which the converter table does not know.
-        new Mii2Bbmri(configuration).transfer();
+    void venousBloodBecomesWholeBlood() throws Exception {
+        // The fixture specimen is SNOMED 122555007 |Venous blood specimen|. Before the table
+        // covered every descendant of 123038009 it fell back to derivative-other.
+        runTransfer();
 
         IGenericClient target = CTX.newRestfulGenericClient(fhirBaseUrl(targetBlaze));
         Specimen specimen = readAll(target, Specimen.class).get(0);
 
-        assertEquals("derivative-other", specimen.getType().getCodingFirstRep().getCode());
+        assertEquals("whole-blood", specimen.getType().getCodingFirstRep().getCode());
         assertEquals("https://fhir.bbmri.de/CodeSystem/SampleMaterialType",
                 specimen.getType().getCodingFirstRep().getSystem());
     }
 
     @Test
-    void icd10GmCauseOfDeathLosesItsCode() throws Exception {
-        // KNOWN GAP: the fixture codes the cause of death as ICD-10-GM (bfarm), but
-        // CauseOfDeathMapping.fromMii only reads http://hl7.org/fhir/sid/icd-10. The Observation
-        // is therefore exported without a value. Real MII data uses ICD-10-GM.
-        new Mii2Bbmri(configuration).transfer();
+    void icd10GmCauseOfDeathKeepsItsCode() throws Exception {
+        // The fixture codes cause of death in ICD-10-GM (bfarm). The reader takes the coding
+        // whatever its system, so the code survives instead of the Observation arriving empty.
+        runTransfer();
 
         IGenericClient target = CTX.newRestfulGenericClient(fhirBaseUrl(targetBlaze));
         Observation causeOfDeath = readAll(target, Observation.class).get(0);
 
-        assertFalse(causeOfDeath.hasValueCodeableConcept(),
-                "cause of death arrives without an ICD code because only plain ICD-10 is read");
+        assertTrue(causeOfDeath.hasValueCodeableConcept(), "cause of death should carry its code");
+        assertEquals("http://fhir.de/CodeSystem/bfarm/icd-10-gm",
+                causeOfDeath.getValueCodeableConcept().getCodingFirstRep().getSystem());
+        assertEquals("R96.1",
+                causeOfDeath.getValueCodeableConcept().getCodingFirstRep().getCode());
     }
 
     @Test
-    void snomedOnlyDiagnosisLosesItsCode() throws Exception {
-        // KNOWN GAP: the Diagnose condition is coded in SNOMED CT only, which
-        // ConditionMapping.fromMii logs as unsupported, so no code is exported.
-        new Mii2Bbmri(configuration).transfer();
+    void snomedOnlyDiagnosisKeepsItsCode() throws Exception {
+        // The Diagnose condition is coded in SNOMED CT only. It now reaches the target with that
+        // coding rather than being dropped. bbmri.de expects ICD-10, so a profile validator will
+        // flag the system: the gap is visible instead of silent.
+        runTransfer();
 
         IGenericClient target = CTX.newRestfulGenericClient(fhirBaseUrl(targetBlaze));
         Condition condition = readAll(target, Condition.class).get(0);
 
-        assertFalse(condition.hasCode(), "SNOMED-only diagnoses are dropped");
+        assertTrue(condition.hasCode(), "SNOMED-only diagnoses should not be dropped");
+        assertEquals("http://snomed.info/sct", condition.getCode().getCodingFirstRep().getSystem());
+        assertEquals("195506001", condition.getCode().getCodingFirstRep().getCode());
+    }
+
+    @Test
+    void fastingStatusReachesTheTarget() throws Exception {
+        // Read from MII and previously never written.
+        runTransfer();
+
+        IGenericClient target = CTX.newRestfulGenericClient(fhirBaseUrl(targetBlaze));
+        Specimen specimen = readAll(target, Specimen.class).get(0);
+
+        assertTrue(specimen.getCollection().hasFastingStatusCodeableConcept(),
+                "fasting status should be exported");
+        assertEquals("NG", specimen.getCollection().getFastingStatusCodeableConcept()
+                .getCodingFirstRep().getCode());
     }
 }

@@ -2,79 +2,37 @@ package de.samply.samplexchange.resources;
 
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.Condition;
-import org.hl7.fhir.r4.model.Observation;
-import org.hl7.fhir.r4.model.Organization;
 
 import java.util.Objects;
 
-/**
- * Static methods for filtering specific profiles.
- */
 public class FhirProfileChecker {
+
+    private static final String SNOMED = "http://snomed.info/sct";
+    private static final String LOINC = "http://loinc.org";
+    private static final String SNOMED_CODE_FOR_CAUSE_OF_DEATH = "16100001";
+    private static final String LOINC_CODE_FOR_CAUSE_OF_DEATH = "79378-6";
+    private static final String MII_DIAGNOSIS_PROFILE =
+            "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose";
 
     private FhirProfileChecker() {
     }
 
-    /**
-     * Checks if Obersvation is a bbmri.de cause of death.
-     */
-    public static boolean checkBbmriCauseOfDeath(Observation observation) {
-        return observation.getCode().getCodingFirstRep().getCode().equals("68343-3");
+    public static boolean isMiiCauseOfDeath(Condition condition) {
+        return hasCategory(condition, SNOMED, SNOMED_CODE_FOR_CAUSE_OF_DEATH)
+                || hasCategory(condition, LOINC, LOINC_CODE_FOR_CAUSE_OF_DEATH);
     }
 
-    /**
-     * Checks if Organization is a bbmri.de Collection.
-     */
-    public static boolean checkBbmriCollection(Organization organization) {
-        return organization
-                .getMeta()
-                .getProfile()
-                .contains(new CanonicalType("https://fhir.bbmri.de/StructureDefinition/Collection"));
-    }
-
-    /**
-     * Checks if Organization is a bbmri.de Bionbank.
-     */
-    public static boolean checkBbmriBiobank(Organization organization) {
-        return organization
-                .getMeta()
-                .getProfile()
-                .contains(new CanonicalType("https://fhir.bbmri.de/StructureDefinition/Biobank"));
-    }
-
-    /**
-     * Checks if Organization is a mii Bionbank.
-     */
-    public static boolean checkMmiBiobank(Organization organization) {
-        return organization
-                .getMeta()
-                .getProfile()
-                .contains(
-                        new CanonicalType(
-                                "https://www.medizininformatik-initiative.de/fhir/ext/modul-biobank/StructureDefinition/Organization"));
-    }
-
-    /**
-     * Checks if Obersvation is a MII KDS cause of death.
-     */
-    public static boolean checkMiiCauseOfDeath(Condition condition) {
-        return (Objects.equals(
-                condition.getCategoryFirstRep().getCodingFirstRep().getCode(), "16100001")
-                && Objects.equals(
-                condition.getCategoryFirstRep().getCodingFirstRep().getSystem(),
-                "http://snomed.info/sct"))
-                || (Objects.equals(
-                condition.getCategoryFirstRep().getCodingFirstRep().getSystem(), "http://loinc.org")
-                && Objects.equals(
-                condition.getCategoryFirstRep().getCodingFirstRep().getCode(), "79378-6"));
-    }
-
-    public static boolean checkMmiCondition(Condition condition) {
+    public static boolean isMiiDiagnosis(Condition condition) {
         for (CanonicalType profile : condition.getMeta().getProfile()) {
-            if (Objects.equals(profile.asStringValue(), "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose")) {
-                return true; // Found a match
+            if (Objects.equals(profile.asStringValue(), MII_DIAGNOSIS_PROFILE)) {
+                return true;
             }
         }
-        return false; // No match found
+        return false;
+    }
+
+    private static boolean hasCategory(Condition condition, String system, String code) {
+        return Objects.equals(condition.getCategoryFirstRep().getCodingFirstRep().getSystem(), system)
+                && Objects.equals(condition.getCategoryFirstRep().getCodingFirstRep().getCode(), code);
     }
 }

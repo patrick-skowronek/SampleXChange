@@ -2,12 +2,8 @@ package de.samply.samplexchange.configuration;
 
 import lombok.Data;
 
-/**
- * Configuration properties for a FHIR server with authentication.
- */
 @Data
 public class FhirServerProperties {
-
     private String url;
     private AuthType authType;
     private String username;

@@ -1,43 +1,40 @@
 package de.samply.samplexchange;
 
 import de.samply.samplexchange.configuration.Configuration;
-import de.samply.samplexchange.mapper.fhir.FhirInterface;
+import de.samply.samplexchange.configuration.SourceFormat;
+import de.samply.samplexchange.configuration.TargetFormat;
+import de.samply.samplexchange.transform.TransferPipeline;
+import de.samply.samplexchange.transform.Transformation;
+import de.samply.samplexchange.transform.TransformationRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
-/**
- * Main Application Entrypoint.
- */
 @SpringBootApplication()
 @Slf4j
 public class SampleXChangeApplication implements CommandLineRunner {
-
     private final Configuration configuration;
-    private final List<FhirInterface> mappers;
+    private final TransformationRegistry registry;
+    private final TransferPipeline pipeline;
 
-    /**
-     * Loads the mapping service.
-     */
-    SampleXChangeApplication(Configuration configuration, List<FhirInterface> mappers) {
+    SampleXChangeApplication(Configuration configuration,
+                             TransformationRegistry registry,
+                             TransferPipeline pipeline) {
         this.configuration = configuration;
-        this.mappers = mappers;
+        this.registry = registry;
+        this.pipeline = pipeline;
     }
 
-    /**
-     * Starts the program.
-     *
-     * @param args additional program arguments
-     */
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
         SpringApplication.run(SampleXChangeApplication.class, args);
 
         long endTime = System.currentTimeMillis() - startTime;
-        log.info("Finished SampleXChang in {} mil sec", endTime);
+        log.info("Finished SampleXChange in {} mil sec", endTime);
     }
 
     @Override
@@ -48,37 +45,50 @@ public class SampleXChangeApplication implements CommandLineRunner {
             log.debug("args[{}]: {}", i, args[i]);
         }
 
-        // Execute transfer based on profile
         executeTransfer();
     }
 
-    /**
-     * Executes the FHIR resource transfer process based on the configured profile.
-     */
     private void executeTransfer() throws Exception {
         log.info("Starting FHIR resource transfer process...");
-        log.info("Active profile: {}", configuration.getProfile());
         log.info("Source server: {}", configuration.getSourceServer());
         log.info("Target server: {}", configuration.getTargetServer());
         log.info("SSL validation disabled - source: {}, target: {}",
                 configuration.getSource().isDisableSsl(), configuration.getTarget().isDisableSsl());
 
-        if (mappers.isEmpty()) {
-            log.error("No FHIR mapper found for profile: {}", configuration.getProfile());
-            log.info("Available profiles: MII2BBMRI");
+        Transformation transformation;
+        try {
+            transformation = registry.findTransformationFor(
+                    toEnumValue(SourceFormat.class, configuration.getSourceFormat(), "SOURCE_FORMAT"),
+                    toEnumValue(TargetFormat.class, configuration.getTargetFormat(), "TARGET_FORMAT"));
+        } catch (IllegalArgumentException e) {
+            log.error("{}", e.getMessage());
             return;
         }
 
-        // Execute the first matching mapper (there should be only one based on @ConditionalOnExpression)
-        FhirInterface mapper = mappers.get(0);
-        log.info("Using mapper: {}", mapper.getClass().getSimpleName());
-
         try {
-            mapper.transfer();
+            pipeline.run(transformation);
             log.info("FHIR resource transfer process completed successfully");
         } catch (Exception e) {
             log.error("FHIR transfer failed: {}", e.getMessage(), e);
             throw e;
         }
+    }
+
+    private static <E extends Enum<E>> E toEnumValue(Class<E> type, String value, String variable) {
+        if (value == null || value.isBlank()) {
+            throw new IllegalArgumentException(
+                    "%s is not set. Accepted values: %s".formatted(variable, listAcceptedValues(type)));
+        }
+        try {
+            return Enum.valueOf(type, value.trim().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(
+                    "%s=%s is not recognised. Accepted values: %s"
+                            .formatted(variable, value, listAcceptedValues(type)));
+        }
+    }
+
+    private static <E extends Enum<E>> String listAcceptedValues(Class<E> type) {
+        return Arrays.stream(type.getEnumConstants()).map(Enum::name).collect(Collectors.joining(", "));
     }
 }

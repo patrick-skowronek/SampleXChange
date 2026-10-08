@@ -15,12 +15,8 @@ import java.net.HttpURLConnection;
 import java.security.cert.X509Certificate;
 import java.time.Instant;
 
-/**
- * Manages Keycloak token retrieval and caching.
- */
 @Slf4j
 public class KeycloakTokenManager {
-
     private final String tokenUrl;
     private final String clientId;
     private final String clientSecret;
@@ -30,25 +26,10 @@ public class KeycloakTokenManager {
     private String cachedToken;
     private Instant tokenExpiryTime;
 
-    /**
-     * Constructor.
-     *
-     * @param tokenUrl     Keycloak token endpoint URL
-     * @param clientId     Client ID
-     * @param clientSecret Client secret
-     */
     public KeycloakTokenManager(String tokenUrl, String clientId, String clientSecret) {
         this(tokenUrl, clientId, clientSecret, false);
     }
 
-    /**
-     * Constructor with SSL option.
-     *
-     * @param tokenUrl     Keycloak token endpoint URL
-     * @param clientId     Client ID
-     * @param clientSecret Client secret
-     * @param disableSsl   Whether to disable SSL certificate validation
-     */
     public KeycloakTokenManager(String tokenUrl, String clientId, String clientSecret, boolean disableSsl) {
         this.tokenUrl = tokenUrl;
         this.clientId = clientId;
@@ -57,16 +38,12 @@ public class KeycloakTokenManager {
         this.objectMapper = new ObjectMapper();
     }
 
-    /**
-     * Creates a RestTemplate with optional SSL validation disabled.
-     */
     private RestTemplate createRestTemplate(boolean disableSsl) {
         if (!disableSsl) {
             return new RestTemplate();
         }
 
         try {
-            // Create a trust manager that accepts all certificates
             TrustManager[] trustAllCerts = new TrustManager[]{
                 new X509TrustManager() {
                     public X509Certificate[] getAcceptedIssuers() {
@@ -79,18 +56,14 @@ public class KeycloakTokenManager {
                 }
             };
 
-            // Install the all-trusting trust manager
             SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
 
-            // Create a hostname verifier that accepts all hostnames
             HostnameVerifier allHostsValid = (hostname, session) -> true;
 
-            // Set the default SSLSocketFactory and HostnameVerifier
             HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
             HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 
-            // Create SimpleClientHttpRequestFactory
             SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory() {
                 @Override
                 protected void prepareConnection(HttpURLConnection connection, String httpMethod) throws IOException {
@@ -110,12 +83,6 @@ public class KeycloakTokenManager {
         }
     }
 
-    /**
-     * Gets a valid access token. Returns cached token if still valid, otherwise fetches a new one.
-     *
-     * @return Valid access token
-     * @throws Exception if token retrieval fails
-     */
     public String getToken() throws Exception {
         if (isTokenValid()) {
             log.info("Using cached Keycloak token");
@@ -126,16 +93,10 @@ public class KeycloakTokenManager {
         return fetchNewToken();
     }
 
-    /**
-     * Checks if the cached token is still valid.
-     */
     private boolean isTokenValid() {
         return cachedToken != null && tokenExpiryTime != null && Instant.now().isBefore(tokenExpiryTime);
     }
 
-    /**
-     * Fetches a new token from Keycloak.
-     */
     private String fetchNewToken() throws Exception {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -160,7 +121,6 @@ public class KeycloakTokenManager {
                 cachedToken = jsonNode.get("access_token").asText();
                 int expiresIn = jsonNode.get("expires_in").asInt();
 
-                // Set expiry time with 30 second buffer to avoid edge cases
                 tokenExpiryTime = Instant.now().plusSeconds(expiresIn - 30);
 
                 log.info("Successfully retrieved Keycloak token, expires in {} seconds", expiresIn);
@@ -174,9 +134,6 @@ public class KeycloakTokenManager {
         }
     }
 
-    /**
-     * Clears the cached token, forcing a new fetch on next getToken() call.
-     */
     public void invalidateToken() {
         log.warn("Invalidating cached Keycloak token");
         this.cachedToken = null;
