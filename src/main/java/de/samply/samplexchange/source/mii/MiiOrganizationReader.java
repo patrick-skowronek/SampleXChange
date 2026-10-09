@@ -96,7 +96,7 @@ final class MiiOrganizationReader {
                 organization.getName(),
                 readAlias(organization),
                 readDescription(organization),
-                readContacts(organization));
+                readContactsOfOrganization(id, organization));
     }
 
     private static SampleCollection toCollection(String id, Organization organization,
@@ -116,7 +116,7 @@ final class MiiOrganizationReader {
                 readAlias(organization),
                 readDescription(organization),
                 readCollectionTypes(organization),
-                readContacts(organization));
+                readContactsOfOrganization(id, organization));
     }
 
     private static String findBiobankAbove(String id, Organization organization, Map<String, Organization> byId) {
@@ -181,31 +181,62 @@ final class MiiOrganizationReader {
         return types;
     }
 
-    private static List<Contact> readContacts(Organization organization) {
+
+    private static List<Contact> readContactsOfOrganization(String organizationId, Organization organization) {
         List<Contact> contacts = new ArrayList<>();
         for (Organization.OrganizationContactComponent contact : organization.getContact()) {
             HumanName name = contact.getName();
+            String family = name.getFamily();
+            if (family == null || family.isBlank()) {
+                log.warn("Organization {}: leaving out a contact without a family name", organizationId);
+                continue;
+            }
+            List<String> gaps = new ArrayList<>();
             Address address = contact.getAddress();
             Extension role = contact.getExtensionByUrl(CONTACT_ROLE_EXTENSION);
+            String email = readTelecom(contact, ContactPoint.ContactPointSystem.EMAIL);
+            if (email == null) {
+                gaps.add("no email");
+            }
+            if (!contact.hasAddress()) {
+                gaps.add("no address");
+            }
             contacts.add(new Contact(
                     role != null && role.getValue() instanceof PrimitiveType<?> text ? text.getValueAsString() : null,
-                    name.getFamily(),
-                    name.getGiven().stream().map(StringType::getValue).toList(),
-                    name.getPrefix().stream().map(StringType::getValue).toList(),
-                    readTelecom(contact, ContactPoint.ContactPointSystem.EMAIL),
+                    family,
+                    valuesOf(name.getGiven(), "given name", gaps),
+                    valuesOf(name.getPrefix(), "name prefix", gaps),
+                    email,
                     readTelecom(contact, ContactPoint.ContactPointSystem.PHONE),
-                    address.getLine().stream().map(StringType::getValue).toList(),
+                    valuesOf(address.getLine(), "address line", gaps),
                     address.getCity(),
                     address.getPostalCode(),
                     address.getCountry()));
+            if (!gaps.isEmpty()) {
+                log.warn("Organization {}: contact {} is incomplete: {}", organizationId, family,
+                        String.join(", ", gaps));
+            }
         }
         return contacts;
+    }
+
+    /** The parts that have a value; each one without is noted in {@code gaps}. */
+    private static List<String> valuesOf(List<StringType> parts, String what, List<String> gaps) {
+        List<String> values = new ArrayList<>();
+        for (StringType part : parts) {
+            if (part.hasValue() && !part.getValue().isBlank()) {
+                values.add(part.getValue());
+            } else {
+                gaps.add("a " + what + " with no value");
+            }
+        }
+        return values;
     }
 
     private static String readTelecom(Organization.OrganizationContactComponent contact,
                                       ContactPoint.ContactPointSystem system) {
         return contact.getTelecom().stream()
-                .filter(telecom -> telecom.getSystem() == system)
+                .filter(telecom -> telecom.getSystem() == system && telecom.hasValue())
                 .map(ContactPoint::getValue)
                 .findFirst()
                 .orElse(null);

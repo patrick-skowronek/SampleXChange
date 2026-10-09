@@ -5,6 +5,8 @@ import ca.uhn.fhir.rest.client.api.IClientInterceptor;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.rest.client.interceptor.BasicAuthInterceptor;
 import ca.uhn.fhir.rest.client.interceptor.BearerTokenAuthInterceptor;
+import de.samply.samplexchange.utils.auth.KeycloakAuthInterceptor;
+import de.samply.samplexchange.utils.auth.KeycloakTokenManager;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
@@ -54,6 +56,11 @@ public class FhirClient {
     public void setBasicAuth(String username, String password) {
         IClientInterceptor authInterceptor = new BasicAuthInterceptor(username, password);
         client.registerInterceptor(authInterceptor);
+    }
+
+    /** Asks the token manager for a valid token before every request, renewing it when it expires. */
+    public void setKeycloakAuth(KeycloakTokenManager tokenManager) {
+        client.registerInterceptor(new KeycloakAuthInterceptor(tokenManager));
     }
 
     public void setBearerAuth(String token) {

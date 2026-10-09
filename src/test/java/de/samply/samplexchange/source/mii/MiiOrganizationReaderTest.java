@@ -3,8 +3,11 @@ package de.samply.samplexchange.source.mii;
 import ca.uhn.fhir.context.FhirContext;
 import de.samply.samplexchange.FileUtils;
 import de.samply.samplexchange.domain.BiobankDirectory;
+import de.samply.samplexchange.domain.Contact;
 import de.samply.samplexchange.domain.SampleCollection;
+import org.hl7.fhir.r4.model.CodeType;
 import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.ContactPoint;
 import org.hl7.fhir.r4.model.MarkdownType;
 import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Organization;
@@ -100,6 +103,35 @@ class MiiOrganizationReaderTest {
         BiobankDirectory directory = MiiOrganizationReader.toDirectory(List.of(hospital, organization("biobank", null)));
 
         assertEquals(List.of("biobank"), directory.biobanks().stream().map(b -> b.id()).toList());
+    }
+
+    @Test
+    void aContactWithoutAFamilyNameIsLeftOut() {
+        Organization biobank = organization("biobank", null);
+        biobank.addContact().getName().addGiven("Max");
+        biobank.addContact().getName().setFamily("Mustermann");
+
+        assertEquals(List.of("Mustermann"), MiiOrganizationReader.toDirectory(List.of(biobank))
+                .biobanks().get(0).contacts().stream().map(c -> c.family()).toList());
+    }
+
+    @Test
+    void partsWithoutAValueAreLeftOutAndTheContactIsKept() {
+        // An element can carry only an extension, for example a data absent reason, and no value.
+        Organization biobank = organization("biobank", null);
+        Organization.OrganizationContactComponent contact = biobank.addContact();
+        contact.getName().setFamily("Mustermann").addGivenElement()
+                .addExtension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("unknown"));
+        contact.addTelecom().setSystem(ContactPoint.ContactPointSystem.EMAIL)
+                .addExtension("http://hl7.org/fhir/StructureDefinition/data-absent-reason", new CodeType("masked"));
+        contact.getAddress().addLine("Musterstrasse 3").addLineElement();
+
+        Contact read = MiiOrganizationReader.toDirectory(List.of(biobank)).biobanks().get(0).contacts().get(0);
+
+        assertEquals("Mustermann", read.family());
+        assertEquals(List.of(), read.given());
+        assertNull(read.email());
+        assertEquals(List.of("Musterstrasse 3"), read.addressLines());
     }
 
     @Test

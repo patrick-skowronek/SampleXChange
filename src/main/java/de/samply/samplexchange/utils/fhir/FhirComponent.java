@@ -71,9 +71,10 @@ public class FhirComponent {
                             source.getKeycloak().getClientSecret(),
                             source.isDisableSsl()
                     );
-                    String token = sourceKeycloakTokenManager.getToken();
+                    // Fetch once now so a wrong client secret fails at setup, then refresh per request.
+                    sourceKeycloakTokenManager.getToken();
                     log.info("Setting Keycloak Bearer Token Authentication for source FHIR server {}", client.getClient().getServerBase());
-                    client.setBearerAuth(token);
+                    client.setKeycloakAuth(sourceKeycloakTokenManager);
                 }
                 case BEARER -> {
                     if (source.getBearerToken() == null || source.getBearerToken().isBlank()) {
@@ -113,9 +114,10 @@ public class FhirComponent {
                             target.getKeycloak().getClientSecret(),
                             target.isDisableSsl()
                     );
-                    String token = targetKeycloakTokenManager.getToken();
+                    // Fetch once now so a wrong client secret fails at setup, then refresh per request.
+                    targetKeycloakTokenManager.getToken();
                     log.info("Setting Keycloak Bearer Token Authentication for target FHIR server {}", client.getClient().getServerBase());
-                    client.setBearerAuth(token);
+                    client.setKeycloakAuth(targetKeycloakTokenManager);
                 }
                 case BEARER -> {
                     if (target.getBearerToken() == null || target.getBearerToken().isBlank()) {

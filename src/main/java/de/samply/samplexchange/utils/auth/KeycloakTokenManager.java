@@ -83,9 +83,9 @@ public class KeycloakTokenManager {
         }
     }
 
-    public String getToken() throws Exception {
+    public synchronized String getToken() throws Exception {
         if (isTokenValid()) {
-            log.info("Using cached Keycloak token");
+            log.debug("Using cached Keycloak token");
             return cachedToken;
         }
 

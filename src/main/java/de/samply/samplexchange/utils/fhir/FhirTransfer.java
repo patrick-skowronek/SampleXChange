@@ -2,16 +2,25 @@ package de.samply.samplexchange.utils.fhir;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
-import ca.uhn.fhir.util.BundleUtil;
 import de.samply.samplexchange.SampleXChangeException;
 import de.samply.samplexchange.configuration.FhirServerUrl;
 import lombok.extern.slf4j.Slf4j;
 import org.hl7.fhir.instance.model.api.IBaseBundle;
 import org.hl7.fhir.instance.model.api.IBaseResource;
-import org.hl7.fhir.r4.model.*;
+import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Bundle.HTTPVerb;
+import org.hl7.fhir.r4.model.Condition;
+import org.hl7.fhir.r4.model.OperationOutcome;
+import org.hl7.fhir.r4.model.Organization;
+import org.hl7.fhir.r4.model.Resource;
+import org.hl7.fhir.r4.model.Specimen;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class FhirTransfer {
@@ -47,186 +56,102 @@ public class FhirTransfer {
         return retry.call(SERVER, () -> client.loadPage().next(bundle).execute());
     }
 
-    private List<IBaseResource> fetchAllSpecimens(IGenericClient client) {
-        List<IBaseResource> resourceList = new ArrayList<>();
-
-        Bundle bundle =
-                retry.call(SERVER, () -> client.search().forResource(Specimen.class).returnBundle(Bundle.class).count(500).execute());
-        resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-
-        while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = nextPage(client, bundle);
-            resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-            log.debug("Fetching next page of Specimen");
-        }
-        log.info("Loaded " + resourceList.size() + " Specimen Resources from source");
-
-        return resourceList;
-    }
-
+    /**
+     * Only the subject is requested
+     */
     public Set<String> fetchDonorReferencesFromSpecimens(IGenericClient client) {
-        return this.readDonorReferencesOfAllSpecimens(client);
-    }
-
-    private <T extends IBaseResource> List<T> fetchResources(
-            Class<T> resourceType, IGenericClient client) {
-        Bundle bundle =
-                retry.call(SERVER, () -> client.search().forResource(resourceType).returnBundle(Bundle.class).count(500).execute());
-        List<T> resourceList =
-                new ArrayList<>(BundleUtil.toListOfResourcesOfType(ctx, bundle, resourceType));
-
-        while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = nextPage(client, bundle);
-            resourceList.addAll(BundleUtil.toListOfResourcesOfType(ctx, bundle, resourceType));
-            log.debug("Fetching next page of " + resourceType.getName());
+        Set<String> references = new LinkedHashSet<>();
+        Bundle page = retry.call(SERVER, () -> client.search()
+                .forResource(Specimen.class)
+                .elementsSubset("subject")
+                .returnBundle(Bundle.class)
+                .count(500)
+                .execute());
+        while (true) {
+            for (Specimen specimen : resourcesOfType(page, Specimen.class)) {
+                if (specimen.getSubject().hasReference()) {
+                    references.add(specimen.getSubject().getReference());
+                }
+            }
+            if (page.getLink(IBaseBundle.LINK_NEXT) == null) {
+                break;
+            }
+            page = nextPage(client, page);
         }
-        log.info(
-                "Loaded " + resourceList.size() + " " + resourceType.getName() + " Resources from source");
-
-        return resourceList;
+        log.info("Found {} donor references on the Specimens in the source", references.size());
+        return references;
     }
 
     public <T extends IBaseResource> T fetchResource(
             IGenericClient client, Class<T> resourceType, String id) {
-        log.debug(
-                "Reading Resource "
-                        + resourceType.getName()
-                        + " with ID "
-                        + id
-                        + " from "
-                        + client.getServerBase());
+        log.debug("Reading Resource {} with ID {} from {}", resourceType.getName(), id, client.getServerBase());
         return retry.call(SERVER, () -> client.read().resource(resourceType).withId(id).execute());
     }
 
     public List<Specimen> fetchSpecimensOfDonor(IGenericClient client, String patientId) {
-        List<IBaseResource> resourceList = new ArrayList<>();
-
-        Bundle bundle =
-                retry.call(SERVER, () -> client
-                        .search()
-                        .forResource(Specimen.class)
-                        .where(Specimen.SUBJECT.hasId(patientId))
-                        .returnBundle(Bundle.class)
-                        .execute());
-
-        resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-
-        while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = nextPage(client, bundle);
-            resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-        }
-
-        List<Specimen> specimens = new ArrayList<>();
-
-        for (IBaseResource resource : resourceList) {
-            specimens.add((Specimen) resource);
-        }
-
-        return specimens;
+        Bundle firstPage = retry.call(SERVER, () -> client.search()
+                .forResource(Specimen.class)
+                .where(Specimen.SUBJECT.hasId(patientId))
+                .returnBundle(Bundle.class)
+                .execute());
+        return allPages(client, firstPage, Specimen.class);
     }
 
     public List<IBaseResource> fetchOrganizations(IGenericClient client) {
-        List<IBaseResource> resourceList = new ArrayList<>();
-
-        Bundle bundle =
-                retry.call(SERVER, () -> client.search().forResource(Organization.class).returnBundle(Bundle.class).execute());
-
-        resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-
-        while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = nextPage(client, bundle);
-            resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-        }
-        return resourceList;
-    }
-
-    public List<IBaseResource> fetchOrganizationAffiliation(IGenericClient client) {
-        List<IBaseResource> resourceList = new ArrayList<>();
-
-        Bundle bundle =
-                retry.call(SERVER, () -> client
-                        .search()
-                        .forResource(OrganizationAffiliation.class)
-                        .returnBundle(Bundle.class)
-                        .execute());
-
-        resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-
-        while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = nextPage(client, bundle);
-            resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-        }
-        return resourceList;
-    }
-
-    public List<IBaseResource> fetchObservationsOfDonor(IGenericClient client, String patientId) {
-        List<IBaseResource> resourceList = new ArrayList<>();
-
-        Bundle bundle =
-                retry.call(SERVER, () -> client
-                        .search()
-                        .forResource(Observation.class)
-                        .where(Observation.SUBJECT.hasId(patientId))
-                        .returnBundle(Bundle.class)
-                        .execute());
-
-        resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-
-        while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = nextPage(client, bundle);
-            resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-        }
-
-        return resourceList;
+        Bundle firstPage = retry.call(SERVER, () -> client.search()
+                .forResource(Organization.class)
+                .returnBundle(Bundle.class)
+                .execute());
+        return new ArrayList<>(allPages(client, firstPage, Organization.class));
     }
 
     public List<IBaseResource> fetchConditionsOfDonor(IGenericClient client, String patientId) {
-        Bundle bundle =
-                retry.call(SERVER, () -> client
-                        .search()
-                        .forResource(Condition.class)
-                        .where(Condition.SUBJECT.hasId(patientId))
-                        .returnBundle(Bundle.class)
-                        .execute());
-
-        List<IBaseResource> resourceList = new ArrayList<>(BundleUtil.toListOfResources(ctx, bundle));
-
-        while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
-            bundle = nextPage(client, bundle);
-            resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
-        }
-
-        return resourceList;
+        Bundle firstPage = retry.call(SERVER, () -> client.search()
+                .forResource(Condition.class)
+                .where(Condition.SUBJECT.hasId(patientId))
+                .returnBundle(Bundle.class)
+                .execute());
+        return new ArrayList<>(allPages(client, firstPage, Condition.class));
     }
 
-    public Set<String> readDonorReferencesOfAllSpecimens(IGenericClient sourceClient) {
-        List<IBaseResource> specimens = fetchAllSpecimens(sourceClient);
-        HashSet<String> patientRefs = new HashSet<>();
-        for (IBaseResource specimen : specimens) {
-            Specimen s = (Specimen) specimen;
-            patientRefs.add(s.getSubject().getReference());
+    /** The resources of {@code type} on the first page and every page after it. */
+    private <T extends IBaseResource> List<T> allPages(IGenericClient client, Bundle firstPage, Class<T> type) {
+        List<T> resources = new ArrayList<>(resourcesOfType(firstPage, type));
+        Bundle page = firstPage;
+        while (page.getLink(IBaseBundle.LINK_NEXT) != null) {
+            page = nextPage(client, page);
+            resources.addAll(resourcesOfType(page, type));
         }
-        return patientRefs;
+        return resources;
     }
 
-    public Set<String> getSpecimenIds(IGenericClient sourceClient) {
-        List<IBaseResource> specimens = fetchAllSpecimens(sourceClient);
-        HashSet<String> specimenRefs = new HashSet<>();
-        for (IBaseResource specimen : specimens) {
-            Specimen s = (Specimen) specimen;
-            specimenRefs.add(s.getId());
+    /**
+     * The entries of {@code page} that are of {@code type}. Some servers, HAPI among them, add an
+     * OperationOutcome to search results to carry a warning
+     */
+    static <T extends IBaseResource> List<T> resourcesOfType(Bundle page, Class<T> type) {
+        List<T> matching = new ArrayList<>();
+        for (Bundle.BundleEntryComponent entry : page.getEntry()) {
+            Resource resource = entry.getResource();
+            if (resource == null) {
+                continue;
+            }
+            if (type.isInstance(resource)) {
+                matching.add(type.cast(resource));
+            } else if (resource instanceof OperationOutcome outcome) {
+                log.warn("The source server added a note to a {} search: {}", type.getSimpleName(), describe(outcome));
+            } else {
+                log.warn("Ignoring a {} in the {} search results from the source server",
+                        resource.fhirType(), type.getSimpleName());
+            }
         }
-        return specimenRefs;
+        return matching;
     }
 
-    private HashSet<String> getPatientRefs(IGenericClient sourceClient) {
-        List<Patient> patients = fetchResources(Patient.class, sourceClient);
-        HashSet<String> patientRefs = new HashSet<>();
-
-        for (IBaseResource patient : patients) {
-            patientRefs.add(patient.getIdElement().getValue());
-        }
-        return patientRefs;
+    private static String describe(OperationOutcome outcome) {
+        return outcome.getIssue().stream()
+                .map(issue -> issue.hasDiagnostics() ? issue.getDiagnostics() : issue.getDetails().getText())
+                .collect(Collectors.joining("; "));
     }
 
     public Bundle buildResources(List<IBaseResource> resources) {
