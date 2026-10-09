@@ -69,6 +69,11 @@ Two Docker Compose files let you try the tool on your own data. `blazes.yml` sta
 ## Usage
 Set the environment variables for your setup, then run the tool locally or with Docker. Afterwards, check that the resources on the target server look the way you expect.
 
+## Keeping the target up to date
+SampleXChange runs as a single job. Each run writes every exported resource to the target with its source id, so existing resources are updated and new ones added. SampleXChange never deletes anything from the target, so a resource removed from the source stays there.
+
+To keep the target in line with the source, clear the target server and run a full export regularly, for example once a month.
+
 ## To do
 - The conversion to MIABIS is at an early stage and will be developed further.
 
