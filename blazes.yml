@@ -1,0 +1,42 @@
+services:
+  blazea:
+    image: samply/blaze:latest
+    environment:
+      LOG_LEVEL: warn
+      BASE_URL: http://blazea:8080
+    ports:
+      - "8081:8080"
+    volumes:
+      - blazea-data:/app/data
+    networks:
+      - samplexchange
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+
+  blazeb:
+    image: samply/blaze:latest
+    environment:
+      LOG_LEVEL: warn
+      BASE_URL: http://blazeb:8080
+    ports:
+      - "8082:8080"
+    volumes:
+      - blazeb-data:/app/data
+    networks:
+      - samplexchange
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+
+networks:
+  samplexchange:
+    name: samplexchange
+
+volumes:
+  blazea-data:
+  blazeb-data:

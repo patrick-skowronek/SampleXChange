@@ -28,7 +28,8 @@ SSL verification is set per server. Setting a variable to `true` turns verificat
 ### FHIR server configuration
 Each FHIR server URL must be an http or https URL ending in `/fhir`, such as `http://localhost:8080/fhir`.
 
-The authentication type is `KEYCLOAK`, `BEARER`, `BASIC` or `NONE`, and defaults to `NONE` when it is not set. 
+The authentication type is `KEYCLOAK`, `BEARER`, `BASIC` or `NONE`, and defaults to `NONE` when it is not set.
+
 #### Source FHIR server
 - `SOURCE_URL`: URL of the source FHIR server.
 - `SOURCE_AUTH_TYPE`: one of `KEYCLOAK`, `BEARER`, `BASIC`, `NONE` (default).
@@ -44,6 +45,26 @@ The authentication type is `KEYCLOAK`, `BEARER`, `BASIC` or `NONE`, and defaults
 - `TARGET_KEYCLOAK_TOKEN_URL`, `TARGET_KEYCLOAK_CLIENT_ID`, `TARGET_KEYCLOAK_CLIENT_SECRET`: required for `KEYCLOAK`.
 
 `.env.example` has a complete template.
+
+## How to test
+Two Docker Compose files let you try the tool on your own data. `blazes.yml` starts two Blaze FHIR servers, the source on `http://localhost:8081/fhir` and the target on `http://localhost:8082/fhir`. `docker-compose.yml` runs SampleXChange against them.
+
+1. Start the two servers:
+   ```bash
+   docker compose -f blazes.yml up -d
+   ```
+2. Upload your data to the source server as a FHIR transaction bundle:
+   ```bash
+   curl -X POST -H 'Content-Type: application/fhir+json' --data-binary @my-bundle.json http://localhost:8081/fhir
+   ```
+   To see how it works without your own data, use one of the examples in `src/test/resources`: `mii.json` for MII 2025 or `mii2026-bundle.json` for MII 2026.
+3. Run SampleXChange:
+   ```bash
+   docker compose up
+   ```
+4. Look at the result on the target server, for example at `http://localhost:8082/fhir/Specimen`.
+
+`docker-compose.yml` is set to `SOURCE_FORMAT=MII_2025`. For MII 2026 data, change it to `MII_2026`.
 
 ## Usage
 Set the environment variables for your setup, then run the tool locally or with Docker. Afterwards, check that the resources on the target server look the way you expect.
