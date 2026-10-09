@@ -27,6 +27,8 @@ public class FhirComponent {
 
     private FhirExportInterface fhirExportInterface;
 
+    private final RetryPolicy retryPolicy;
+
     private KeycloakTokenManager sourceKeycloakTokenManager;
     private KeycloakTokenManager targetKeycloakTokenManager;
 
@@ -35,7 +37,8 @@ public class FhirComponent {
         ctx = FhirContext.forR4();
         ctx.getRestfulClientFactory().setSocketTimeout(300 * 1000);
 
-        this.fhirTransfer = new FhirTransfer(ctx);
+        this.retryPolicy = RetryPolicy.standard();
+        this.fhirTransfer = new FhirTransfer(ctx, retryPolicy);
     }
 
     public IGenericClient getSourceFhirServer()
@@ -162,7 +165,8 @@ public class FhirComponent {
         } else {
             FhirServerSaver fhirServerSaver =
                     new FhirServerSaver(
-                            ctx, configuration.getTarget().getUrl(), configuration.getTarget().isDisableSsl());
+                            ctx, configuration.getTarget().getUrl(), configuration.getTarget().isDisableSsl(),
+                            retryPolicy);
 
             setAuthForTarget(fhirServerSaver.getClient());
             log.info("Exporting resources to FHIR server " + configuration.getTarget().getUrl());

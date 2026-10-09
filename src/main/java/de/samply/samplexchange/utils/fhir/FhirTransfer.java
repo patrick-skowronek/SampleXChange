@@ -15,10 +15,19 @@ import java.util.*;
 
 @Slf4j
 public class FhirTransfer {
+    /** Every request this class makes goes to the source server. */
+    private static final String SERVER = "source";
+
     FhirContext ctx;
+    private final RetryPolicy retry;
 
     public FhirTransfer(FhirContext ctx) {
+        this(ctx, RetryPolicy.none());
+    }
+
+    public FhirTransfer(FhirContext ctx, RetryPolicy retry) {
         this.ctx = ctx;
+        this.retry = retry;
     }
 
     /**
@@ -35,14 +44,14 @@ public class FhirTransfer {
                             + "SampleXChange with the address the server reports.")
                             .formatted(client.getServerBase(), next));
         }
-        return client.loadPage().next(bundle).execute();
+        return retry.call(SERVER, () -> client.loadPage().next(bundle).execute());
     }
 
     private List<IBaseResource> fetchAllSpecimens(IGenericClient client) {
         List<IBaseResource> resourceList = new ArrayList<>();
 
         Bundle bundle =
-                client.search().forResource(Specimen.class).returnBundle(Bundle.class).count(500).execute();
+                retry.call(SERVER, () -> client.search().forResource(Specimen.class).returnBundle(Bundle.class).count(500).execute());
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
         while (bundle.getLink(IBaseBundle.LINK_NEXT) != null) {
@@ -62,7 +71,7 @@ public class FhirTransfer {
     private <T extends IBaseResource> List<T> fetchResources(
             Class<T> resourceType, IGenericClient client) {
         Bundle bundle =
-                client.search().forResource(resourceType).returnBundle(Bundle.class).count(500).execute();
+                retry.call(SERVER, () -> client.search().forResource(resourceType).returnBundle(Bundle.class).count(500).execute());
         List<T> resourceList =
                 new ArrayList<>(BundleUtil.toListOfResourcesOfType(ctx, bundle, resourceType));
 
@@ -86,19 +95,19 @@ public class FhirTransfer {
                         + id
                         + " from "
                         + client.getServerBase());
-        return client.read().resource(resourceType).withId(id).execute();
+        return retry.call(SERVER, () -> client.read().resource(resourceType).withId(id).execute());
     }
 
     public List<Specimen> fetchSpecimensOfDonor(IGenericClient client, String patientId) {
         List<IBaseResource> resourceList = new ArrayList<>();
 
         Bundle bundle =
-                client
+                retry.call(SERVER, () -> client
                         .search()
                         .forResource(Specimen.class)
                         .where(Specimen.SUBJECT.hasId(patientId))
                         .returnBundle(Bundle.class)
-                        .execute();
+                        .execute());
 
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
@@ -120,7 +129,7 @@ public class FhirTransfer {
         List<IBaseResource> resourceList = new ArrayList<>();
 
         Bundle bundle =
-                client.search().forResource(Organization.class).returnBundle(Bundle.class).execute();
+                retry.call(SERVER, () -> client.search().forResource(Organization.class).returnBundle(Bundle.class).execute());
 
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
@@ -135,11 +144,11 @@ public class FhirTransfer {
         List<IBaseResource> resourceList = new ArrayList<>();
 
         Bundle bundle =
-                client
+                retry.call(SERVER, () -> client
                         .search()
                         .forResource(OrganizationAffiliation.class)
                         .returnBundle(Bundle.class)
-                        .execute();
+                        .execute());
 
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
@@ -154,12 +163,12 @@ public class FhirTransfer {
         List<IBaseResource> resourceList = new ArrayList<>();
 
         Bundle bundle =
-                client
+                retry.call(SERVER, () -> client
                         .search()
                         .forResource(Observation.class)
                         .where(Observation.SUBJECT.hasId(patientId))
                         .returnBundle(Bundle.class)
-                        .execute();
+                        .execute());
 
         resourceList.addAll(BundleUtil.toListOfResources(ctx, bundle));
 
@@ -173,12 +182,12 @@ public class FhirTransfer {
 
     public List<IBaseResource> fetchConditionsOfDonor(IGenericClient client, String patientId) {
         Bundle bundle =
-                client
+                retry.call(SERVER, () -> client
                         .search()
                         .forResource(Condition.class)
                         .where(Condition.SUBJECT.hasId(patientId))
                         .returnBundle(Bundle.class)
-                        .execute();
+                        .execute());
 
         List<IBaseResource> resourceList = new ArrayList<>(BundleUtil.toListOfResources(ctx, bundle));
 

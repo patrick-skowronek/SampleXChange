@@ -2,6 +2,7 @@ package de.samply.samplexchange.repository.fhir;
 
 import ca.uhn.fhir.context.FhirContext;
 import de.samply.samplexchange.utils.fhir.FhirExportInterface;
+import de.samply.samplexchange.utils.fhir.RetryPolicy;
 import de.samply.samplexchange.utils.fhir.clients.FhirClient;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -15,15 +16,17 @@ import java.security.NoSuchAlgorithmException;
 @Slf4j
 public class FhirServerSaver extends FhirExportInterface {
     private final FhirClient client;
+    private final RetryPolicy retry;
 
-    public FhirServerSaver(FhirContext context, String targetServer, Boolean ssl)
+    public FhirServerSaver(FhirContext context, String targetServer, Boolean ssl, RetryPolicy retry)
             throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         this.client = new FhirClient(context, targetServer, ssl);
+        this.retry = retry;
     }
 
     public Boolean export(Bundle bundle) {
         log.debug("Sending Resource to {}", getClient().getClient().getServerBase());
-        client.getClient().transaction().withBundle(bundle).execute();
+        retry.call("target", () -> client.getClient().transaction().withBundle(bundle).execute());
         return true;
     }
 
